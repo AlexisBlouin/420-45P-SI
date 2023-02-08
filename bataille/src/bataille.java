@@ -63,22 +63,28 @@ public class bataille {
         for(int numeroBateau = 1; numeroBateau <= 5; numeroBateau++){
 
             //Normallement a 10
-            ligne = randRange(0, 5);
-            colonne = randRange(0, 5);
-            direction = randRange(1, 3);
-            if(posOk(grilleOrdi, ligne, colonne, direction, grandeurBateau[numeroBateau - 1])){
-                if(direction == 1){
-                    for(int i = ligne; i < ligne + grandeurBateau[numeroBateau - 1]; i++){
-                        grilleOrdi[i][colonne] = numeroBateau;
-                    }
-                    afficherGrilleOrdi();
+            //ligne = randRange(0, 5);
+            //colonne = randRange(0, 5);
+            //direction = randRange(1, 3);
+
+            do {
+                ligne = randRange(0, 5);
+                colonne = randRange(0, 5);
+                direction = randRange(1, 3);
+            }
+            while (!posOk(grilleOrdi, ligne, colonne, direction, grandeurBateau[numeroBateau - 1]));
+
+            if(direction == 1){
+                for(int i = ligne; i < ligne + grandeurBateau[numeroBateau - 1]; i++){
+                    grilleOrdi[i][colonne] = numeroBateau;
                 }
-                else {
-                    for(int i = colonne; i < colonne + grandeurBateau[numeroBateau - 1]; i++){
-                        grilleOrdi[ligne][i] = numeroBateau;
-                    }
-                    afficherGrilleOrdi();
+                afficherGrilleOrdi();
+            }
+            else {
+                for(int i = colonne; i < colonne + grandeurBateau[numeroBateau - 1]; i++){
+                    grilleOrdi[ligne][i] = numeroBateau;
                 }
+                afficherGrilleOrdi();
             }
         }
     }
