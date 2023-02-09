@@ -25,7 +25,7 @@ public class bataille {
         int indice = c;
 
         //Teste si les cases nécessaires au bateau sont inoccupées et s'assure de ne pas sortir de la grille.
-        while(grille[l][indice] == 0 && indice < c + t && indice < 10){
+        while(indice < 10 && indice < c + t && grille[l][indice] == 0){
             indice++;
         }
         //Si l'indice c'est rendu jusqu'à la dernière case du bateau, le positionnement fonctionne.
@@ -40,7 +40,7 @@ public class bataille {
         int indice = l;
 
         //Teste si les cases nécessaires au bateau sont inoccupées et s'assure de ne pas sortir de la grille.
-        while(grille[indice][c] == 0 && indice < l + t && indice < 10){
+        while(indice < 10 && indice < l + t && grille[indice][c] == 0){
             indice++;
         }
         //Si l'indice c'est rendu jusqu'à la dernière case du bateau, le positionnement fonctionne.
@@ -56,7 +56,7 @@ public class bataille {
     }
 
     public static void initGrilleOrdi(){
-        int grandeurBateau[] = new int[] {5, 4, 3, 3, 2};
+        int[] grandeurBateau = new int[] {5, 4, 3, 3, 2};
         int ligne;
         int colonne;
         int direction;
@@ -68,23 +68,23 @@ public class bataille {
             //direction = randRange(1, 3);
 
             do {
-                ligne = randRange(0, 5);
-                colonne = randRange(0, 5);
+                ligne = randRange(0, 10);
+                colonne = randRange(0, 10);
                 direction = randRange(1, 3);
             }
             while (!posOk(grilleOrdi, ligne, colonne, direction, grandeurBateau[numeroBateau - 1]));
 
             if(direction == 1){
-                for(int i = ligne; i < ligne + grandeurBateau[numeroBateau - 1]; i++){
-                    grilleOrdi[i][colonne] = numeroBateau;
-                }
-                afficherGrilleOrdi();
-            }
-            else {
                 for(int i = colonne; i < colonne + grandeurBateau[numeroBateau - 1]; i++){
                     grilleOrdi[ligne][i] = numeroBateau;
                 }
-                afficherGrilleOrdi();
+                //afficherGrilleOrdi();
+            }
+            else {
+                for(int i = ligne; i < ligne + grandeurBateau[numeroBateau - 1]; i++){
+                    grilleOrdi[i][colonne] = numeroBateau;
+                }
+                //afficherGrilleOrdi();
             }
         }
     }
