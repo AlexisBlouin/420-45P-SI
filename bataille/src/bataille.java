@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * @author AlexisBlouin
@@ -10,8 +11,9 @@ public class bataille {
     public static int [][]grilleJeu = new int[10][10];
 
     public static void main(String[] args){
-        initGrilleOrdi();
-        afficherGrilleOrdi();
+        //initGrilleOrdi();
+        //afficherGrilleOrdi();
+        initGrilleJeu();
     }
 
     public static boolean posOk(int [][]grille, int l, int c, int d, int t){
@@ -67,18 +69,19 @@ public class bataille {
         int direction;
         for(int numeroBateau = 1; numeroBateau <= 5; numeroBateau++){
 
-            //Normallement a 10
-            //ligne = randRange(0, 5);
-            //colonne = randRange(0, 5);
-            //direction = randRange(1, 3);
+            //faire fonction pr position aleatoire
+            ligne = randRange(0, 10);
+            colonne = randRange(0, 10);
+            direction = randRange(1, 3);
 
-            do {
+            while (!posOk(grilleOrdi, ligne, colonne, direction, grandeurBateau[numeroBateau - 1]))
+            {
                 ligne = randRange(0, 10);
                 colonne = randRange(0, 10);
                 direction = randRange(1, 3);
             }
-            while (!posOk(grilleOrdi, ligne, colonne, direction, grandeurBateau[numeroBateau - 1]));
 
+            //Faire fonction (EcrireDansGrille)
             if(direction == 1){
                 for(int i = colonne; i < colonne + grandeurBateau[numeroBateau - 1]; i++){
                     grilleOrdi[ligne][i] = numeroBateau;
@@ -94,6 +97,109 @@ public class bataille {
         }
     }
 
+    public static void initGrilleJeu(){
+        int[] grandeurBateau = new int[] {5, 4, 3, 3, 2};
+        int ligne;
+        int colonneInt;
+        char colonneChar;
+        int direction;
+
+        //Utilisation du scanner fait avec l'aide de la page : https://www.w3schools.com/java/java_user_input.asp
+        Scanner lecture = new Scanner(System.in);
+
+        for(int numeroBateau = 1; numeroBateau <= 5; numeroBateau++){
+
+            //Faire fonction pr demander positionnement
+            System.out.println("Donnez la lettre pour le porte avions : ");
+            colonneChar = lecture.next().charAt(0);
+            colonneChar = Character.toUpperCase(colonneChar);
+            while(colonneChar < 'A' || colonneChar > 'J'){
+                System.out.println("La lettre entree n'est pas valide.");
+                System.out.println("Donnez la lettre pour le porte avions (Entre 'A' et 'J') : ");
+                colonneChar = lecture.next().charAt(0);
+                colonneChar = Character.toUpperCase(colonneChar);
+            }
+            colonneInt = colonneChar;
+            System.out.println(colonneInt);
+            colonneInt -= 65;
+            System.out.println(colonneInt);
+
+            System.out.println("Donnez le nombre pour le porte avions : ");
+            ligne = lecture.nextInt();
+            while(ligne < 0 || ligne > 9){
+                System.out.println("Le nombre entree n'est pas valide.");
+                System.out.println("Donnez le nombre pour le porte avions (Entre 1 et 9) : ");
+                ligne = lecture.nextInt();
+            }
+
+            System.out.println("Voulez-vous qu'il soit horizontal (1) ou vertical (2) ?");
+            direction = lecture.nextInt();
+            while(direction < 1 || direction > 2){
+                System.out.println("Le nombre entree n'est pas valide.");
+                System.out.println("Voulez-vous qu'il soit horizontal (1) ou vertical (2) ?");
+                direction = lecture.nextInt();
+            }
+
+            while(!posOk(grilleJeu, ligne, colonneInt, direction, grandeurBateau[numeroBateau - 1])){
+                System.out.println("Erreur : Le porte-avions ne rentre pas dans la grille.");
+                System.out.println("Donnez la lettre pour le porte avions : ");
+                colonneChar = lecture.next().charAt(0);
+                colonneChar = Character.toUpperCase(colonneChar);
+                while(colonneChar < 'A' || colonneChar > 'J'){
+                    System.out.println("La lettre entree n'est pas valide.");
+                    System.out.println("Donnez la lettre pour le porte avions (Entre 'A' et 'J') : ");
+                    colonneChar = lecture.next().charAt(0);
+                    colonneChar = Character.toUpperCase(colonneChar);
+                }
+                colonneInt = colonneChar;
+                System.out.println(colonneInt);
+                colonneInt -= 65;
+                System.out.println(colonneInt);
+
+                System.out.println("Donnez le nombre pour le porte avions : ");
+                ligne = lecture.nextInt();
+                while(ligne < 0 || ligne > 9){
+                    System.out.println("Le nombre entree n'est pas valide.");
+                    System.out.println("Donnez le nombre pour le porte avions (Entre 1 et 9) : ");
+                    ligne = lecture.nextInt();
+                }
+
+                System.out.println("Voulez-vous qu'il soit horizontal (1) ou vertical (2) ?");
+                direction = lecture.nextInt();
+                while(direction < 1 || direction > 2){
+                    System.out.println("Le nombre entree n'est pas valide.");
+                    System.out.println("Voulez-vous qu'il soit horizontal (1) ou vertical (2) ?");
+                    direction = lecture.nextInt();
+                }
+            }
+
+            //Faire fonction (EcrireDansGrille)
+            if(direction == 1){
+                for(int i = colonneInt; i < colonneInt + grandeurBateau[numeroBateau - 1]; i++){
+                    grilleJeu[ligne][i] = numeroBateau;
+                }
+                afficherGrilleJeu();
+            }
+            else {
+                for(int i = ligne; i < ligne + grandeurBateau[numeroBateau - 1]; i++){
+                    grilleJeu[i][colonneInt] = numeroBateau;
+                }
+                afficherGrilleJeu();
+            }
+        }
+    }
+
+    //appeler sa afficherGrille(Grille ){}
+    static void afficherGrilleJeu(){
+        System.out.println("  A B C D E F G H I J");
+        for(int l = 0; l < 10; l++){
+            System.out.print(l);
+            for(int c = 0; c < 10; c++){
+                System.out.print(" " + grilleJeu[l][c]);
+            }
+            System.out.println();
+        }
+    }
     public static void afficherGrilleOrdi(){
         System.out.println("  A B C D E F G H I J");
         for(int l = 0; l < 10; l++){
