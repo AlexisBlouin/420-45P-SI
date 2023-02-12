@@ -1,3 +1,4 @@
+-faire javadoc
 -Faire 1 fonction pr afficher les grilles
 -Faire fonction ecrire dans grille
 -Faire 1 ou 3 fonction pr demande positionnement

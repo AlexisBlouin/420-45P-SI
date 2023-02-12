@@ -2,20 +2,38 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
+ * Programme bataille.java permettant de jouer au jeu Battleship contre un ordinateur.
  * @author AlexisBlouin
  * @since 5 fevrier 2023
- *
  */
 public class bataille {
     public static int [][]grilleOrdi = new int[10][10];
     public static int [][]grilleJeu = new int[10][10];
 
     public static void main(String[] args){
-        //initGrilleOrdi();
+        initGrilleOrdi();
+        afficherGrille(grilleOrdi);
         //afficherGrilleOrdi();
         initGrilleJeu();
+        afficherGrille(grilleJeu);
     }
 
+    /**
+     * Vérifie si la position fonctionne pour l'ajout d'un bateau.
+     * Se sert des fonctions {@link #ligneOk(int[][], int, int, int) ligneOk} et {@link #colonneOk(int[][], int, int, int) colonneOk} pour donner le résultat.
+     * @param grille
+     *      La grille utilisée (grilleOrdi ou grilleJeu).
+     * @param l
+     *      Le numéro de la ligne du bateau.
+     * @param c
+     *      Le numéro de la colonne du bateau.
+     * @param d
+     *      La direction du bateau.
+     * @param t
+     *      Le nombre de cases du bateau.
+     * @return fonctionne
+     *      Le résultat disant si cette position fonctionne.
+     */
     public static boolean posOk(int [][]grille, int l, int c, int d, int t){
         boolean fonctionne;
         if(d == 1){
@@ -27,6 +45,19 @@ public class bataille {
         return fonctionne;
     }
 
+    /**
+     * Teste si le bateau peut se poser sur une ligne.
+     * @param grille
+     *      La grille utilisée (grilleOrdi ou grilleJeu).
+     * @param l
+     *      Le numéro de la ligne du bateau.
+     * @param c
+     *      Le numéro de la colonne du bateau.
+     * @param t
+     *      Le nombre de cases du bateau.
+     * @return fonctionne
+     *      Le résultat disant si cette position fonctionne.
+     */
     public static boolean ligneOk(int [][]grille, int l, int c, int t){
         boolean fonctionne = true;
         int indice = c;
@@ -35,13 +66,26 @@ public class bataille {
         while(indice < 10 && indice < c + t && grille[l][indice] == 0){
             indice++;
         }
-        //Si l'indice c'est rendu jusqu'à la dernière case du bateau, le positionnement fonctionne.
+        //Si l'indice s'est rendu jusqu'à la dernière case du bateau, le positionnement fonctionne.
         if(indice < c + t){
             fonctionne = false;
         }
         return fonctionne;
     }
 
+    /**
+     * Teste si le bateau peut se poser sur une colonne.
+     * @param grille
+     *      La grille utilisée (grilleOrdi ou grilleJeu).
+     * @param l
+     *      Le numéro de la ligne du bateau.
+     * @param c
+     *      Le numéro de la colonne du bateau.
+     * @param t
+     *      Le nombre de cases du bateau.
+     * @return fonctionne
+     *      Le résultat disant si cette position fonctionne.
+     */
     public static boolean colonneOk(int [][]grille, int l, int c, int t){
         boolean fonctionne = true;
         int indice = l;
@@ -50,7 +94,7 @@ public class bataille {
         while(indice < 10 && indice < l + t && grille[indice][c] == 0){
             indice++;
         }
-        //Si l'indice c'est rendu jusqu'à la dernière case du bateau, le positionnement fonctionne.
+        //Si l'indice s'est rendu jusqu'à la dernière case du bateau, le positionnement fonctionne.
         if(indice < l + t){
             fonctionne = false;
         }
@@ -58,10 +102,26 @@ public class bataille {
     }
 
     public static Random rand = new Random();
+
+    /**
+     * Permet de générer un nombre aléatoire.
+     * (Copié du code fourni par le document).
+     * @param a
+     *      Borne intérieure du nombre aléatoire (inclus).
+     * @param b
+     *      Borne extérieure du nombre aléatoire (exclu).
+     * @return
+     *      Le nombre aléatoire.
+     */
     public static int randRange (int a , int b){
         return rand.nextInt(b - a)+ a;
     }
 
+    /**
+     * Initialise la grille de l'ordinateur.
+     * Détermine la position avec la fonction {@link #randRange(int, int)  randRange}.
+     * Appelle ensuite la fonction {@link #posOk(int[][], int, int, int, int)  posOk} pour vérifier si la position reçue aléatoirement fonctionne.
+     */
     public static void initGrilleOrdi(){
         int[] grandeurBateau = new int[] {5, 4, 3, 3, 2};
         int ligne;
@@ -97,6 +157,11 @@ public class bataille {
         }
     }
 
+    /**
+     * Initialisation de la grille du joueur.
+     * La position est déterminée par les entrées du joueur au clavier.
+     * Appelle ensuite la fonction {@link #posOk(int[][], int, int, int, int)  posOk} pour vérifier si la position entrée fonctionne.
+     */
     public static void initGrilleJeu(){
         int[] grandeurBateau = new int[] {5, 4, 3, 3, 2};
         int ligne;
@@ -178,34 +243,30 @@ public class bataille {
                 for(int i = colonneInt; i < colonneInt + grandeurBateau[numeroBateau - 1]; i++){
                     grilleJeu[ligne][i] = numeroBateau;
                 }
-                afficherGrilleJeu();
+                //afficherGrilleJeu();
             }
             else {
                 for(int i = ligne; i < ligne + grandeurBateau[numeroBateau - 1]; i++){
                     grilleJeu[i][colonneInt] = numeroBateau;
                 }
-                afficherGrilleJeu();
+                //afficherGrilleJeu();
             }
         }
     }
 
     //appeler sa afficherGrille(Grille ){}
-    static void afficherGrilleJeu(){
+
+    /**
+     * Affiche une grille de jeu.
+     * @param grille
+     *      Grille à afficher (joueur ou ordi).
+     */
+    public static void afficherGrille(int grille[][]){
         System.out.println("  A B C D E F G H I J");
         for(int l = 0; l < 10; l++){
             System.out.print(l);
             for(int c = 0; c < 10; c++){
-                System.out.print(" " + grilleJeu[l][c]);
-            }
-            System.out.println();
-        }
-    }
-    public static void afficherGrilleOrdi(){
-        System.out.println("  A B C D E F G H I J");
-        for(int l = 0; l < 10; l++){
-            System.out.print(l);
-            for(int c = 0; c < 10; c++){
-                System.out.print(" " + grilleOrdi[l][c]);
+                System.out.print(" " + grille[l][c]);
             }
             System.out.println();
         }
