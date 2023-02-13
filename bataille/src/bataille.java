@@ -10,11 +10,17 @@ public class bataille {
     public static int [][]grilleOrdi = new int[10][10];
     public static int [][]grilleJeu = new int[10][10];
 
+    public static boolean fini = false;
+
     public static void main(String[] args){
         initGrilleOrdi();
         afficherGrille(grilleOrdi);
-        initGrilleJeu();
-        afficherGrille(grilleJeu);
+        //initGrilleJeu();
+        //afficherGrille(grilleJeu);
+
+        while(!fini){
+            tirOrdinateur();
+        }
     }
 
     /**
@@ -272,5 +278,62 @@ public class bataille {
                 grille[i][c] = n;
             }
         }
+    }
+
+    public static boolean couler(int[][] grille, int n){
+        for(int l = 0; l < 10; l++){
+            for(int c = 0; c < 10; c++){
+                if(grille[l][c] == n){
+                    return false;
+                }
+            }
+
+        }
+        return true;
+    }
+
+    public static void mouvement(int[][] grille, int l, int c){
+        if(grille[l][c] >= 1 && grille[l][c] <= 5){
+            int numeroBateau = grille[l][c];
+            String[] nomBateau = new String[] {"Porte-avions", "Croiseur", "Contre-torpilleur", "Sous-marin", "Torpilleur"};
+            System.out.println("Touche : " + nomBateau[grille[l][c] - 1]);
+            grille[l][c] = 6;
+            if(couler(grille, numeroBateau)){
+                System.out.println("Coule");
+                if(vainqueur(grille)){
+                    System.out.println("Gagne");
+                    fini = true;
+                }
+                else{
+                    System.out.println("Pas Gagne");
+                }
+            }
+        }
+        else{
+            System.out.println("A l'eau");
+        }
+    }
+
+    public static void tirOrdinateur(){
+        int l;
+        int c;
+        l = randRange(0, 10);
+        c = randRange(0, 10);
+        System.out.println("l : " + l + " c : " + c);
+        System.out.println("Tir de l'ordinateur : ");
+        mouvement(grilleOrdi, l, c);
+        afficherGrille(grilleOrdi);
+    }
+
+    public static boolean vainqueur(int[][] grille){
+        for(int l = 0; l < 10; l++){
+            for(int c = 0; c < 10; c++){
+                if(grille[l][c] != 0 && grille[l][c] != 6){
+                    return false;
+                }
+            }
+
+        }
+        return true;
     }
 }
