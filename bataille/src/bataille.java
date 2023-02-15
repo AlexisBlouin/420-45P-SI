@@ -325,7 +325,7 @@ public class bataille {
         colonneChar = lecture.next().charAt(0);
         colonneChar = Character.toUpperCase(colonneChar);
         while(colonneChar < 'A' || colonneChar > 'J'){
-            System.out.println("La lettre entree n'est pas valide.");
+            System.out.println("Le caractere entre n'est pas valide.");
             System.out.println("Donnez la lettre pour le " + nomBateau[numeroBateau - 1] + " (Entre 'A' et 'J') : ");
             colonneChar = lecture.next().charAt(0);
             colonneChar = Character.toUpperCase(colonneChar);
@@ -344,31 +344,21 @@ public class bataille {
         boolean premierPassage = true;
 
         System.out.println("Donnez le nombre pour le " + nomBateau[numeroBateau - 1] + " : ");
-        /*while (!lecture.hasNextInt()) {
-            System.out.println("That's not a number!");
-            lecture.next(); // this is important!
-        }
-        ligne = lecture.nextInt();
-        while(ligne < 0 || ligne > 9){
-            System.out.println("Le nombre entree n'est pas valide.");
-            System.out.println("Donnez le nombre pour le " + nomBateau[numeroBateau - 1] + " (Entre 1 et 9) : ");
-            ligne = lecture.nextInt();
-        }*/
-
         do{
             while(!lecture.hasNextInt()){
                 System.out.println("Ceci n'est pas un nombre!");
+                System.out.println("Donnez le nombre pour le " + nomBateau[numeroBateau - 1] + " (Entre 1 et 9) : ");
                 lecture.next();
             }
-            System.out.println("Le nombre entree n'est pas valide.");
-            System.out.println("Donnez le nombre pour le " + nomBateau[numeroBateau - 1] + " (Entre 1 et 9) : ");
-
             ligne = lecture.nextInt();
-            premierPassage = false;
-        }
-        while(ligne < 0 || ligne > 9);
+            if(ligne >= 0 && ligne <= 9){
+                return ligne;
+            }
 
-        return ligne;
+            System.out.println("Le nombre entre n'est pas valide.");
+            System.out.println("Donnez le nombre pour le " + nomBateau[numeroBateau - 1] + " (Entre 1 et 9) : ");
+        }
+        while(true);
     }
 
     public static int demanderDirection(){
@@ -377,12 +367,20 @@ public class bataille {
         int direction;
 
         System.out.println("Voulez-vous qu'il soit horizontal (1) ou vertical (2) ?");
-        direction = lecture.nextInt();
-        while(direction < 1 || direction > 2){
-            System.out.println("Le nombre entree n'est pas valide.");
-            System.out.println("Voulez-vous qu'il soit horizontal (1) ou vertical (2) ?");
+        do{
+            while(!lecture.hasNextInt()){
+                System.out.println("Ceci n'est pas un nombre!");
+                System.out.println("Voulez-vous qu'il soit horizontal (1) ou vertical (2) ?");
+                lecture.next();
+            }
             direction = lecture.nextInt();
+            if(direction >= 0 && direction <= 9){
+                return direction;
+            }
+
+            System.out.println("Le nombre entre n'est pas valide.");
+            System.out.println("Voulez-vous qu'il soit horizontal (1) ou vertical (2) ?");
         }
-        return direction;
+        while(true);
     }
 }

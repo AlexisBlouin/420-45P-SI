@@ -1,3 +1,4 @@
 -Faire javadoc
 -Finaliser fonction demander direction
 -Faire fonction pour position aléatoire
+-aller chercher bonne source pr demander un nombre seulement
