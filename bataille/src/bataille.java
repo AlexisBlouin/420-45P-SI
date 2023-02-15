@@ -15,8 +15,8 @@ public class bataille {
     public static void main(String[] args){
         initGrilleOrdi();
         afficherGrille(grilleOrdi);
-        //initGrilleJeu();
-        //afficherGrille(grilleJeu);
+        initGrilleJeu();
+        afficherGrille(grilleJeu);
 
         while(!fini){
             tirOrdinateur();
@@ -158,8 +158,7 @@ public class bataille {
     public static void initGrilleJeu(){
         int[] grandeurBateau = new int[] {5, 4, 3, 3, 2};
         int ligne;
-        int colonneInt;
-        char colonneChar;
+        int colonne;
         int direction;
         String[] nomBateau = new String[] {"Porte-avions", "Croiseur", "Contre-torpilleur", "Sous-marin", "Torpilleur"};
 
@@ -167,72 +166,18 @@ public class bataille {
         Scanner lecture = new Scanner(System.in);
 
         for(int numeroBateau = 1; numeroBateau <= 5; numeroBateau++){
+            colonne = demanderColonne(nomBateau, numeroBateau);
+            ligne = demanderLigne(nomBateau, numeroBateau);
+            direction = demanderDirection();
 
-            //Faire fonction pr demander positionnement
-            System.out.println("Donnez la lettre pour le " + nomBateau[numeroBateau - 1] + " : ");
-            colonneChar = lecture.next().charAt(0);
-            colonneChar = Character.toUpperCase(colonneChar);
-            while(colonneChar < 'A' || colonneChar > 'J'){
-                System.out.println("La lettre entree n'est pas valide.");
-                System.out.println("Donnez la lettre pour le " + nomBateau[numeroBateau - 1] + " (Entre 'A' et 'J') : ");
-                colonneChar = lecture.next().charAt(0);
-                colonneChar = Character.toUpperCase(colonneChar);
-            }
-            colonneInt = colonneChar;
-            System.out.println(colonneInt);
-            colonneInt -= 65;
-            System.out.println(colonneInt);
-
-            System.out.println("Donnez le nombre pour le " + nomBateau[numeroBateau - 1] + " : ");
-            ligne = lecture.nextInt();
-            while(ligne < 0 || ligne > 9){
-                System.out.println("Le nombre entree n'est pas valide.");
-                System.out.println("Donnez le nombre pour le " + nomBateau[numeroBateau - 1] + " (Entre 1 et 9) : ");
-                ligne = lecture.nextInt();
-            }
-
-            System.out.println("Voulez-vous qu'il soit horizontal (1) ou vertical (2) ?");
-            direction = lecture.nextInt();
-            while(direction < 1 || direction > 2){
-                System.out.println("Le nombre entree n'est pas valide.");
-                System.out.println("Voulez-vous qu'il soit horizontal (1) ou vertical (2) ?");
-                direction = lecture.nextInt();
-            }
-
-            while(!posOk(grilleJeu, ligne, colonneInt, direction, grandeurBateau[numeroBateau - 1])){
+            while(!posOk(grilleJeu, ligne, colonne, direction, grandeurBateau[numeroBateau - 1])){
                 System.out.println("Erreur : Le " + nomBateau[numeroBateau - 1] + " ne rentre pas dans la grille.");
-                System.out.println("Donnez la lettre pour le " + nomBateau[numeroBateau - 1] + " : ");
-                colonneChar = lecture.next().charAt(0);
-                colonneChar = Character.toUpperCase(colonneChar);
-                while(colonneChar < 'A' || colonneChar > 'J'){
-                    System.out.println("La lettre entree n'est pas valide.");
-                    System.out.println("Donnez la lettre pour le " + nomBateau[numeroBateau - 1] + " (Entre 'A' et 'J') : ");
-                    colonneChar = lecture.next().charAt(0);
-                    colonneChar = Character.toUpperCase(colonneChar);
-                }
-                colonneInt = colonneChar;
-                System.out.println(colonneInt);
-                colonneInt -= 65;
-                System.out.println(colonneInt);
-
-                System.out.println("Donnez le nombre pour le " + nomBateau[numeroBateau - 1] + " : ");
-                ligne = lecture.nextInt();
-                while(ligne < 0 || ligne > 9){
-                    System.out.println("Le nombre entree n'est pas valide.");
-                    System.out.println("Donnez le nombre pour le " + nomBateau[numeroBateau - 1] + " (Entre 1 et 9) : ");
-                    ligne = lecture.nextInt();
-                }
-
-                System.out.println("Voulez-vous qu'il soit horizontal (1) ou vertical (2) ?");
-                direction = lecture.nextInt();
-                while(direction < 1 || direction > 2){
-                    System.out.println("Le nombre entree n'est pas valide.");
-                    System.out.println("Voulez-vous qu'il soit horizontal (1) ou vertical (2) ?");
-                    direction = lecture.nextInt();
-                }
+                colonne = demanderColonne(nomBateau, numeroBateau);
+                ligne = demanderLigne(nomBateau, numeroBateau);
+                direction = demanderDirection();
             }
 
-            ecrireDansGrille(grilleJeu, ligne, colonneInt, direction, grandeurBateau, numeroBateau);
+            ecrireDansGrille(grilleJeu, ligne, colonne, direction, grandeurBateau, numeroBateau);
         }
     }
 
@@ -280,6 +225,15 @@ public class bataille {
         }
     }
 
+    /**
+     * Vérifie si un bateau est coulé en regardant s'il reste des cases avec le numéro du bateau dans la grille.
+     * @param grille
+     *      La grille à vérifier (grilleOrdi ou grilleJeu).
+     * @param n
+     *      Le numéro du bateau à vérifier.
+     * @return
+     *      True or False selon si le bateau est coulé ou non.
+     */
     public static boolean couler(int[][] grille, int n){
         for(int l = 0; l < 10; l++){
             for(int c = 0; c < 10; c++){
@@ -292,6 +246,15 @@ public class bataille {
         return true;
     }
 
+    /**
+     * Vérifie si un bateau est touché et donne des informations supplémentaires avec les fonctions {@link #couler(int[][], int)  couler} et {@link #vainqueur(int[][])}   vainqueur}.
+     * @param grille
+     *      La grille à vérifier (grilleOrdi ou grilleJeu).
+     * @param l
+     *      Le numéro de la ligne à vérifier.
+     * @param c
+     *      Le numéro de la ligne à vérifier.
+     */
     public static void mouvement(int[][] grille, int l, int c){
         if(grille[l][c] >= 1 && grille[l][c] <= 5){
             int numeroBateau = grille[l][c];
@@ -301,7 +264,12 @@ public class bataille {
             if(couler(grille, numeroBateau)){
                 System.out.println("Coule");
                 if(vainqueur(grille)){
-                    System.out.println("Gagne");
+                    if(grille == grilleOrdi){
+                        System.out.println("Vous avez gagne!");
+                    }
+                    else{
+                        System.out.println("Vous avez perdu...");
+                    }
                     fini = true;
                 }
                 else{
@@ -314,6 +282,9 @@ public class bataille {
         }
     }
 
+    /**
+     * Détermine la position du tir de l'ordinateur et déterminant aléatoirement la ligne et la colonne avec la fonction {@link #randRange(int, int)}   randRange}.
+     */
     public static void tirOrdinateur(){
         int l;
         int c;
@@ -321,10 +292,17 @@ public class bataille {
         c = randRange(0, 10);
         System.out.println("l : " + l + " c : " + c);
         System.out.println("Tir de l'ordinateur : ");
-        mouvement(grilleOrdi, l, c);
-        afficherGrille(grilleOrdi);
+        mouvement(grilleJeu, l, c);
+        afficherGrille(grilleJeu);
     }
 
+    /**
+     * Vérifie s'il y a un vainqueur après qu'un nouveau bateau a été coulé.
+     * @param grille
+     *      La grille à vérifier (grilleOrdi ou grilleJeu).
+     * @return
+     *      True or False selon le résultat de l'analyse.
+     */
     public static boolean vainqueur(int[][] grille){
         for(int l = 0; l < 10; l++){
             for(int c = 0; c < 10; c++){
@@ -335,5 +313,76 @@ public class bataille {
 
         }
         return true;
+    }
+
+    public static int demanderColonne(String[] nomBateau, int numeroBateau){
+        //Utilisation du scanner fait avec l'aide de la page : https://www.w3schools.com/java/java_user_input.asp
+        Scanner lecture = new Scanner(System.in);
+        char colonneChar;
+        int colonneInt;
+
+        System.out.println("Donnez la lettre pour le " + nomBateau[numeroBateau - 1] + " : ");
+        colonneChar = lecture.next().charAt(0);
+        colonneChar = Character.toUpperCase(colonneChar);
+        while(colonneChar < 'A' || colonneChar > 'J'){
+            System.out.println("La lettre entree n'est pas valide.");
+            System.out.println("Donnez la lettre pour le " + nomBateau[numeroBateau - 1] + " (Entre 'A' et 'J') : ");
+            colonneChar = lecture.next().charAt(0);
+            colonneChar = Character.toUpperCase(colonneChar);
+        }
+        colonneInt = colonneChar;
+        System.out.println(colonneInt);
+        colonneInt -= 65;
+        System.out.println(colonneInt);
+        return colonneInt;
+    }
+
+    public static int demanderLigne(String[] nomBateau, int numeroBateau){
+        //Utilisation du scanner fait avec l'aide de la page : https://www.w3schools.com/java/java_user_input.asp
+        Scanner lecture = new Scanner(System.in);
+        int ligne;
+        boolean premierPassage = true;
+
+        System.out.println("Donnez le nombre pour le " + nomBateau[numeroBateau - 1] + " : ");
+        /*while (!lecture.hasNextInt()) {
+            System.out.println("That's not a number!");
+            lecture.next(); // this is important!
+        }
+        ligne = lecture.nextInt();
+        while(ligne < 0 || ligne > 9){
+            System.out.println("Le nombre entree n'est pas valide.");
+            System.out.println("Donnez le nombre pour le " + nomBateau[numeroBateau - 1] + " (Entre 1 et 9) : ");
+            ligne = lecture.nextInt();
+        }*/
+
+        do{
+            while(!lecture.hasNextInt()){
+                System.out.println("Ceci n'est pas un nombre!");
+                lecture.next();
+            }
+            System.out.println("Le nombre entree n'est pas valide.");
+            System.out.println("Donnez le nombre pour le " + nomBateau[numeroBateau - 1] + " (Entre 1 et 9) : ");
+
+            ligne = lecture.nextInt();
+            premierPassage = false;
+        }
+        while(ligne < 0 || ligne > 9);
+
+        return ligne;
+    }
+
+    public static int demanderDirection(){
+        //Utilisation du scanner fait avec l'aide de la page : https://www.w3schools.com/java/java_user_input.asp
+        Scanner lecture = new Scanner(System.in);
+        int direction;
+
+        System.out.println("Voulez-vous qu'il soit horizontal (1) ou vertical (2) ?");
+        direction = lecture.nextInt();
+        while(direction < 1 || direction > 2){
+            System.out.println("Le nombre entree n'est pas valide.");
+            System.out.println("Voulez-vous qu'il soit horizontal (1) ou vertical (2) ?");
+            direction = lecture.nextInt();
+        }
+        return direction;
     }
 }
