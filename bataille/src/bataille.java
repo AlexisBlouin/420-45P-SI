@@ -315,6 +315,15 @@ public class bataille {
         return true;
     }
 
+    /**
+     * Demande la lettre de la colonne pour la position du bateau ou du tir au joueur.
+     * @param nomBateau
+     *      Tableau de String contenant les différents noms de bateau.
+     * @param numeroBateau
+     *      Numéro servant comme indice au tableau pour avoir le bon nom de bateau.
+     * @return
+     *      Le numéro de la colonne en integer.
+     */
     public static int demanderColonne(String[] nomBateau, int numeroBateau){
         //Utilisation du scanner fait avec l'aide de la page : https://www.w3schools.com/java/java_user_input.asp
         Scanner lecture = new Scanner(System.in);
@@ -337,6 +346,15 @@ public class bataille {
         return colonneInt;
     }
 
+    /**
+     * Demande le numéro de la ligne pour la position du bateau ou du tir au joueur.
+     * @param nomBateau
+     *      Tableau de String contenant les différents noms de bateau.
+     * @param numeroBateau
+     *      Numéro servant comme indice au tableau pour avoir le bon nom de bateau.
+     * @return
+     *      Le numéro de la ligne.
+     */
     public static int demanderLigne(String[] nomBateau, int numeroBateau){
         //Utilisation du scanner fait avec l'aide de la page : https://www.w3schools.com/java/java_user_input.asp
         Scanner lecture = new Scanner(System.in);
@@ -361,6 +379,11 @@ public class bataille {
         while(true);
     }
 
+    /**
+     * Demande la direction du bateau lors de l'initialisation de la grille.
+     * @return
+     *      La direction du bateau.
+     */
     public static int demanderDirection(){
         //Utilisation du scanner fait avec l'aide de la page : https://www.w3schools.com/java/java_user_input.asp
         Scanner lecture = new Scanner(System.in);
