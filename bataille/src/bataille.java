@@ -10,16 +10,26 @@ public class bataille {
     public static int [][]grilleOrdi = new int[10][10];
     public static int [][]grilleJeu = new int[10][10];
 
-    public static boolean fini = false;
+    public static boolean partieFinie = false;
 
     public static void main(String[] args){
+        engagement();
+    }
+
+    /**
+     * Initialise les deux grilles et s'occupe du déroulement du jeu.
+     * Utilise les fonctions {@link #initGrilleOrdi() initGrilleOrdi} et {@link #initGrilleJeu() initGrilleJeu} pour initialiser les grilles
+     * et {@link #tirOrdinateur() tirOrdinateur} et {@link #tirJoueur() tirJoueur} pour le déroulement du jeu.
+     */
+    public static void engagement(){
         initGrilleOrdi();
         afficherGrille(grilleOrdi);
         initGrilleJeu();
         afficherGrille(grilleJeu);
 
-        while(!fini){
+        while(!partieFinie){
             tirOrdinateur();
+            tirJoueur();
         }
     }
 
@@ -166,14 +176,14 @@ public class bataille {
         Scanner lecture = new Scanner(System.in);
 
         for(int numeroBateau = 1; numeroBateau <= 5; numeroBateau++){
-            colonne = demanderColonne(nomBateau, numeroBateau);
-            ligne = demanderLigne(nomBateau, numeroBateau);
+            colonne = demanderColonne(true,  numeroBateau);
+            ligne = demanderLigne(true,  numeroBateau);
             direction = demanderDirection();
 
             while(!posOk(grilleJeu, ligne, colonne, direction, grandeurBateau[numeroBateau - 1])){
                 System.out.println("Erreur : Le " + nomBateau[numeroBateau - 1] + " ne rentre pas dans la grille.");
-                colonne = demanderColonne(nomBateau, numeroBateau);
-                ligne = demanderLigne(nomBateau, numeroBateau);
+                colonne = demanderColonne(true,  numeroBateau);
+                ligne = demanderLigne(true,  numeroBateau);
                 direction = demanderDirection();
             }
 
@@ -270,7 +280,7 @@ public class bataille {
                     else{
                         System.out.println("Vous avez perdu...");
                     }
-                    fini = true;
+                    partieFinie = true;
                 }
                 else{
                     System.out.println("Pas Gagne");
@@ -292,6 +302,7 @@ public class bataille {
         c = randRange(0, 10);
         System.out.println("l : " + l + " c : " + c);
         System.out.println("Tir de l'ordinateur : ");
+        System.out.println("C'est au tour de l'ordinateur.");
         mouvement(grilleJeu, l, c);
         afficherGrille(grilleJeu);
     }
@@ -317,25 +328,34 @@ public class bataille {
 
     /**
      * Demande la lettre de la colonne pour la position du bateau ou du tir au joueur.
-     * @param nomBateau
-     *      Tableau de String contenant les différents noms de bateau.
      * @param numeroBateau
      *      Numéro servant comme indice au tableau pour avoir le bon nom de bateau.
      * @return
      *      Le numéro de la colonne en integer.
      */
-    public static int demanderColonne(String[] nomBateau, int numeroBateau){
+    public static int demanderColonne(boolean initialisation, int numeroBateau){
         //Utilisation du scanner fait avec l'aide de la page : https://www.w3schools.com/java/java_user_input.asp
         Scanner lecture = new Scanner(System.in);
         char colonneChar;
         int colonneInt;
+        String[] nomBateau = new String[] {"Porte-avions", "Croiseur", "Contre-torpilleur", "Sous-marin", "Torpilleur"};
 
-        System.out.println("Donnez la lettre pour le " + nomBateau[numeroBateau - 1] + " : ");
+        if(initialisation){
+            System.out.println("Donnez la lettre pour le " + nomBateau[numeroBateau - 1] + " : ");
+        }
+        else{
+            System.out.println("Donnez la lettre pour la colonne du tir : ");
+        }
         colonneChar = lecture.next().charAt(0);
         colonneChar = Character.toUpperCase(colonneChar);
         while(colonneChar < 'A' || colonneChar > 'J'){
             System.out.println("Le caractere entre n'est pas valide.");
-            System.out.println("Donnez la lettre pour le " + nomBateau[numeroBateau - 1] + " (Entre 'A' et 'J') : ");
+            if (initialisation) {
+                System.out.println("Donnez la lettre pour le " + nomBateau[numeroBateau - 1] + " (Entre 'A' et 'J') : ");
+            }
+            else{
+                System.out.println("Donnez la lettre pour la colonne du tir (Entre 'A' et 'J') : ");
+            }
             colonneChar = lecture.next().charAt(0);
             colonneChar = Character.toUpperCase(colonneChar);
         }
@@ -348,24 +368,33 @@ public class bataille {
 
     /**
      * Demande le numéro de la ligne pour la position du bateau ou du tir au joueur.
-     * @param nomBateau
-     *      Tableau de String contenant les différents noms de bateau.
      * @param numeroBateau
      *      Numéro servant comme indice au tableau pour avoir le bon nom de bateau.
      * @return
      *      Le numéro de la ligne.
      */
-    public static int demanderLigne(String[] nomBateau, int numeroBateau){
+    public static int demanderLigne(boolean initialisation, int numeroBateau){
         //Utilisation du scanner fait avec l'aide de la page : https://www.w3schools.com/java/java_user_input.asp
         Scanner lecture = new Scanner(System.in);
         int ligne;
-        boolean premierPassage = true;
+        String[] nomBateau = new String[] {"Porte-avions", "Croiseur", "Contre-torpilleur", "Sous-marin", "Torpilleur"};
 
-        System.out.println("Donnez le nombre pour le " + nomBateau[numeroBateau - 1] + " : ");
+        if(initialisation){
+            System.out.println("Donnez le nombre pour le " + nomBateau[numeroBateau - 1] + " : ");
+        }
+        else{
+            System.out.println("Donnez le nombre pour la ligne du tir : ");
+        }
         do{
+            //Test pour savoir si c'est un nombre fait avec la page : https://stackoverflow.com/questions/3059333/validating-input-using-java-util-scanner
             while(!lecture.hasNextInt()){
                 System.out.println("Ceci n'est pas un nombre!");
-                System.out.println("Donnez le nombre pour le " + nomBateau[numeroBateau - 1] + " (Entre 1 et 9) : ");
+                if(initialisation){
+                    System.out.println("Donnez le nombre pour le " + nomBateau[numeroBateau - 1] + " (Entre 1 et 9) : ");
+                }
+                else{
+                    System.out.println("Donnez le nombre pour la ligne du tir (Entre 1 et 9) : ");
+                }
                 lecture.next();
             }
             ligne = lecture.nextInt();
@@ -374,7 +403,12 @@ public class bataille {
             }
 
             System.out.println("Le nombre entre n'est pas valide.");
-            System.out.println("Donnez le nombre pour le " + nomBateau[numeroBateau - 1] + " (Entre 1 et 9) : ");
+            if(initialisation){
+                System.out.println("Donnez le nombre pour le " + nomBateau[numeroBateau - 1] + " (Entre 1 et 9) : ");
+            }
+            else{
+                System.out.println("Donnez le nombre pour la ligne du tir (Entre 1 et 9) : ");
+            }
         }
         while(true);
     }
@@ -405,5 +439,22 @@ public class bataille {
             System.out.println("Voulez-vous qu'il soit horizontal (1) ou vertical (2) ?");
         }
         while(true);
+    }
+
+    /**
+     * S'occupe de faire jouer le joueur en lui demandant les paramètres de son tir (colonne et ligne) puis le vérifie.
+     * Utilise les fonctions {@link #demanderColonne(boolean, int)}   demanderColonne} et {@link #demanderLigne(boolean, int)}   demanderLigne}, 
+     * puis teste le tir avec {@link #mouvement(int[][], int, int)}   mouvement}.
+     */
+    public static void tirJoueur(){
+        int colonne;
+        int ligne;
+
+        System.out.println("C'est votre tour!");
+        colonne = demanderColonne(false, 0);
+        ligne = demanderLigne(false, 0);
+
+        mouvement(grilleOrdi, ligne, colonne);
+        afficherGrille(grilleOrdi);
     }
 }
