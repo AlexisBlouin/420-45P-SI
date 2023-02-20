@@ -12,6 +12,11 @@ public class bataille {
 
     public static boolean partieFinie = false;
 
+    /**
+     * Fonction main appelant la fonction {@link #engagement() engagement} pour démarrer la partie.
+     * @param args
+     *      Si le programme est lancé en ligne de commande, args contiendra les arguments inscrits dans la ligne de commandes.
+     */
     public static void main(String[] args){
         engagement();
     }
@@ -77,11 +82,10 @@ public class bataille {
         boolean fonctionne = true;
         int indice = c;
 
-        //Teste si les cases nécessaires au bateau sont inoccupées et s'assure de ne pas sortir de la grille.
         while(indice < 10 && indice < c + t && grille[l][indice] == 0){
             indice++;
         }
-        //Si l'indice s'est rendu jusqu'à la dernière case du bateau, le positionnement fonctionne.
+
         if(indice < c + t){
             fonctionne = false;
         }
@@ -102,14 +106,14 @@ public class bataille {
      *      Le résultat disant si cette position fonctionne.
      */
     public static boolean colonneOk(int [][]grille, int l, int c, int t){
+
         boolean fonctionne = true;
         int indice = l;
 
-        //Teste si les cases nécessaires au bateau sont inoccupées et s'assure de ne pas sortir de la grille.
         while(indice < 10 && indice < l + t && grille[indice][c] == 0){
             indice++;
         }
-        //Si l'indice s'est rendu jusqu'à la dernière case du bateau, le positionnement fonctionne.
+
         if(indice < l + t){
             fonctionne = false;
         }
@@ -119,8 +123,10 @@ public class bataille {
     public static Random rand = new Random();
 
     /**
-     * Permet de générer un nombre aléatoire.
-     * (Copié du code fourni par le document).
+     * <pre>
+     *     Permet de générer un nombre aléatoire.
+     *     (Copié du code fourni par le document).
+     * </pre>
      * @param a
      *      Borne intérieure du nombre aléatoire (inclus).
      * @param b
@@ -133,9 +139,11 @@ public class bataille {
     }
 
     /**
-     * Initialise la grille de l'ordinateur.
-     * Détermine la position avec la fonction {@link #randRange(int, int)  randRange}.
-     * Appelle ensuite la fonction {@link #posOk(int[][], int, int, int, int)  posOk} pour vérifier si la position reçue aléatoirement fonctionne.
+     * <pre>
+     *     Initialise la grille de l'ordinateur.
+     *     Détermine la position avec la fonction {@link #randRange(int, int)  randRange}.
+     *     Appelle ensuite la fonction {@link #posOk(int[][], int, int, int, int)  posOk} pour vérifier si la position reçue aléatoirement fonctionne.
+     * </pre>
      */
     public static void initGrilleOrdi(){
         int[] grandeurBateau = new int[] {5, 4, 3, 3, 2};
@@ -161,9 +169,11 @@ public class bataille {
     }
 
     /**
-     * Initialisation de la grille du joueur.
-     * La position est déterminée par les entrées du joueur au clavier.
-     * Appelle ensuite la fonction {@link #posOk(int[][], int, int, int, int)  posOk} pour vérifier si la position entrée fonctionne.
+     * <pre>
+     *     Initialisation de la grille du joueur.
+     *     La position est déterminée par les entrées du joueur au clavier.
+     *     Appelle ensuite la fonction {@link #posOk(int[][], int, int, int, int)  posOk} pour vérifier si la position entrée fonctionne.
+     * </pre>
      */
     public static void initGrilleJeu(){
         int[] grandeurBateau = new int[] {5, 4, 3, 3, 2};
@@ -171,9 +181,6 @@ public class bataille {
         int colonne;
         int direction;
         String[] nomBateau = new String[] {"Porte-avions", "Croiseur", "Contre-torpilleur", "Sous-marin", "Torpilleur"};
-
-        //Utilisation du scanner fait avec l'aide de la page : https://www.w3schools.com/java/java_user_input.asp
-        Scanner lecture = new Scanner(System.in);
 
         for(int numeroBateau = 1; numeroBateau <= 5; numeroBateau++){
             colonne = demanderColonne(true,  numeroBateau);
@@ -367,14 +374,20 @@ public class bataille {
     }
 
     /**
-     * Demande le numéro de la ligne pour la position du bateau ou du tir au joueur.
+     * <pre>
+     *      Demande le numéro de la ligne pour la position du bateau ou du tir au joueur.
+     *      Utilisation du scanner fait avec l'aide de la page Java User Input (Scanner) (L.384, 395, 403 et 405).
+     *      Validation de l'entré du joueur faite avec la page Validating input using java.util.Scanner (L.395 à 404).
+     * </pre>
      * @param numeroBateau
      *      Numéro servant comme indice au tableau pour avoir le bon nom de bateau.
      * @return
      *      Le numéro de la ligne.
+     * @see <a href="https://www.w3schools.com/java/java_user_input.asp">Java User Input (Scanner)</a>
+     * @see <a href="https://stackoverflow.com/questions/3059333/validating-input-using-java-util-scanner">Validating input using java.util.Scanner</a>
      */
     public static int demanderLigne(boolean initialisation, int numeroBateau){
-        //Utilisation du scanner fait avec l'aide de la page : https://www.w3schools.com/java/java_user_input.asp
+
         Scanner lecture = new Scanner(System.in);
         int ligne;
         String[] nomBateau = new String[] {"Porte-avions", "Croiseur", "Contre-torpilleur", "Sous-marin", "Torpilleur"};
@@ -386,7 +399,6 @@ public class bataille {
             System.out.println("Donnez le nombre pour la ligne du tir : ");
         }
         do{
-            //Test pour savoir si c'est un nombre fait avec la page : https://stackoverflow.com/questions/3059333/validating-input-using-java-util-scanner
             while(!lecture.hasNextInt()){
                 System.out.println("Ceci n'est pas un nombre!");
                 if(initialisation){
@@ -414,12 +426,16 @@ public class bataille {
     }
 
     /**
-     * Demande la direction du bateau lors de l'initialisation de la grille.
+     * <pre>
+     *     Demande la direction du bateau lors de l'initialisation de la grille.
+     *     Utilisation du scanner fait avec l'aide de la page Java User Input (Scanner) (L.434, 439, 442 et 444).
+     * </pre>
      * @return
      *      La direction du bateau.
+     * @see <a href="https://www.w3schools.com/java/java_user_input.asp">Java User Input (Scanner)</a>
      */
     public static int demanderDirection(){
-        //Utilisation du scanner fait avec l'aide de la page : https://www.w3schools.com/java/java_user_input.asp
+
         Scanner lecture = new Scanner(System.in);
         int direction;
 
