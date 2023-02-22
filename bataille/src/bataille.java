@@ -72,6 +72,23 @@ public class bataille {
 
     /**
      * <pre>
+     *      Permet de générer un nombre aléatoire.
+     *      (Copié du code fourni par le document).
+     * </pre>
+     * @param a
+     *      Borne intérieure du nombre aléatoire (inclus).
+     * @param b
+     *      Borne extérieure du nombre aléatoire (exclu).
+     * @return
+     *      Le nombre aléatoire.
+     */
+    public static int randRange (int a , int b){
+        Random rand = new Random();
+        return rand.nextInt(b - a)+ a;
+    }
+
+    /**
+     * <pre>
      *      Initialisation de la grille du joueur.
      *      La position est déterminée par les entrées du joueur au clavier.
      *      Appelle ensuite la fonction {@link #posOk(int[][], int, int, int, int)  posOk} pour vérifier si la position entrée fonctionne.
@@ -98,263 +115,6 @@ public class bataille {
 
             ecrireDansGrille(grilleJeu, ligne, colonne, direction, grandeurBateau, numeroBateau);
         }
-    }
-
-    /**
-     * <pre>
-     *      Vérifie si la position fonctionne pour l'ajout d'un bateau.
-     *      Se sert des fonctions {@link #ligneOk(int[][], int, int, int) ligneOk} et
-     *      {@link #colonneOk(int[][], int, int, int) colonneOk} pour donner le résultat.
-     * </pre>
-     * @param grille
-     *      La grille utilisée (grilleOrdi ou grilleJeu).
-     * @param l
-     *      Le numéro de la ligne du bateau.
-     * @param c
-     *      Le numéro de la colonne du bateau.
-     * @param d
-     *      La direction du bateau.
-     * @param t
-     *      Le nombre de cases du bateau.
-     * @return fonctionne
-     *      Le résultat disant si cette position fonctionne.
-     */
-    public static boolean posOk(int [][]grille, int l, int c, int d, int t){
-        boolean fonctionne;
-        if(d == 1){
-            fonctionne = ligneOk(grille, l, c, t);
-        }
-        else{
-            fonctionne = colonneOk(grille, l, c, t);
-        }
-        return fonctionne;
-    }
-
-    /**
-     * <pre>
-     *      Teste si le bateau peut se poser sur une ligne.
-     * </pre>
-     * @param grille
-     *      La grille utilisée (grilleOrdi ou grilleJeu).
-     * @param l
-     *      Le numéro de la ligne du bateau.
-     * @param c
-     *      Le numéro de la colonne du bateau.
-     * @param t
-     *      Le nombre de cases du bateau.
-     * @return fonctionne
-     *      Le résultat disant si cette position fonctionne.
-     */
-    public static boolean ligneOk(int [][]grille, int l, int c, int t){
-        boolean fonctionne = true;
-        int indice = c;
-
-        while(indice < 10 && indice < c + t && grille[l][indice] == 0){
-            indice++;
-        }
-
-        if(indice < c + t){
-            fonctionne = false;
-        }
-        return fonctionne;
-    }
-
-    /**
-     * <pre>
-     *      Teste si le bateau peut se poser sur une colonne.
-     * </pre>
-     * @param grille
-     *      La grille utilisée (grilleOrdi ou grilleJeu).
-     * @param l
-     *      Le numéro de la ligne du bateau.
-     * @param c
-     *      Le numéro de la colonne du bateau.
-     * @param t
-     *      Le nombre de cases du bateau.
-     * @return fonctionne
-     *      Le résultat disant si cette position fonctionne.
-     */
-    public static boolean colonneOk(int [][]grille, int l, int c, int t){
-
-        boolean fonctionne = true;
-        int indice = l;
-
-        while(indice < 10 && indice < l + t && grille[indice][c] == 0){
-            indice++;
-        }
-
-        if(indice < l + t){
-            fonctionne = false;
-        }
-        return fonctionne;
-    }
-
-    //public static Random rand = new Random();
-
-    /**
-     * <pre>
-     *      Permet de générer un nombre aléatoire.
-     *      (Copié du code fourni par le document).
-     * </pre>
-     * @param a
-     *      Borne intérieure du nombre aléatoire (inclus).
-     * @param b
-     *      Borne extérieure du nombre aléatoire (exclu).
-     * @return
-     *      Le nombre aléatoire.
-     */
-    public static int randRange (int a , int b){
-        Random rand = new Random();
-        return rand.nextInt(b - a)+ a;
-    }
-
-    /**
-     * <pre>
-     *      Affiche une grille de jeu.
-     * </pre>
-     * @param grille
-     *      Grille à afficher (joueur ou ordi).
-     */
-    public static void afficherGrille(int[][] grille){
-        System.out.println("  A B C D E F G H I J");
-        for(int l = 0; l < 10; l++){
-            System.out.print(l);
-            for(int c = 0; c < 10; c++){
-                System.out.print(" " + grille[l][c]);
-            }
-            System.out.println();
-        }
-    }
-
-    /**
-     * <pre>
-     *      Écrit dans la grille la position du bateau reçue.
-     * </pre>
-     * @param grille
-     *      La grille utilisée (grilleOrdi ou grilleJeu).
-     * @param l
-     *      Le numéro de la ligne du bateau.
-     * @param c
-     *      Le numéro de la colonne du bateau.
-     * @param d
-     *      La direction du bateau.
-     * @param t
-     *      Le nombre de cases du bateau.
-     * @param n
-     *      Le numéro du bateau à écrire.
-     */
-    public static void ecrireDansGrille(int[][] grille, int l, int c, int d, int[] t, int n){
-        if(d == 1){
-            for(int i = c; i < c + t[n - 1]; i++){
-                grille[l][i] = n;
-            }
-        }
-        else {
-            for(int i = l; i < l + t[n - 1]; i++){
-                grille[i][c] = n;
-            }
-        }
-    }
-
-    /**
-     * <pre>
-     *      Vérifie si un bateau est coulé en regardant s'il reste des cases avec le numéro du bateau dans la grille.
-     * </pre>
-     * @param grille
-     *      La grille à vérifier (grilleOrdi ou grilleJeu).
-     * @param n
-     *      Le numéro du bateau à vérifier.
-     * @return
-     *      True or False selon si le bateau est coulé ou non.
-     */
-    public static boolean couler(int[][] grille, int n){
-        for(int l = 0; l < 10; l++){
-            for(int c = 0; c < 10; c++){
-                if(grille[l][c] == n){
-                    return false;
-                }
-            }
-
-        }
-        return true;
-    }
-
-    /**
-     * <pre>
-     *      Vérifie si un bateau est touché et donne des informations supplémentaires avec les fonctions
-     *      {@link #couler(int[][], int)  couler} et {@link #vainqueur(int[][])}   vainqueur}.
-     * </pre>
-     * @param grille
-     *      La grille à vérifier (grilleOrdi ou grilleJeu).
-     * @param l
-     *      Le numéro de la ligne à vérifier.
-     * @param c
-     *      Le numéro de la ligne à vérifier.
-     */
-    public static void mouvement(int[][] grille, int l, int c){
-        if(grille[l][c] >= 1 && grille[l][c] <= 5){
-            int numeroBateau = grille[l][c];
-            String[] nomBateau = new String[] {"Porte-avions", "Croiseur", "Contre-torpilleur", "Sous-marin", "Torpilleur"};
-            System.out.println("Touche : " + nomBateau[grille[l][c] - 1]);
-            grille[l][c] = 6;
-            if(couler(grille, numeroBateau)){
-                System.out.println("Coule");
-                if(vainqueur(grille)){
-                    if(grille == grilleOrdi){
-                        System.out.println("Vous avez gagne!");
-                    }
-                    else{
-                        System.out.println("Vous avez perdu...");
-                    }
-                    partieFinie = true;
-                }
-                else{
-                    System.out.println("Pas Gagne");
-                }
-            }
-        }
-        else{
-            System.out.println("A l'eau");
-        }
-    }
-
-    /**
-     * <pre>
-     *      Détermine la position du tir de l'ordinateur et déterminant aléatoirement la ligne et la colonne
-     *      avec la fonction {@link #randRange(int, int)}   randRange}.
-     * </pre>
-     */
-    public static void tirOrdinateur(){
-        int l;
-        int c;
-        l = randRange(0, 10);
-        c = randRange(0, 10);
-        System.out.println("l : " + l + " c : " + c);
-        System.out.println("Tir de l'ordinateur : ");
-        System.out.println("C'est au tour de l'ordinateur.");
-        mouvement(grilleJeu, l, c);
-        afficherGrille(grilleJeu);
-    }
-
-    /**
-     * <pre>
-     *      Vérifie s'il y a un vainqueur après qu'un nouveau bateau a été coulé.
-     * </pre>
-     * @param grille
-     *      La grille à vérifier (grilleOrdi ou grilleJeu).
-     * @return
-     *      True or False selon le résultat de l'analyse.
-     */
-    public static boolean vainqueur(int[][] grille){
-        for(int l = 0; l < 10; l++){
-            for(int c = 0; c < 10; c++){
-                if(grille[l][c] != 0 && grille[l][c] != 6){
-                    return false;
-                }
-            }
-
-        }
-        return true;
     }
 
     /**
@@ -485,6 +245,161 @@ public class bataille {
 
     /**
      * <pre>
+     *      Vérifie si la position fonctionne pour l'ajout d'un bateau.
+     *      Se sert des fonctions {@link #ligneOk(int[][], int, int, int) ligneOk} et
+     *      {@link #colonneOk(int[][], int, int, int) colonneOk} pour donner le résultat.
+     * </pre>
+     * @param grille
+     *      La grille utilisée (grilleOrdi ou grilleJeu).
+     * @param l
+     *      Le numéro de la ligne du bateau.
+     * @param c
+     *      Le numéro de la colonne du bateau.
+     * @param d
+     *      La direction du bateau.
+     * @param t
+     *      Le nombre de cases du bateau.
+     * @return fonctionne
+     *      Le résultat disant si cette position fonctionne.
+     */
+    public static boolean posOk(int [][]grille, int l, int c, int d, int t){
+        boolean fonctionne;
+        if(d == 1){
+            fonctionne = ligneOk(grille, l, c, t);
+        }
+        else{
+            fonctionne = colonneOk(grille, l, c, t);
+        }
+        return fonctionne;
+    }
+
+    /**
+     * <pre>
+     *      Teste si le bateau peut se poser sur une ligne.
+     * </pre>
+     * @param grille
+     *      La grille utilisée (grilleOrdi ou grilleJeu).
+     * @param l
+     *      Le numéro de la ligne du bateau.
+     * @param c
+     *      Le numéro de la colonne du bateau.
+     * @param t
+     *      Le nombre de cases du bateau.
+     * @return fonctionne
+     *      Le résultat disant si cette position fonctionne.
+     */
+    public static boolean ligneOk(int [][]grille, int l, int c, int t){
+        boolean fonctionne = true;
+        int indice = c;
+
+        while(indice < 10 && indice < c + t && grille[l][indice] == 0){
+            indice++;
+        }
+
+        if(indice < c + t){
+            fonctionne = false;
+        }
+        return fonctionne;
+    }
+
+    /**
+     * <pre>
+     *      Teste si le bateau peut se poser sur une colonne.
+     * </pre>
+     * @param grille
+     *      La grille utilisée (grilleOrdi ou grilleJeu).
+     * @param l
+     *      Le numéro de la ligne du bateau.
+     * @param c
+     *      Le numéro de la colonne du bateau.
+     * @param t
+     *      Le nombre de cases du bateau.
+     * @return fonctionne
+     *      Le résultat disant si cette position fonctionne.
+     */
+    public static boolean colonneOk(int [][]grille, int l, int c, int t){
+
+        boolean fonctionne = true;
+        int indice = l;
+
+        while(indice < 10 && indice < l + t && grille[indice][c] == 0){
+            indice++;
+        }
+
+        if(indice < l + t){
+            fonctionne = false;
+        }
+        return fonctionne;
+    }
+
+    /**
+     * <pre>
+     *      Écrit dans la grille la position du bateau reçue.
+     * </pre>
+     * @param grille
+     *      La grille utilisée (grilleOrdi ou grilleJeu).
+     * @param l
+     *      Le numéro de la ligne du bateau.
+     * @param c
+     *      Le numéro de la colonne du bateau.
+     * @param d
+     *      La direction du bateau.
+     * @param t
+     *      Le nombre de cases du bateau.
+     * @param n
+     *      Le numéro du bateau à écrire.
+     */
+    public static void ecrireDansGrille(int[][] grille, int l, int c, int d, int[] t, int n){
+        if(d == 1){
+            for(int i = c; i < c + t[n - 1]; i++){
+                grille[l][i] = n;
+            }
+        }
+        else {
+            for(int i = l; i < l + t[n - 1]; i++){
+                grille[i][c] = n;
+            }
+        }
+    }
+
+    /**
+     * <pre>
+     *      Affiche une grille de jeu.
+     * </pre>
+     * @param grille
+     *      Grille à afficher (joueur ou ordi).
+     */
+    public static void afficherGrille(int[][] grille){
+        System.out.println("  A B C D E F G H I J");
+        for(int l = 0; l < 10; l++){
+            System.out.print(l);
+            for(int c = 0; c < 10; c++){
+                System.out.print(" " + grille[l][c]);
+            }
+            System.out.println();
+        }
+    }
+
+    /**
+     * <pre>
+     *      Détermine la position du tir de l'ordinateur et déterminant aléatoirement la ligne et la colonne
+     *      avec la fonction {@link #randRange(int, int)}   randRange}.
+     * </pre>
+     */
+    public static void tirOrdinateur(){
+        int l;
+        int c;
+        l = randRange(0, 10);
+        c = randRange(0, 10);
+        System.out.println("l : " + l + " c : " + c);
+        System.out.println("Tir de l'ordinateur : ");
+        System.out.println("C'est au tour de l'ordinateur.");
+        mouvement(grilleJeu, l, c);
+        afficherGrille(grilleJeu);
+    }
+
+    /**
+     * <pre>
      *      S'occupe de faire jouer le joueur en lui demandant les paramètres de son tir (colonne et ligne) puis le vérifie.
      *      Utilise les fonctions {@link #demanderColonne(boolean, int)}   demanderColonne} et {@link #demanderLigne(boolean, int)}   demanderLigne},
      *      puis teste le tir avec {@link #mouvement(int[][], int, int)}   mouvement}.
@@ -500,5 +415,88 @@ public class bataille {
 
         mouvement(grilleOrdi, ligne, colonne);
         afficherGrille(grilleOrdi);
+    }
+
+    /**
+     * <pre>
+     *      Vérifie si un bateau est touché et donne des informations supplémentaires avec les fonctions
+     *      {@link #couler(int[][], int)  couler} et {@link #vainqueur(int[][])}   vainqueur}.
+     * </pre>
+     * @param grille
+     *      La grille à vérifier (grilleOrdi ou grilleJeu).
+     * @param l
+     *      Le numéro de la ligne à vérifier.
+     * @param c
+     *      Le numéro de la ligne à vérifier.
+     */
+    public static void mouvement(int[][] grille, int l, int c){
+        if(grille[l][c] >= 1 && grille[l][c] <= 5){
+            int numeroBateau = grille[l][c];
+            String[] nomBateau = new String[] {"Porte-avions", "Croiseur", "Contre-torpilleur", "Sous-marin", "Torpilleur"};
+            System.out.println("Touche : " + nomBateau[grille[l][c] - 1]);
+            grille[l][c] = 6;
+            if(couler(grille, numeroBateau)){
+                System.out.println("Coule");
+                if(vainqueur(grille)){
+                    if(grille == grilleOrdi){
+                        System.out.println("Vous avez gagne!");
+                    }
+                    else{
+                        System.out.println("Vous avez perdu...");
+                    }
+                    partieFinie = true;
+                }
+                else{
+                    System.out.println("Pas Gagne");
+                }
+            }
+        }
+        else{
+            System.out.println("A l'eau");
+        }
+    }
+
+    /**
+     * <pre>
+     *      Vérifie si un bateau est coulé en regardant s'il reste des cases avec le numéro du bateau dans la grille.
+     * </pre>
+     * @param grille
+     *      La grille à vérifier (grilleOrdi ou grilleJeu).
+     * @param n
+     *      Le numéro du bateau à vérifier.
+     * @return
+     *      True or False selon si le bateau est coulé ou non.
+     */
+    public static boolean couler(int[][] grille, int n){
+        for(int l = 0; l < 10; l++){
+            for(int c = 0; c < 10; c++){
+                if(grille[l][c] == n){
+                    return false;
+                }
+            }
+
+        }
+        return true;
+    }
+
+    /**
+     * <pre>
+     *      Vérifie s'il y a un vainqueur après qu'un nouveau bateau a été coulé.
+     * </pre>
+     * @param grille
+     *      La grille à vérifier (grilleOrdi ou grilleJeu).
+     * @return
+     *      True or False selon le résultat de l'analyse.
+     */
+    public static boolean vainqueur(int[][] grille){
+        for(int l = 0; l < 10; l++){
+            for(int c = 0; c < 10; c++){
+                if(grille[l][c] != 0 && grille[l][c] != 6){
+                    return false;
+                }
+            }
+
+        }
+        return true;
     }
 }
