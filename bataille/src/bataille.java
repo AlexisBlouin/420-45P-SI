@@ -35,8 +35,14 @@ public class bataille {
         afficherGrille(grilleJeu);
 
         while(!partieFinie){
-            tirOrdinateur();
-            tirJoueur();
+
+            if(!partieFinie){
+                tirOrdinateur();
+            }
+
+            if(!partieFinie){
+                tirJoueur();
+            }
         }
     }
 
@@ -45,6 +51,7 @@ public class bataille {
      *      Initialise la grille de l'ordinateur.
      *      Détermine la position avec la fonction {@link #randRange(int, int)  randRange}.
      *      Appelle ensuite la fonction {@link #posOk(int[][], int, int, int, int)  posOk} pour vérifier si la position reçue aléatoirement fonctionne.
+     *      les variables ligne
      * </pre>
      */
     public static void initGrilleOrdi(){
@@ -52,9 +59,8 @@ public class bataille {
         int ligne;
         int colonne;
         int direction;
-        for(int numeroBateau = 1; numeroBateau <= 5; numeroBateau++){
-
-            //faire fonction pr position aléatoire
+        for(int numeroBateau = 1; numeroBateau <= 5; numeroBateau++)
+        {
             ligne = randRange(0, 10);
             colonne = randRange(0, 10);
             direction = randRange(1, 3);
@@ -73,7 +79,7 @@ public class bataille {
     /**
      * <pre>
      *      Permet de générer un nombre aléatoire.
-     *      (Copié du code fourni par le document).
+     *      (Fait avec le code fourni par le document).
      * </pre>
      * @param a
      *      Borne intérieure du nombre aléatoire (inclus).
@@ -91,7 +97,10 @@ public class bataille {
      * <pre>
      *      Initialisation de la grille du joueur.
      *      La position est déterminée par les entrées du joueur au clavier.
+     *      Utilise les fonction {@link #demanderColonne(boolean, int)  demanderColonne}, {@link #demanderLigne(boolean, int)  demanderLigne} et {@link #demanderDirection()  demanderDirection}
+     *      pour demander la ligne, la colonne et la direction de chaque bateau.
      *      Appelle ensuite la fonction {@link #posOk(int[][], int, int, int, int)  posOk} pour vérifier si la position entrée fonctionne.
+     *      Affiche ensuite la grille pour montrer le résultat au joueur avec la fonction {@link #ecrireDansGrille(int[][], int, int, int, int[], int)  ecrireDansGrille}.
      * </pre>
      */
     public static void initGrilleJeu(){
@@ -299,6 +308,7 @@ public class bataille {
         if(indice < c + t){
             fonctionne = false;
         }
+
         return fonctionne;
     }
 
@@ -318,7 +328,6 @@ public class bataille {
      *      Le résultat disant si cette position fonctionne.
      */
     public static boolean colonneOk(int [][]grille, int l, int c, int t){
-
         boolean fonctionne = true;
         int indice = l;
 
@@ -329,6 +338,7 @@ public class bataille {
         if(indice < l + t){
             fonctionne = false;
         }
+
         return fonctionne;
     }
 
@@ -364,7 +374,7 @@ public class bataille {
 
     /**
      * <pre>
-     *      Affiche une grille de jeu.
+     *      Affiche une grille (grille joueur ou ordi).
      * </pre>
      * @param grille
      *      Grille à afficher (joueur ou ordi).
@@ -430,14 +440,26 @@ public class bataille {
      *      Le numéro de la ligne à vérifier.
      */
     public static void mouvement(int[][] grille, int l, int c){
+
         if(grille[l][c] >= 1 && grille[l][c] <= 5){
             int numeroBateau = grille[l][c];
+            boolean bateauCoule = false;
             String[] nomBateau = new String[] {"Porte-avions", "Croiseur", "Contre-torpilleur", "Sous-marin", "Torpilleur"};
-            System.out.println("Touche : " + nomBateau[grille[l][c] - 1]);
+            String nomBateauVise = nomBateau[grille[l][c] - 1];
             grille[l][c] = 6;
+
             if(couler(grille, numeroBateau)){
-                System.out.println("Coule");
+                bateauCoule = true;
+            }
+
+            if(!bateauCoule){
+                System.out.println("Touche : " + nomBateauVise);
+            }
+            else{
+                System.out.println("Coule : " + nomBateauVise);
+
                 if(vainqueur(grille)){
+
                     if(grille == grilleOrdi){
                         System.out.println("Vous avez gagne!");
                     }
@@ -447,7 +469,7 @@ public class bataille {
                     partieFinie = true;
                 }
                 else{
-                    System.out.println("Pas Gagne");
+                    System.out.println("Pas gagne...");
                 }
             }
         }
