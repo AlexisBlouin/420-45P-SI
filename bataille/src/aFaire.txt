@@ -1,4 +1,2 @@
 -Faire javadoc
--enlever affichage superflu
--ajouter un compte de bateau restant
 -corriger les fautes
