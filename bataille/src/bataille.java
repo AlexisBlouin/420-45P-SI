@@ -5,8 +5,8 @@ import java.util.Scanner;
  * <pre>
  * Programme bataille.java permettant de jouer au jeu Battleship contre un ordinateur avec des entrées au clavier.
  * Date de remise : 6 février 2023
+ * Auteur : Alexis Blouin (Je n'ai pas utilisé le tag @author, car il n'apparait pas dans la javadoc.)
  * </pre>
- * @author AlexisBlouin
  * @since 6 février 2023
  */
 public class bataille {
