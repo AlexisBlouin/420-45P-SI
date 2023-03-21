@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<!--<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bataillefx.SceneMenu">-->
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bataillefx.HelloApplication">
+
+   <children>
+      <Button layoutX="340.0" layoutY="363.0" mnemonicParsing="false" onAction="#boutonPartieAvecTriche" prefHeight="75.0" prefWidth="121.0" text="Partie Avec Triche" />
+      <Button layoutX="340.0" layoutY="460.0" mnemonicParsing="false" onAction="#boutonQuitter" prefHeight="75.0" prefWidth="121.0" text="Quitter" />
+      <Button layoutX="340.0" layoutY="270.0" mnemonicParsing="false" onAction="#boutonPartieNormale" prefHeight="75.0" prefWidth="121.0" text="Partie Normale" />
+   </children>
+</AnchorPane>
