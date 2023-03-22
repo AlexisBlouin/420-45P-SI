@@ -9,6 +9,8 @@ import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+
+import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.io.InputStream;
 import javafx.scene.image.Image;
@@ -18,13 +20,12 @@ public class HelloController {
     @FXML
     public GridPane grilleJoueur;
 
-    public void clickGrid(javafx.scene.input.MouseEvent event) {
+
+    public void clickGrid(MouseEvent event) {
         Node source = (Node)event.getSource() ;
         Integer colIndex = grilleJoueur.getColumnIndex(source);
         Integer rowIndex = grilleJoueur.getRowIndex(source);
         System.out.println("Mouse clicked cell: " + colIndex + "And: " + rowIndex);
-
-
     }
 }
 
