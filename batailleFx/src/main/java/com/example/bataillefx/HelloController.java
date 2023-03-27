@@ -24,6 +24,12 @@ public class HelloController {
     public ImageView porteAvions;
     public ImageView torpilleur;
 
+    public static int [][]grilleOrdiBackend = new int[10][10];
+    public static int [][]grilleJoueurBackend = new int [10][10];
+    public int direction = 1;
+
+    PlacerBateau pB = new PlacerBateau();
+
     public void clickGrid(javafx.scene.input.MouseEvent t) {
         Node source = (Node)t.getSource();
         System.out.println("X : " + t.getX() + ", Y : " + t.getY());
@@ -31,19 +37,26 @@ public class HelloController {
         Integer column = GridPane.getColumnIndex(source);
         System.out.println("L : " + row + ", C : " + column);
 
-        Rectangle carreBleu = new Rectangle(0, 0, grilleJoueur.getWidth()/11, grilleJoueur.getHeight()/11);
-        carreBleu.setFill(Color.CADETBLUE);
+        /*Rectangle carreBleu = new Rectangle(0, 0, grilleJoueur.getWidth()/11, grilleJoueur.getHeight()/11);
+        carreBleu.setFill(Color.CADETBLUE);*/
 
         //grilleJoueur.add(carreBleu, column, row);
-        grilleJoueur.add(porteAvions, column, row);
+        //grilleJoueur.add(porteAvions, column, row);
+
+        if(pB.posOk(grilleJoueurBackend, row - 1, column - 1, direction, 2)) {
+            grilleJoueur.add(torpilleur, column, row);
+        }
     }
 
     public void tournerBateau(){
-        if(porteAvions.getRotate() == 0){
-            porteAvions.setRotate(90);
+        //Fonction hide
+        if(torpilleur.getRotate() == 0){
+            torpilleur.setRotate(90);
+            direction = 2;
         }
         else {
-            porteAvions.setRotate(0);
+            torpilleur.setRotate(0);
+            direction = 1;
         }
     }
 }
