@@ -163,7 +163,7 @@
             <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#clickGrid" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="10" />
             </children>
         </GridPane>
-      <ImageView fx:id="porteAvions1" fitHeight="29.0" fitWidth="145.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" Helper.indices="0 0">
+      <ImageView fx:id="porteAvions1" fitHeight="29.0" fitWidth="145.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true">
          <image>
             <Image url="@Images/Porte-Avions.PNG" />
          </image>

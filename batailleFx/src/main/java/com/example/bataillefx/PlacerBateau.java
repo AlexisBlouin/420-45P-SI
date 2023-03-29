@@ -43,4 +43,17 @@ public class PlacerBateau {
 
         return fonctionne;
     }
+
+    public static void ecrireDansGrille(int[][] grille, int l, int c, int d, int[] t, int n){
+        if(d == 1){
+            for(int i = c; i < c + t[n - 1]; i++){
+                grille[l][i] = n;
+            }
+        }
+        else {
+            for(int i = l; i < l + t[n - 1]; i++){
+                grille[i][c] = n;
+            }
+        }
+    }
 }

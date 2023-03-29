@@ -24,20 +24,30 @@ import javafx.scene.image.ImageView;
 public class HelloController {
     @FXML
     public GridPane grilleJoueur;
+    @FXML
     public ImageView porteAvions1;
+    @FXML
     public ImageView porteAvions2;
+    @FXML
     public ImageView croiseur1;
+    @FXML
     public ImageView croiseur2;
+    @FXML
     public ImageView contreTorpilleur1;
+    @FXML
     public ImageView contreTorpilleur2;
+    @FXML
     public ImageView sousMarin1;
+    @FXML
     public ImageView sousMarin2;
+    @FXML
     public ImageView torpilleur1;
+    @FXML
     public ImageView torpilleur2;
 
     Integer bateauChoisi = 0;
 
-    public ImageView[][] bateaux = {{porteAvions1, porteAvions2}, {croiseur1, croiseur2}, {contreTorpilleur1, contreTorpilleur2}, {sousMarin1, sousMarin2}, {torpilleur1, torpilleur1}};
+    public ImageView[][] bateaux = new ImageView[2][5];
 
     public static int [][]grilleOrdiBackend = new int[10][10];
     public static int [][]grilleJoueurBackend = new int [10][10];
@@ -65,14 +75,20 @@ public class HelloController {
             grilleJoueur.add(porteAvions2, column, row);
         }*/
 
+        int[] u = {5, 4, 3, 3, 2};
+
         switch (bateauChoisi){
             case 0:
                 if(pB.posOk(grilleJoueurBackend, row - 1, column - 1, direction, 5)){
                     if(direction == 1){
-                        grilleJoueur.add(porteAvions1, column, row);
+                        System.out.println("TEST");
+                        System.out.println(bateaux[0][0]);
+                        grilleJoueur.add(bateaux[0][0], column, row);
+                        pB.ecrireDansGrille(grilleJoueurBackend, row - 1, column - 1, direction, u, 1);
                     }
                     else{
                         grilleJoueur.add(porteAvions2, column, row);
+                        pB.ecrireDansGrille(grilleJoueurBackend, row - 1, column - 1, direction, u, 1);
                     }
                 }
                 System.out.println(bateauChoisi);
@@ -82,9 +98,11 @@ public class HelloController {
                 if(pB.posOk(grilleJoueurBackend, row - 1, column - 1, direction, 4)){
                     if(direction == 1){
                         grilleJoueur.add(croiseur1, column, row);
+                        pB.ecrireDansGrille(grilleJoueurBackend, row - 1, column - 1, direction, u, 2);
                     }
                     else{
                         grilleJoueur.add(croiseur2, column, row);
+                        pB.ecrireDansGrille(grilleJoueurBackend, row - 1, column - 1, direction, u, 2);
                     }
                 }
                 System.out.println(bateauChoisi);
@@ -94,9 +112,11 @@ public class HelloController {
                 if(pB.posOk(grilleJoueurBackend, row - 1, column - 1, direction, 3)){
                     if(direction == 1){
                         grilleJoueur.add(contreTorpilleur1, column, row);
+                        pB.ecrireDansGrille(grilleJoueurBackend, row - 1, column - 1, direction, u, 3);
                     }
                     else{
                         grilleJoueur.add(contreTorpilleur2, column, row);
+                        pB.ecrireDansGrille(grilleJoueurBackend, row - 1, column - 1, direction, u, 3);
                     }
                 }
                 System.out.println(bateauChoisi);
@@ -106,9 +126,11 @@ public class HelloController {
                 if(pB.posOk(grilleJoueurBackend, row - 1, column - 1, direction, 3)){
                     if(direction == 1){
                         grilleJoueur.add(sousMarin1, column, row);
+                        pB.ecrireDansGrille(grilleJoueurBackend, row - 1, column - 1, direction, u, 4);
                     }
                     else{
                         grilleJoueur.add(sousMarin2, column, row);
+                        pB.ecrireDansGrille(grilleJoueurBackend, row - 1, column - 1, direction, u, 4);
                     }
                 }
                 System.out.println(bateauChoisi);
@@ -118,9 +140,11 @@ public class HelloController {
                 if(pB.posOk(grilleJoueurBackend, row - 1, column - 1, direction, 2)){
                     if(direction == 1){
                         grilleJoueur.add(torpilleur1, column, row);
+                        pB.ecrireDansGrille(grilleJoueurBackend, row - 1, column - 1, direction, u, 5);
                     }
                     else{
                         grilleJoueur.add(torpilleur2, column, row);
+                        pB.ecrireDansGrille(grilleJoueurBackend, row - 1, column - 1, direction, u, 5);
                     }
                 }
                 System.out.println(bateauChoisi);
@@ -160,7 +184,10 @@ public class HelloController {
         }
     }
 
+    PlacerBateauFx pbf = new PlacerBateauFx();
+
     public void ChoisirBateau(javafx.scene.input.MouseEvent t){
+        bateaux = pbf.initTableauBateau();
         System.out.println("OUI");
         Node source = (Node)t.getSource();
         bateauChoisi = GridPane.getColumnIndex(source);
