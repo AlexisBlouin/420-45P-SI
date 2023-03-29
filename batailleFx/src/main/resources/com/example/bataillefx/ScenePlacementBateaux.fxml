@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -164,29 +163,75 @@
             <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#clickGrid" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="10" />
             </children>
         </GridPane>
-      <ImageView fx:id="porteAvions1" fitHeight="29.0" fitWidth="145.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true">
+      <ImageView fx:id="porteAvions1" fitHeight="29.0" fitWidth="145.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" Helper.indices="0 0">
          <image>
             <Image url="@Images/Porte-Avions.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="torpilleur1" fitHeight="29.0" fitWidth="58.0" layoutX="201.0" layoutY="25.0" pickOnBounds="true">
+      <ImageView fx:id="torpilleur1" fitHeight="29.0" fitWidth="58.0" layoutX="511.0" layoutY="25.0" pickOnBounds="true">
          <image>
             <Image url="@Images/Torpilleur.PNG" />
          </image>
-         <viewport>
-            <Rectangle2D />
-         </viewport>
       </ImageView>
-      <Button layoutX="55.0" layoutY="250.0" mnemonicParsing="false" onAction="#tournerBateau" text="Tourner" textAlignment="CENTER" />
       <ImageView fx:id="porteAvions2" fitHeight="145.0" fitWidth="29.0" layoutX="20.0" layoutY="71.0" pickOnBounds="true">
          <image>
             <Image url="@Images/Porte-AvionsIncline.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="torpilleur2" fitHeight="58.0" fitWidth="29.0" layoutX="201.0" layoutY="71.0" pickOnBounds="true">
+      <ImageView fx:id="torpilleur2" fitHeight="58.0" fitWidth="29.0" layoutX="511.0" layoutY="71.0" pickOnBounds="true">
          <image>
             <Image url="@Images/TorpilleurIncline.PNG" />
          </image>
       </ImageView>
+      <ImageView fx:id="croiseur1" fitHeight="29.0" fitWidth="116.0" layoutX="182.0" layoutY="25.0" pickOnBounds="true">
+         <image>
+            <Image url="@Images/Croiseur.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="croiseur2" fitHeight="116.0" fitWidth="29.0" layoutX="182.0" layoutY="71.0" pickOnBounds="true">
+         <image>
+            <Image url="@Images/CroiseurIncline.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="contreTorpilleur1" fitHeight="29.0" fitWidth="87.0" layoutX="316.0" layoutY="25.0" pickOnBounds="true">
+         <image>
+            <Image url="@Images/Contre-Torpilleur.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="contreTorpilleur2" fitHeight="87.0" fitWidth="29.0" layoutX="316.0" layoutY="70.0" pickOnBounds="true">
+         <image>
+            <Image url="@Images/Contre-TorpilleurIncline.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="sousMarin1" fitHeight="29.0" fitWidth="87.0" layoutX="416.0" layoutY="25.0" pickOnBounds="true">
+         <image>
+            <Image url="@Images/Sous-Marin.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="sousMarin2" fitHeight="87.0" fitWidth="29.0" layoutX="416.0" layoutY="70.0" pickOnBounds="true">
+         <image>
+            <Image url="@Images/Sous-MarinIncline.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="55.0" layoutY="250.0" mnemonicParsing="false" onAction="#tournerBateau" text="Tourner" textAlignment="CENTER" />
+      <GridPane layoutX="26.0" layoutY="326.0" prefHeight="30.0" prefWidth="133.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button mnemonicParsing="false" onMouseClicked="#ChoisirBateau" text="1" />
+            <Button mnemonicParsing="false" onMouseClicked="#ChoisirBateau" text="2" GridPane.columnIndex="1" />
+            <Button mnemonicParsing="false" onMouseClicked="#ChoisirBateau" text="3" GridPane.columnIndex="2" />
+            <Button mnemonicParsing="false" onMouseClicked="#ChoisirBateau" text="4" GridPane.columnIndex="3" />
+            <Button mnemonicParsing="false" onMouseClicked="#ChoisirBateau" text="5" GridPane.columnIndex="4" />
+         </children>
+      </GridPane>
     </children>
 </AnchorPane>
