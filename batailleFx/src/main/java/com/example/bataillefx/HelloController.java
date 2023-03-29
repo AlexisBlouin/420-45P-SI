@@ -21,8 +21,10 @@ import javafx.scene.image.ImageView;
 public class HelloController {
     @FXML
     public GridPane grilleJoueur;
-    public ImageView porteAvions;
-    public ImageView torpilleur;
+    public ImageView porteAvions1;
+    public ImageView porteAvions2;
+    public ImageView torpilleur1;
+    public ImageView torpilleur2;
 
     public static int [][]grilleOrdiBackend = new int[10][10];
     public static int [][]grilleJoueurBackend = new int [10][10];
@@ -43,19 +45,20 @@ public class HelloController {
         //grilleJoueur.add(carreBleu, column, row);
         //grilleJoueur.add(porteAvions, column, row);
 
-        if(pB.posOk(grilleJoueurBackend, row - 1, column - 1, direction, 2)) {
-            grilleJoueur.add(torpilleur, column, row);
+        if(direction == 1 && pB.posOk(grilleJoueurBackend, row - 1, column - 1, direction, 5)){
+            grilleJoueur.add(porteAvions1, column, row);
+        }
+        else {
+            grilleJoueur.add(porteAvions2, column, row);
         }
     }
 
     public void tournerBateau(){
         //Fonction hide
-        if(torpilleur.getRotate() == 0){
-            torpilleur.setRotate(90);
+        if(direction == 1){
             direction = 2;
         }
         else {
-            torpilleur.setRotate(0);
             direction = 1;
         }
     }

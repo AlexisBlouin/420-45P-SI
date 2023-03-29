@@ -30,16 +30,16 @@
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                 <TextField editable="false" text="A" GridPane.columnIndex="1" />
@@ -164,12 +164,12 @@
             <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#clickGrid" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="10" />
             </children>
         </GridPane>
-      <ImageView fx:id="porteAvions" fitHeight="29.0" fitWidth="145.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true">
+      <ImageView fx:id="porteAvions1" fitHeight="29.0" fitWidth="145.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true">
          <image>
             <Image url="@Images/Porte-Avions.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="torpilleur" fitHeight="29.0" fitWidth="58.0" layoutX="201.0" layoutY="25.0" pickOnBounds="true">
+      <ImageView fx:id="torpilleur1" fitHeight="29.0" fitWidth="58.0" layoutX="201.0" layoutY="25.0" pickOnBounds="true">
          <image>
             <Image url="@Images/Torpilleur.PNG" />
          </image>
@@ -178,12 +178,12 @@
          </viewport>
       </ImageView>
       <Button layoutX="55.0" layoutY="250.0" mnemonicParsing="false" onAction="#tournerBateau" text="Tourner" textAlignment="CENTER" />
-      <ImageView fitHeight="145.0" fitWidth="29.0" layoutX="20.0" layoutY="71.0" pickOnBounds="true">
+      <ImageView fx:id="porteAvions2" fitHeight="145.0" fitWidth="29.0" layoutX="20.0" layoutY="71.0" pickOnBounds="true">
          <image>
             <Image url="@Images/Porte-AvionsIncline.PNG" />
          </image>
       </ImageView>
-      <ImageView fitHeight="58.0" fitWidth="29.0" layoutX="201.0" layoutY="71.0" pickOnBounds="true">
+      <ImageView fx:id="torpilleur2" fitHeight="58.0" fitWidth="29.0" layoutX="201.0" layoutY="71.0" pickOnBounds="true">
          <image>
             <Image url="@Images/TorpilleurIncline.PNG" />
          </image>
