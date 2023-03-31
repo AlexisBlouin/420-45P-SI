@@ -1,7 +1,7 @@
 package com.example.bataillefx;
 
 public class PlacerBateau {
-    public static boolean posOk(int [][]grille, int l, int c, int d, int t){
+    public boolean posOk(int [][]grille, int l, int c, int d, int t){
         boolean fonctionne;
 
         if(d == 1){
@@ -14,7 +14,7 @@ public class PlacerBateau {
         return fonctionne;
     }
 
-    public static boolean ligneOk(int [][]grille, int l, int c, int t){
+    public boolean ligneOk(int [][]grille, int l, int c, int t){
         boolean fonctionne = true;
         int indice = c;
 
@@ -29,7 +29,7 @@ public class PlacerBateau {
         return fonctionne;
     }
 
-    public static boolean colonneOk(int [][]grille, int l, int c, int t){
+    public boolean colonneOk(int [][]grille, int l, int c, int t){
         boolean fonctionne = true;
         int indice = l;
 
@@ -44,14 +44,15 @@ public class PlacerBateau {
         return fonctionne;
     }
 
-    public static void ecrireDansGrille(int[][] grille, int l, int c, int d, int[] t, int n){
+    public void ecrireDansGrille(int[][] grille, int l, int c, int d, int t, int n){
         if(d == 1){
-            for(int i = c; i < c + t[n - 1]; i++){
+            System.out.println("Yoy");
+            for(int i = c; i < c + t; i++){
                 grille[l][i] = n;
             }
         }
         else {
-            for(int i = l; i < l + t[n - 1]; i++){
+            for(int i = l; i < l + t; i++){
                 grille[i][c] = n;
             }
         }

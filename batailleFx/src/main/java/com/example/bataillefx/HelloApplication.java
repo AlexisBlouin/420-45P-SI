@@ -39,13 +39,13 @@ public class HelloApplication extends Application {
         System.out.println("Quitter le programme.");
     }
 
-    public void oui(MouseEvent t){
+    /*public void oui(MouseEvent t){
         Node source = (Node)t.getSource();
         System.out.println("X : " + t.getX() + ", Y : " + t.getY());
         Integer row = GridPane.getRowIndex(source);
         Integer column = GridPane.getColumnIndex(source);
         System.out.println("L : " + row + ", C : " + column);
-    }
+    }*/
 
     public static void main(String[] args) {
         launch();
