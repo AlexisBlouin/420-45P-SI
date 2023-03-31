@@ -9,6 +9,8 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="grillejoueur" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bataillefx.HelloController">
 
@@ -173,12 +175,12 @@
             <Image url="@Images/Torpilleur.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="porteAvions2" fitHeight="145.0" fitWidth="29.0" layoutX="20.0" layoutY="71.0" pickOnBounds="true">
+      <ImageView fx:id="porteAvions2" fitHeight="145.0" fitWidth="29.0" layoutX="20.0" layoutY="71.0" pickOnBounds="true" visible="false">
          <image>
             <Image url="@Images/Porte-AvionsIncline.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="torpilleur2" fitHeight="58.0" fitWidth="29.0" layoutX="511.0" layoutY="71.0" pickOnBounds="true">
+      <ImageView fx:id="torpilleur2" fitHeight="58.0" fitWidth="29.0" layoutX="511.0" layoutY="71.0" pickOnBounds="true" visible="false">
          <image>
             <Image url="@Images/TorpilleurIncline.PNG" />
          </image>
@@ -188,7 +190,7 @@
             <Image url="@Images/Croiseur.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="croiseur2" fitHeight="116.0" fitWidth="29.0" layoutX="182.0" layoutY="71.0" pickOnBounds="true">
+      <ImageView fx:id="croiseur2" fitHeight="116.0" fitWidth="29.0" layoutX="182.0" layoutY="71.0" pickOnBounds="true" visible="false">
          <image>
             <Image url="@Images/CroiseurIncline.png" />
          </image>
@@ -198,7 +200,7 @@
             <Image url="@Images/Contre-Torpilleur.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="contreTorpilleur2" fitHeight="87.0" fitWidth="29.0" layoutX="316.0" layoutY="70.0" pickOnBounds="true">
+      <ImageView fx:id="contreTorpilleur2" fitHeight="87.0" fitWidth="29.0" layoutX="316.0" layoutY="70.0" pickOnBounds="true" visible="false">
          <image>
             <Image url="@Images/Contre-TorpilleurIncline.png" />
          </image>
@@ -208,7 +210,7 @@
             <Image url="@Images/Sous-Marin.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="sousMarin2" fitHeight="87.0" fitWidth="29.0" layoutX="416.0" layoutY="70.0" pickOnBounds="true">
+      <ImageView fx:id="sousMarin2" fitHeight="87.0" fitWidth="29.0" layoutX="416.0" layoutY="70.0" pickOnBounds="true" visible="false">
          <image>
             <Image url="@Images/Sous-MarinIncline.png" />
          </image>
@@ -233,5 +235,13 @@
             <Button mnemonicParsing="false" onMouseClicked="#ChoisirBateau" text="5" GridPane.columnIndex="4" />
          </children>
       </GridPane>
+      <Button layoutX="334.0" layoutY="187.0" mnemonicParsing="false" onAction="#InitialiserTableau" text="Demarrer" />
+      <Button layoutX="58.0" layoutY="517.0" mnemonicParsing="false" onAction="#ChangerScene2" text="ChangerScene" />
+      <Text layoutX="482.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Le placement des bateaux est terminé!" wrappingWidth="211.13671875">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Button fx:id="boutonFinPlacement" layoutX="500.0" layoutY="175.0" mnemonicParsing="false" onAction="#ChangerScene3" text="Cliquer pour continuer..." visible="false" />
     </children>
 </AnchorPane>

@@ -1,9 +1,11 @@
 package com.example.bataillefx;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 import javafx.event.ActionEvent;
@@ -13,6 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,10 +23,12 @@ import java.util.Arrays;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class HelloController {
     @FXML
     public GridPane grilleJoueur;
+    public GridPane grilleJoueurSceneJeu;
     public ImageView porteAvions1;
     public ImageView porteAvions2;
     public ImageView croiseur1;
@@ -34,6 +39,12 @@ public class HelloController {
     public ImageView sousMarin2;
     public ImageView torpilleur1;
     public ImageView torpilleur2;
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+    int nombrePlace = 0;
+
+    public Button boutonFinPlacement;
 
     Integer bateauChoisi = 0;
     int direction = 1;
@@ -52,16 +63,21 @@ public class HelloController {
         Integer column = GridPane.getColumnIndex(source);
         System.out.println("L : " + row + ", C : " + column);
 
-        InitialiserTableau();
+
 
         int[] longueurBateaux = {5, 4, 3, 3, 2};
         int[] numBateaux = {1, 2, 3, 4, 5};
 
 
         if(pB.posOk(grilleJoueurBackend, row, column, direction, longueurBateaux[bateauChoisi])){
-            System.out.println("oui");
             pbf.PlacerUnBateau(grilleJoueur, bateaux[bateauChoisi][direction -1], row, column);
             pB.ecrireDansGrille(grilleJoueurBackend, row, column, direction, longueurBateaux[bateauChoisi], numBateaux[bateauChoisi]);
+            bateaux[bateauChoisi][0] = null;
+            bateaux[bateauChoisi][1] = null;
+            nombrePlace++;
+            if(nombrePlace >= 5){
+                boutonFinPlacement.setVisible(true);
+            }
         }
     }
 
@@ -69,39 +85,37 @@ public class HelloController {
         //Fonction hide
         if(direction == 1){
             direction = 2;
-            porteAvions2.setVisible(true);
-            croiseur2.setVisible(true);
-            contreTorpilleur2.setVisible(true);
-            sousMarin2.setVisible(true);
-            torpilleur2.setVisible(true);
 
-            porteAvions1.setVisible(false);
-            croiseur1.setVisible(false);
-            contreTorpilleur1.setVisible(false);
-            sousMarin1.setVisible(false);
-            torpilleur1.setVisible(false);
+            for(int i = 0; i < 5; i++){
+                if(bateaux[i][1] != null){
+                    bateaux[i][1].setVisible(true);
+                }
+            }
+
+            for(int i = 0; i < 5; i++){
+                if(bateaux[i][0] != null){
+                    bateaux[i][0].setVisible(false);
+                }
+            }
         }
         else {
             direction = 1;
-            porteAvions1.setVisible(true);
-            croiseur1.setVisible(true);
-            contreTorpilleur1.setVisible(true);
-            sousMarin1.setVisible(true);
-            torpilleur1.setVisible(true);
 
-            porteAvions2.setVisible(false);
-            croiseur2.setVisible(false);
-            contreTorpilleur2.setVisible(false);
-            sousMarin2.setVisible(false);
-            torpilleur2.setVisible(false);
+            for(int i = 0; i < 5; i++){
+                if(bateaux[i][0] != null){
+                    bateaux[i][0].setVisible(true);
+                }
+            }
+
+            for(int i = 0; i < 5; i++){
+                if(bateaux[i][1] != null){
+                    bateaux[i][1].setVisible(false);
+                }
+            }
         }
     }
 
-    //PlacerBateauFx pbf = new PlacerBateauFx();
-
     public void ChoisirBateau(javafx.scene.input.MouseEvent t){
-
-        System.out.println("OUI");
         Node source = (Node)t.getSource();
         bateauChoisi = GridPane.getColumnIndex(source);
         if(bateauChoisi == null){
@@ -117,5 +131,30 @@ public class HelloController {
             bateaux = tempo;
             initialisation = false;
         }
+    }
+
+
+    //Fait en partie avec : https://www.youtube.com/watch?v=hcM-R-YOKkQ
+    public void ChangerScene1(ActionEvent event) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ScenePlacementBateaux.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(fxmlLoader.load(), 800, 800);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void ChangerScene2(ActionEvent event) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SceneMenu.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(fxmlLoader.load(), 800, 800);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void ChangerScene3(ActionEvent event) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SceneJeu.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(fxmlLoader.load(), 800, 800);
+        stage.setScene(scene);
+        stage.show();
+        //grilleJoueurSceneJeu = grilleJoueur;
     }
 }
