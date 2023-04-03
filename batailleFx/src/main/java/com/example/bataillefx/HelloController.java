@@ -27,8 +27,8 @@ import javafx.stage.Stage;
 
 public class HelloController {
     @FXML
-    public GridPane grilleJoueur;
-    public GridPane grilleJoueurSceneJeu;
+    public GridPane grilleJoueurPlacement;
+    public GridPane grilleJoueurJeu;
     public ImageView porteAvions1;
     public ImageView porteAvions2;
     public ImageView croiseur1;
@@ -70,7 +70,7 @@ public class HelloController {
 
 
         if(pB.posOk(grilleJoueurBackend, row, column, direction, longueurBateaux[bateauChoisi])){
-            pbf.PlacerUnBateau(grilleJoueur, bateaux[bateauChoisi][direction -1], row, column);
+            pbf.PlacerUnBateau(grilleJoueurPlacement, bateaux[bateauChoisi][direction -1], row, column);
             pB.ecrireDansGrille(grilleJoueurBackend, row, column, direction, longueurBateaux[bateauChoisi], numBateaux[bateauChoisi]);
             bateaux[bateauChoisi][0] = null;
             bateaux[bateauChoisi][1] = null;
@@ -136,6 +136,7 @@ public class HelloController {
 
     //Fait en partie avec : https://www.youtube.com/watch?v=hcM-R-YOKkQ
     public void ChangerScene1(ActionEvent event) throws IOException{
+
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ScenePlacementBateaux.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load(), 800, 800);
@@ -155,6 +156,9 @@ public class HelloController {
         Scene scene = new Scene(fxmlLoader.load(), 800, 800);
         stage.setScene(scene);
         stage.show();
-        //grilleJoueurSceneJeu = grilleJoueur;
+    }
+    public void MiseAJour(){
+        System.out.println("Yo");
+        grilleJoueurJeu = grilleJoueurPlacement;
     }
 }
