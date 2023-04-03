@@ -19,6 +19,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Arrays;
 
 import javafx.scene.image.Image;
@@ -39,6 +40,9 @@ public class HelloController {
     public ImageView sousMarin2;
     public ImageView torpilleur1;
     public ImageView torpilleur2;
+    Bateau porteAvions = new Bateau();
+    Bateau contreTorpilleur = new Bateau();
+    Bateau croiseur = new Bateau();
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -131,18 +135,20 @@ public class HelloController {
             bateaux = tempo;
             initialisation = false;
         }
+
     }
 
 
     //Fait en partie avec : https://www.youtube.com/watch?v=hcM-R-YOKkQ
-    public void ChangerScene1(ActionEvent event) throws IOException{
+    /*public void ChangerScene1(ActionEvent event) throws IOException{
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ScenePlacementBateaux.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load(), 800, 800);
         stage.setScene(scene);
         stage.show();
-    }
+        InitialiserTableau();
+    }*/
     public void ChangerScene2(ActionEvent event) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SceneMenu.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -150,15 +156,43 @@ public class HelloController {
         stage.setScene(scene);
         stage.show();
     }
-    public void ChangerScene3(ActionEvent event) throws IOException{
+    /*public void ChangerScene3(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/resources/com/example/bataillefx/ScenePlacementBateaux.fxml"));
+        //loader.setLocation(getClass().getResource("/main/resources/ScenePlacementBateaux.fxml"));
+        //loader.setLocation(getClass().getResource("ScenePlacementBateaux.fxml"));
+        //GridPane grilleMachin = loader.<GridPane>load();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SceneJeu.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load(), 800, 800);
         stage.setScene(scene);
         stage.show();
+    }*/
+
+    public void ChangerScene3(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("SceneJeu.fxml"));
+        //loader.setLocation(getClass().getResource("/main/resources/ScenePlacementBateaux.fxml"));
+        //loader.setLocation(getClass().getResource("ScenePlacementBateaux.fxml"));
+        //GridPane grilleMachin = loader.<GridPane>load();
+        //GridPane grilleMachin = loader.<GridPane>load();
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SceneJeu.fxml"));
+        //Scene scene = new Scene(grilleMachin);
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(fxmlLoader.load(), 800, 800);
+        stage.setScene(scene);
+        stage.show();
     }
-    public void MiseAJour(){
+
+    public void MiseAJour() throws IOException{
         System.out.println("Yo");
-        grilleJoueurJeu = grilleJoueurPlacement;
+
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("SceneJeu.fxml"));
+        //loader.setLocation(getClass().getResource("/main/resources/ScenePlacementBateaux.fxml"));
+        //loader.setLocation(getClass().getResource("ScenePlacementBateaux.fxml"));
+        GridPane grilleMachin = loader.<GridPane>load();
+        //Scene scene = new Scene(grilleMachin);
+        //stage.setScene(scene);
+        //stage.show();
+        grilleJoueurJeu = grilleMachin;
     }
 }
