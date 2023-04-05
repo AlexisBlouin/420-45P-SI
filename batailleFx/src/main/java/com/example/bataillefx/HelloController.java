@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -24,36 +25,36 @@ import java.util.Arrays;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class HelloController {
     @FXML
-    public GridPane grilleJoueurPlacement;
-    public GridPane grilleJoueurJeu;
-    public ImageView porteAvions1;
-    public ImageView porteAvions2;
-    public ImageView croiseur1;
-    public ImageView croiseur2;
-    public ImageView contreTorpilleur1;
-    public ImageView contreTorpilleur2;
-    public ImageView sousMarin1;
-    public ImageView sousMarin2;
-    public ImageView torpilleur1;
-    public ImageView torpilleur2;
-    Bateau porteAvions = new Bateau();
-    Bateau contreTorpilleur = new Bateau();
-    Bateau croiseur = new Bateau();
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
-    int nombrePlace = 0;
+    public GridPane grilleJoueur;
+    public GridPane grilleEnnemie;
+    public GridPane grilleBoutons;
+    public ImageView porteAvionsH;
+    public ImageView porteAvionsV;
+    public ImageView croiseurH;
+    public ImageView croiseurV;
+    public ImageView contreTorpilleurH;
+    public ImageView contreTorpilleurV;
+    public ImageView sousMarinH;
+    public ImageView sousMarinV;
+    public ImageView torpilleurH;
+    public ImageView torpilleurV;
+    ImageView[][] bateaux;
 
     public Button boutonFinPlacement;
+    public Button boutonInitialisation;
+    public Button boutonTourner;
+    public Text messagePlacement;
+    public Text messageTour;
 
+    int nombreBateauPlace = 0;
     Integer bateauChoisi = 0;
     int direction = 1;
     boolean initialisation = true;
-    ImageView[][] bateaux;
     PlacerBateauFx pbf = new PlacerBateauFx();
     PlacerBateau pB = new PlacerBateau();
 
@@ -74,12 +75,13 @@ public class HelloController {
 
 
         if(pB.posOk(grilleJoueurBackend, row, column, direction, longueurBateaux[bateauChoisi])){
-            pbf.PlacerUnBateau(grilleJoueurPlacement, bateaux[bateauChoisi][direction -1], row, column);
+            pbf.PlacerUnBateau(grilleJoueur, bateaux[bateauChoisi][direction -1], row, column);
             pB.ecrireDansGrille(grilleJoueurBackend, row, column, direction, longueurBateaux[bateauChoisi], numBateaux[bateauChoisi]);
             bateaux[bateauChoisi][0] = null;
             bateaux[bateauChoisi][1] = null;
-            nombrePlace++;
-            if(nombrePlace >= 5){
+            nombreBateauPlace++;
+            if(nombreBateauPlace >= 5){
+                messagePlacement.setVisible(true);
                 boutonFinPlacement.setVisible(true);
             }
         }
@@ -130,8 +132,9 @@ public class HelloController {
 
     public void InitialiserTableau(){
         if(initialisation){
-            ImageView[][] tempo = {{porteAvions1, porteAvions2}, {croiseur1, croiseur2},
-                    {contreTorpilleur1, contreTorpilleur2}, {sousMarin1, sousMarin2}, {torpilleur1, torpilleur2}};
+            boutonInitialisation.setVisible(false);
+            ImageView[][] tempo = {{porteAvionsH, porteAvionsV}, {croiseurH, croiseurV},
+                    {contreTorpilleurH, contreTorpilleurV}, {sousMarinH, sousMarinV}, {torpilleurH, torpilleurV}};
             bateaux = tempo;
             initialisation = false;
         }
@@ -140,59 +143,22 @@ public class HelloController {
 
 
     //Fait en partie avec : https://www.youtube.com/watch?v=hcM-R-YOKkQ
-    /*public void ChangerScene1(ActionEvent event) throws IOException{
-
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ScenePlacementBateaux.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(fxmlLoader.load(), 800, 800);
-        stage.setScene(scene);
-        stage.show();
-        InitialiserTableau();
-    }*/
-    public void ChangerScene2(ActionEvent event) throws IOException{
+    public void AllerAuMenu(ActionEvent event) throws IOException{
+        Stage stage;
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SceneMenu.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load(), 800, 800);
         stage.setScene(scene);
         stage.show();
     }
-    /*public void ChangerScene3(ActionEvent event) throws IOException{
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/main/resources/com/example/bataillefx/ScenePlacementBateaux.fxml"));
-        //loader.setLocation(getClass().getResource("/main/resources/ScenePlacementBateaux.fxml"));
-        //loader.setLocation(getClass().getResource("ScenePlacementBateaux.fxml"));
-        //GridPane grilleMachin = loader.<GridPane>load();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SceneJeu.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(fxmlLoader.load(), 800, 800);
-        stage.setScene(scene);
-        stage.show();
-    }*/
-
-    public void ChangerScene3(ActionEvent event) throws IOException{
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("SceneJeu.fxml"));
-        //loader.setLocation(getClass().getResource("/main/resources/ScenePlacementBateaux.fxml"));
-        //loader.setLocation(getClass().getResource("ScenePlacementBateaux.fxml"));
-        //GridPane grilleMachin = loader.<GridPane>load();
-        //GridPane grilleMachin = loader.<GridPane>load();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SceneJeu.fxml"));
-        //Scene scene = new Scene(grilleMachin);
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(fxmlLoader.load(), 800, 800);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void MiseAJour() throws IOException{
-        System.out.println("Yo");
-
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("SceneJeu.fxml"));
-        //loader.setLocation(getClass().getResource("/main/resources/ScenePlacementBateaux.fxml"));
-        //loader.setLocation(getClass().getResource("ScenePlacementBateaux.fxml"));
-        GridPane grilleMachin = loader.<GridPane>load();
-        //Scene scene = new Scene(grilleMachin);
-        //stage.setScene(scene);
-        //stage.show();
-        grilleJoueurJeu = grilleMachin;
+    public void ChangerPourSceneJeu(ActionEvent event) throws IOException{
+        messagePlacement.setVisible(false);
+        boutonFinPlacement.setVisible(false);
+        boutonTourner.setVisible(false);
+        grilleBoutons.setVisible(false);
+        grilleJoueur.setLayoutX(240);
+        grilleJoueur.setLayoutY(450);
+        grilleEnnemie.setVisible(true);
+        messageTour.setVisible(true);
     }
 }
