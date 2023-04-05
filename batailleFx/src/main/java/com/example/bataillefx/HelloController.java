@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -22,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Random;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -44,10 +46,13 @@ public class HelloController {
     public ImageView torpilleurH;
     public ImageView torpilleurV;
     ImageView[][] bateaux;
+    int[][] positionbateaux = new int[5][3];
 
     public Button boutonFinPlacement;
     public Button boutonInitialisation;
+    public Button boutonNouvellePartie;
     public Button boutonTourner;
+    public Button confirmerPosition;
     public Text messagePlacement;
     public Text messageTour;
 
@@ -55,13 +60,14 @@ public class HelloController {
     Integer bateauChoisi = 0;
     int direction = 1;
     boolean initialisation = true;
+    boolean tricheActive = false;
     PlacerBateauFx pbf = new PlacerBateauFx();
     PlacerBateau pB = new PlacerBateau();
 
     public static int [][]grilleOrdiBackend = new int[10][10];
     public static int [][]grilleJoueurBackend = new int [10][10];
 
-    public void clickGrid(javafx.scene.input.MouseEvent t) {
+    public void clickGrid(MouseEvent t) {
         Node source = (Node)t.getSource();
         System.out.println("X : " + t.getX() + ", Y : " + t.getY());
         Integer row = GridPane.getRowIndex(source);
@@ -75,14 +81,20 @@ public class HelloController {
 
 
         if(pB.posOk(grilleJoueurBackend, row, column, direction, longueurBateaux[bateauChoisi])){
+
+            positionbateaux[bateauChoisi][0] = row - 1;
+            positionbateaux[bateauChoisi][1] = column - 1;
+            positionbateaux[bateauChoisi][2] = direction;
             pbf.PlacerUnBateau(grilleJoueur, bateaux[bateauChoisi][direction -1], row, column);
-            pB.ecrireDansGrille(grilleJoueurBackend, row, column, direction, longueurBateaux[bateauChoisi], numBateaux[bateauChoisi]);
-            bateaux[bateauChoisi][0] = null;
-            bateaux[bateauChoisi][1] = null;
+
+            //pB.ecrireDansGrille(grilleJoueurBackend, row, column, direction, longueurBateaux[bateauChoisi], numBateaux[bateauChoisi]);
+            //bateaux[bateauChoisi][0] = null;
+            //bateaux[bateauChoisi][1] = null;
             nombreBateauPlace++;
             if(nombreBateauPlace >= 5){
                 messagePlacement.setVisible(true);
                 boutonFinPlacement.setVisible(true);
+                confirmerPosition.setVisible(true);
             }
         }
     }
@@ -121,7 +133,7 @@ public class HelloController {
         }
     }
 
-    public void ChoisirBateau(javafx.scene.input.MouseEvent t){
+    public void ChoisirBateau(MouseEvent t){
         Node source = (Node)t.getSource();
         bateauChoisi = GridPane.getColumnIndex(source);
         if(bateauChoisi == null){
@@ -130,7 +142,56 @@ public class HelloController {
         System.out.println(bateauChoisi);
     }
 
+    public void ConfirmerPosition(){
+        //pB.ecrireDansGrille(grilleJoueurBackend, row, column, direction, longueurBateaux[bateauChoisi], numBateaux[bateauChoisi]);
+
+        int[] longueurBateaux = {5, 4, 3, 3, 2};
+        int[] numBateaux = {1, 2, 3, 4, 5};
+        for(int i = 0; i < 5; i++){
+            pB.ecrireDansGrille(grilleJoueurBackend, positionbateaux[i][0], positionbateaux[i][1], positionbateaux[i][2], longueurBateaux[i], numBateaux[i]);
+        }
+        pB.afficherGrille(grilleJoueurBackend);
+    }
+
+    public void tirCanon(MouseEvent evenement){
+        Node source = (Node)evenement.getSource();
+        //System.out.println("X : " + evenement.getX() + ", Y : " + evenement.getY());
+        Integer row = GridPane.getRowIndex(source) - 1;
+        Integer column = GridPane.getColumnIndex(source) - 1;
+        System.out.println("L : " + row + ", C : " + column);
+        TirCanon tirCanon = new TirCanon();
+
+        String[] nomBateau = new String[] {"Porte-avions", "Croiseur", "Contre-torpilleur", "Sous-marin", "Torpilleur"};
+        String nomBateauVise = "";
+        if(grilleOrdiBackend[row][column] - 1 != -1 && grilleOrdiBackend[row][column] - 1 != 5){
+            nomBateauVise = nomBateau[grilleOrdiBackend[row][column] - 1];
+        }
+
+        int resultat = tirCanon.mouvement(grilleOrdiBackend, row, column, "GrilleOrdi");
+        System.out.println(resultat);
+        switch (resultat){
+            case 0 :
+                System.out.println("A l'eau");
+                break;
+            case 1 :
+                System.out.println("Touche : " + nomBateauVise);
+                break;
+            case 2:
+                System.out.println("Tous les bateaux ne sont pas coules." + '\n');
+                break;
+            case 3 :
+                System.out.println('\n' + "Vous avez gagne!" + '\n');
+                System.out.println("Tous les bateaux ennemis sont coules : ");
+                //afficherGrille(grilleOrdi);
+                System.out.println("Voici ce qu'il reste de votre grille : ");
+                //afficherGrille(grilleJeu);
+                boutonNouvellePartie.setVisible(true);
+                break;
+        }
+    }
+
     public void InitialiserTableau(){
+        InitGrilleOrdi();
         if(initialisation){
             boutonInitialisation.setVisible(false);
             ImageView[][] tempo = {{porteAvionsH, porteAvionsV}, {croiseurH, croiseurV},
@@ -161,4 +222,39 @@ public class HelloController {
         grilleEnnemie.setVisible(true);
         messageTour.setVisible(true);
     }
+
+    public static int randRange (int a , int b){
+        Random rand = new Random();
+        return rand.nextInt(b - a)+ a;
+    }
+    public void InitGrilleOrdi(){
+        int[] grandeurBateau = new int[] {5, 4, 3, 3, 2};
+        int ligne;
+        int colonne;
+        int direction;
+        for(int numeroBateau = 1; numeroBateau <= 5; numeroBateau++)
+        {
+            ligne = randRange(0, 10);
+            colonne = randRange(0, 10);
+            direction = randRange(1, 3);
+
+            while (!pB.posOk(grilleOrdiBackend, ligne, colonne, direction, grandeurBateau[numeroBateau - 1]))
+            {
+                ligne = randRange(0, 10);
+                colonne = randRange(0, 10);
+                direction = randRange(1, 3);
+            }
+
+            pB.ecrireDansGrille(grilleOrdiBackend, ligne, colonne, direction, grandeurBateau[numeroBateau - 1], numeroBateau);
+        }
+    }
+
+    /*public void ActiverTriche(){
+        if(tricheActive){
+
+        }
+        else {
+
+        }
+    }*/
 }

@@ -57,4 +57,19 @@ public class PlacerBateau {
             }
         }
     }
+
+    public void afficherGrille(int[][] grille){
+        System.out.println("  A B C D E F G H I J");
+
+        for(int l = 0; l < 10; l++){
+            System.out.print(l);
+            for(int c = 0; c < 10; c++){
+                System.out.print(" " + grille[l][c]);
+            }
+
+            System.out.println();
+        }
+
+        System.out.println();
+    }
 }
