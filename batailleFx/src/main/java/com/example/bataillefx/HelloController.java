@@ -22,7 +22,10 @@ import javafx.scene.shape.Rectangle;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 import javafx.scene.image.Image;
@@ -61,6 +64,7 @@ public class HelloController {
     int direction = 1;
     boolean initialisation = true;
     boolean tricheActive = false;
+    List<Bateau> listeBateau = new ArrayList<Bateau>();
     PlacerBateauFx pbf = new PlacerBateauFx();
     PlacerBateau pB = new PlacerBateau();
 
@@ -85,6 +89,19 @@ public class HelloController {
             positionbateaux[bateauChoisi][0] = row - 1;
             positionbateaux[bateauChoisi][1] = column - 1;
             positionbateaux[bateauChoisi][2] = direction;
+            for(Bateau bateau:listeBateau){
+                //System.out.println(bateau.imageHorizontale);
+                /*if(bateau.numGrille == numBateaux[bateauChoisi]){
+                    bateau.SetPosition(row, column, direction);
+                    System.out.println("X : " + bateau.posGrilleX + " -Y : " + bateau.posGrilleY + " -D : " + bateau.direction);
+                }*/
+                //System.out.println("Num bateau : " + bateau.numGrille + " -NumSuppose : " + numBateaux[bateauChoisi]);
+            }
+            for (Iterator<Bateau> iter = listeBateau.iterator(); iter.hasNext(); ) {
+                Bateau bateau = iter.next();
+                System.out.println(bateau.imageHorizontale);
+            }
+
             pbf.PlacerUnBateau(grilleJoueur, bateaux[bateauChoisi][direction -1], row, column);
 
             //pB.ecrireDansGrille(grilleJoueurBackend, row, column, direction, longueurBateaux[bateauChoisi], numBateaux[bateauChoisi]);
@@ -110,6 +127,11 @@ public class HelloController {
                 }
             }
 
+            /*for(Bateau bateau:listeBateau){
+                bateau.imageHorizontale.setVisible(false);
+                bateau.imageVerticale.setVisible(true);
+            }*/
+
             for(int i = 0; i < 5; i++){
                 if(bateaux[i][0] != null){
                     bateaux[i][0].setVisible(false);
@@ -118,6 +140,11 @@ public class HelloController {
         }
         else {
             direction = 1;
+
+            /*for(Bateau bateau:listeBateau){
+                bateau.imageHorizontale.setVisible(false);
+                bateau.imageVerticale.setVisible(true);
+            }*/
 
             for(int i = 0; i < 5; i++){
                 if(bateaux[i][0] != null){
@@ -139,7 +166,7 @@ public class HelloController {
         if(bateauChoisi == null){
             bateauChoisi = 0;
         }
-        System.out.println(bateauChoisi);
+        //System.out.println(bateauChoisi);
     }
 
     public void ConfirmerPosition(){
@@ -192,12 +219,24 @@ public class HelloController {
 
     public void InitialiserTableau(){
         InitGrilleOrdi();
+
         if(initialisation){
             boutonInitialisation.setVisible(false);
             ImageView[][] tempo = {{porteAvionsH, porteAvionsV}, {croiseurH, croiseurV},
                     {contreTorpilleurH, contreTorpilleurV}, {sousMarinH, sousMarinV}, {torpilleurH, torpilleurV}};
             bateaux = tempo;
             initialisation = false;
+
+            int[] longueurBateaux = {5, 4, 3, 3, 2};
+            int[] numBateaux = {1, 2, 3, 4, 5};
+            Bateau bateauInitialisation = new Bateau(5, 1, 1, tempo[0][0], tempo[0][1]);
+
+            for(int i = 1; i < 5; i++){
+                listeBateau.add(bateauInitialisation);
+                bateauInitialisation.ChangerParam(longueurBateaux[i], numBateaux[i], 1, tempo[i][0], tempo[i][1]);
+                //System.out.println(bateauInitialisation.numGrille);
+            }
+            listeBateau.add(bateauInitialisation);
         }
 
     }
