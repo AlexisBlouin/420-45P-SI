@@ -16,4 +16,9 @@ public class PlacerBateauFx {
     public void PlacerUnBateau(GridPane grille, ImageView bateau, int ligne, int colonne){
         grille.add(bateau, colonne, ligne);
     }
+
+    public void ReplacerUnBateau(GridPane grille, ImageView bateau, int ligne, int colonne){
+        grille.getChildren().remove(bateau);
+        grille.add(bateau, colonne, ligne);
+    }
 }

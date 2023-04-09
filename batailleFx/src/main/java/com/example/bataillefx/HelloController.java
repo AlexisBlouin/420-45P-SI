@@ -64,49 +64,47 @@ public class HelloController {
     int direction = 1;
     boolean initialisation = true;
     boolean tricheActive = false;
-    List<Bateau> listeBateau = new ArrayList<Bateau>();
+    ArrayList<Bateau> listeBateau = new ArrayList<Bateau>();
     PlacerBateauFx pbf = new PlacerBateauFx();
     PlacerBateau pB = new PlacerBateau();
 
     public static int [][]grilleOrdiBackend = new int[10][10];
     public static int [][]grilleJoueurBackend = new int [10][10];
+    int[] longueurBateaux = {5, 4, 3, 3, 2};
+    int[] numBateaux = {1, 2, 3, 4, 5};
+    public Bateau porteAvions = new Bateau(longueurBateaux[0], numBateaux[0], direction);
+    public Bateau croiseur = new Bateau(longueurBateaux[1], numBateaux[1], direction);
+    public Bateau contreTorpilleur = new Bateau(longueurBateaux[2], numBateaux[2], direction);
+    public Bateau sousMarin = new Bateau(longueurBateaux[3], numBateaux[3], direction);
+    public Bateau torpilleur = new Bateau(longueurBateaux[4], numBateaux[4], direction);
 
     public void clickGrid(MouseEvent t) {
         Node source = (Node)t.getSource();
-        System.out.println("X : " + t.getX() + ", Y : " + t.getY());
+        //System.out.println("X : " + t.getX() + ", Y : " + t.getY());
         Integer row = GridPane.getRowIndex(source);
         Integer column = GridPane.getColumnIndex(source);
-        System.out.println("L : " + row + ", C : " + column);
-
-
-
-        int[] longueurBateaux = {5, 4, 3, 3, 2};
-        int[] numBateaux = {1, 2, 3, 4, 5};
+        //System.out.println("L : " + row + ", C : " + column);
 
 
         if(pB.posOk(grilleJoueurBackend, row, column, direction, longueurBateaux[bateauChoisi])){
 
-            positionbateaux[bateauChoisi][0] = row - 1;
+            /*positionbateaux[bateauChoisi][0] = row - 1;
             positionbateaux[bateauChoisi][1] = column - 1;
-            positionbateaux[bateauChoisi][2] = direction;
+            positionbateaux[bateauChoisi][2] = direction;*/
             for(Bateau bateau:listeBateau){
-                //System.out.println(bateau.imageHorizontale);
-                /*if(bateau.numGrille == numBateaux[bateauChoisi]){
-                    bateau.SetPosition(row, column, direction);
-                    System.out.println("X : " + bateau.posGrilleX + " -Y : " + bateau.posGrilleY + " -D : " + bateau.direction);
-                }*/
-                //System.out.println("Num bateau : " + bateau.numGrille + " -NumSuppose : " + numBateaux[bateauChoisi]);
-            }
-            for (Iterator<Bateau> iter = listeBateau.iterator(); iter.hasNext(); ) {
-                Bateau bateau = iter.next();
-                System.out.println(bateau.imageHorizontale);
+                if(bateau.numGrille == numBateaux[bateauChoisi]){
+                    if(bateau.posGrilleX == -1){
+                        pbf.PlacerUnBateau(grilleJoueur, bateaux[bateauChoisi][direction -1], row, column);
+                    }
+                    else {
+                        pbf.ReplacerUnBateau(grilleJoueur, bateaux[bateauChoisi][direction -1], row, column);
+                    }
+                    bateau.SetPosition(row - 1, column - 1, direction);
+                    //System.out.println("X : " + bateau.posGrilleX + " Y : " + bateau.posGrilleY + " D : " + bateau.direction);
+                }
+                //System.out.println("Num bateau : " + bateau.numGrille + " NumSuppose : " + numBateaux[bateauChoisi]);
             }
 
-            pbf.PlacerUnBateau(grilleJoueur, bateaux[bateauChoisi][direction -1], row, column);
-
-            //pB.ecrireDansGrille(grilleJoueurBackend, row, column, direction, longueurBateaux[bateauChoisi], numBateaux[bateauChoisi]);
-            //bateaux[bateauChoisi][0] = null;
-            //bateaux[bateauChoisi][1] = null;
             nombreBateauPlace++;
             if(nombreBateauPlace >= 5){
                 messagePlacement.setVisible(true);
@@ -121,41 +119,17 @@ public class HelloController {
         if(direction == 1){
             direction = 2;
 
-            for(int i = 0; i < 5; i++){
-                if(bateaux[i][1] != null){
-                    bateaux[i][1].setVisible(true);
-                }
-            }
-
-            /*for(Bateau bateau:listeBateau){
+            for(Bateau bateau:listeBateau){
                 bateau.imageHorizontale.setVisible(false);
                 bateau.imageVerticale.setVisible(true);
-            }*/
-
-            for(int i = 0; i < 5; i++){
-                if(bateaux[i][0] != null){
-                    bateaux[i][0].setVisible(false);
-                }
             }
         }
         else {
             direction = 1;
 
-            /*for(Bateau bateau:listeBateau){
-                bateau.imageHorizontale.setVisible(false);
-                bateau.imageVerticale.setVisible(true);
-            }*/
-
-            for(int i = 0; i < 5; i++){
-                if(bateaux[i][0] != null){
-                    bateaux[i][0].setVisible(true);
-                }
-            }
-
-            for(int i = 0; i < 5; i++){
-                if(bateaux[i][1] != null){
-                    bateaux[i][1].setVisible(false);
-                }
+            for(Bateau bateau:listeBateau){
+                bateau.imageHorizontale.setVisible(true);
+                bateau.imageVerticale.setVisible(false);
             }
         }
     }
@@ -172,11 +146,10 @@ public class HelloController {
     public void ConfirmerPosition(){
         //pB.ecrireDansGrille(grilleJoueurBackend, row, column, direction, longueurBateaux[bateauChoisi], numBateaux[bateauChoisi]);
 
-        int[] longueurBateaux = {5, 4, 3, 3, 2};
-        int[] numBateaux = {1, 2, 3, 4, 5};
-        for(int i = 0; i < 5; i++){
-            pB.ecrireDansGrille(grilleJoueurBackend, positionbateaux[i][0], positionbateaux[i][1], positionbateaux[i][2], longueurBateaux[i], numBateaux[i]);
+        for(Bateau bateau:listeBateau){
+            pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, bateau.direction, bateau.longueur, bateau.numGrille);
         }
+
         pB.afficherGrille(grilleJoueurBackend);
     }
 
@@ -227,16 +200,39 @@ public class HelloController {
             bateaux = tempo;
             initialisation = false;
 
-            int[] longueurBateaux = {5, 4, 3, 3, 2};
+            porteAvions.InitImages(porteAvionsH, porteAvionsV);
+            croiseur.InitImages(croiseurH, croiseurV);
+            contreTorpilleur.InitImages(contreTorpilleurH, contreTorpilleurV);
+            sousMarin.InitImages(sousMarinH, sousMarinV);
+            torpilleur.InitImages(torpilleurH, torpilleurV);
+
+            listeBateau.add(porteAvions);
+            listeBateau.add(croiseur);
+            listeBateau.add(contreTorpilleur);
+            listeBateau.add(sousMarin);
+            listeBateau.add(torpilleur);
+
+            /*int[] longueurBateaux = {5, 4, 3, 3, 2};
             int[] numBateaux = {1, 2, 3, 4, 5};
             Bateau bateauInitialisation = new Bateau(5, 1, 1, tempo[0][0], tempo[0][1]);
 
             for(int i = 1; i < 5; i++){
                 listeBateau.add(bateauInitialisation);
-                bateauInitialisation.ChangerParam(longueurBateaux[i], numBateaux[i], 1, tempo[i][0], tempo[i][1]);
-                //System.out.println(bateauInitialisation.numGrille);
+                //bateauInitialisation.ChangerParam(longueurBateaux[i], numBateaux[i], 1, tempo[i][0], tempo[i][1]);
+                Bateau bateauInitialisation = new Bateau(longueurBateaux[i], numBateaux[i], 1, tempo[i][0], tempo[i][1]);
             }
-            listeBateau.add(bateauInitialisation);
+            listeBateau.add(bateauInitialisation);*/
+
+            //List<Bateau> listeBateau = new ArrayList<Bateau>();
+            /*ArrayList<String> list = new ArrayList<String>();
+            list.add("JavaFx");
+            list.add("Java");
+            list.add("WebGL");
+            list.add("OpenCV");*/
+            /*Iterator iterator = listeBateau.iterator();
+            while(iterator.hasNext()) {
+                System.out.println(iterator.next());
+            }*/
         }
 
     }

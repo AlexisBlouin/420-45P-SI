@@ -46,7 +46,6 @@ public class PlacerBateau {
 
     public void ecrireDansGrille(int[][] grille, int l, int c, int d, int t, int n){
         if(d == 1){
-            System.out.println("Yoy");
             for(int i = c; i < c + t; i++){
                 grille[l][i] = n;
             }
