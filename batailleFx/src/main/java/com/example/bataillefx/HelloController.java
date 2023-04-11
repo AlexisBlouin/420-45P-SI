@@ -86,7 +86,7 @@ public class HelloController {
         //System.out.println("L : " + row + ", C : " + column);
 
 
-        if(pB.posOk(grilleJoueurBackend, row, column, direction, longueurBateaux[bateauChoisi])){
+        if(pB.posOk(grilleJoueurBackend, row - 1, column - 1, direction, longueurBateaux[bateauChoisi])){
 
             /*positionbateaux[bateauChoisi][0] = row - 1;
             positionbateaux[bateauChoisi][1] = column - 1;
@@ -94,10 +94,11 @@ public class HelloController {
             for(Bateau bateau:listeBateau){
                 if(bateau.numGrille == numBateaux[bateauChoisi]){
                     if(bateau.posGrilleX == -1){
-                        pbf.PlacerUnBateau(grilleJoueur, bateaux[bateauChoisi][direction -1], row, column);
+                        pbf.PlacerUnBateau(grilleJoueur, bateau.imageHorizontale, bateau.imageVerticale, row, column);
+                        nombreBateauPlace++;
                     }
                     else {
-                        pbf.ReplacerUnBateau(grilleJoueur, bateaux[bateauChoisi][direction -1], row, column);
+                        pbf.ReplacerUnBateau(grilleJoueur, bateau.imageHorizontale, bateau.imageVerticale, row, column);
                     }
                     bateau.SetPosition(row - 1, column - 1, direction);
                     //System.out.println("X : " + bateau.posGrilleX + " Y : " + bateau.posGrilleY + " D : " + bateau.direction);
@@ -105,7 +106,7 @@ public class HelloController {
                 //System.out.println("Num bateau : " + bateau.numGrille + " NumSuppose : " + numBateaux[bateauChoisi]);
             }
 
-            nombreBateauPlace++;
+
             if(nombreBateauPlace >= 5){
                 messagePlacement.setVisible(true);
                 boutonFinPlacement.setVisible(true);
@@ -120,16 +121,22 @@ public class HelloController {
             direction = 2;
 
             for(Bateau bateau:listeBateau){
-                bateau.imageHorizontale.setVisible(false);
-                bateau.imageVerticale.setVisible(true);
+                if(bateauChoisi + 1 == bateau.numGrille){
+                    bateau.direction = 2;
+                    bateau.imageHorizontale.setVisible(false);
+                    bateau.imageVerticale.setVisible(true);
+                }
             }
         }
         else {
             direction = 1;
 
             for(Bateau bateau:listeBateau){
-                bateau.imageHorizontale.setVisible(true);
-                bateau.imageVerticale.setVisible(false);
+                if(bateauChoisi + 1 == bateau.numGrille){
+                    bateau.direction = 1;
+                    bateau.imageHorizontale.setVisible(true);
+                    bateau.imageVerticale.setVisible(false);
+                }
             }
         }
     }
@@ -141,6 +148,24 @@ public class HelloController {
             bateauChoisi = 0;
         }
         //System.out.println(bateauChoisi);
+        for(Bateau bateau:listeBateau){
+            if(bateauChoisi + 1 == bateau.numGrille){
+                if(bateau.direction == 1){
+                    direction = 1;
+                    bateau.imageHorizontale.setVisible(true);
+                }
+                else {
+                    direction = 2;
+                    bateau.imageVerticale.setVisible(true);
+                }
+            }
+            else {
+                if(bateau.posGrilleX == -1){
+                    bateau.imageHorizontale.setVisible(false);
+                    bateau.imageVerticale.setVisible(false);
+                }
+            }
+        }
     }
 
     public void ConfirmerPosition(){
@@ -169,12 +194,14 @@ public class HelloController {
 
         int resultat = tirCanon.mouvement(grilleOrdiBackend, row, column, "GrilleOrdi");
         System.out.println(resultat);
+        pbf.marqueTouche(grilleEnnemie, column + 1, row + 1);
         switch (resultat){
             case 0 :
                 System.out.println("A l'eau");
                 break;
             case 1 :
                 System.out.println("Touche : " + nomBateauVise);
+
                 break;
             case 2:
                 System.out.println("Tous les bateaux ne sont pas coules." + '\n');
@@ -211,30 +238,10 @@ public class HelloController {
             listeBateau.add(contreTorpilleur);
             listeBateau.add(sousMarin);
             listeBateau.add(torpilleur);
-
-            /*int[] longueurBateaux = {5, 4, 3, 3, 2};
-            int[] numBateaux = {1, 2, 3, 4, 5};
-            Bateau bateauInitialisation = new Bateau(5, 1, 1, tempo[0][0], tempo[0][1]);
-
-            for(int i = 1; i < 5; i++){
-                listeBateau.add(bateauInitialisation);
-                //bateauInitialisation.ChangerParam(longueurBateaux[i], numBateaux[i], 1, tempo[i][0], tempo[i][1]);
-                Bateau bateauInitialisation = new Bateau(longueurBateaux[i], numBateaux[i], 1, tempo[i][0], tempo[i][1]);
-            }
-            listeBateau.add(bateauInitialisation);*/
-
-            //List<Bateau> listeBateau = new ArrayList<Bateau>();
-            /*ArrayList<String> list = new ArrayList<String>();
-            list.add("JavaFx");
-            list.add("Java");
-            list.add("WebGL");
-            list.add("OpenCV");*/
-            /*Iterator iterator = listeBateau.iterator();
-            while(iterator.hasNext()) {
-                System.out.println(iterator.next());
-            }*/
         }
 
+        Bateau bateau = listeBateau.get(0);
+        bateau.imageHorizontale.setVisible(true);
     }
 
 
