@@ -37,6 +37,7 @@ public class HelloController {
     @FXML
     public GridPane grilleJoueur;
     public GridPane grilleEnnemie;
+    public GridPane grilleEnnemieTriche;
     public GridPane grilleBoutons;
     public ImageView porteAvionsH;
     public ImageView porteAvionsV;
@@ -48,6 +49,16 @@ public class HelloController {
     public ImageView sousMarinV;
     public ImageView torpilleurH;
     public ImageView torpilleurV;
+    public ImageView porteAvionsHEnnemie;
+    public ImageView porteAvionsVEnnemie;
+    public ImageView croiseurHEnnemie;
+    public ImageView croiseurVEnnemie;
+    public ImageView contreTorpilleurHEnnemie;
+    public ImageView contreTorpilleurVEnnemie;
+    public ImageView sousMarinHEnnemie;
+    public ImageView sousMarinVEnnemie;
+    public ImageView torpilleurHEnnemie;
+    public ImageView torpilleurVEnnemie;
     ImageView[][] bateaux;
     int[][] positionbateaux = new int[5][3];
 
@@ -65,6 +76,7 @@ public class HelloController {
     boolean initialisation = true;
     boolean tricheActive = false;
     ArrayList<Bateau> listeBateau = new ArrayList<Bateau>();
+    ArrayList<Bateau> listeBateauEnnemie = new ArrayList<Bateau>();
     PlacerBateauFx pbf = new PlacerBateauFx();
     PlacerBateau pB = new PlacerBateau();
 
@@ -77,6 +89,11 @@ public class HelloController {
     public Bateau contreTorpilleur = new Bateau(longueurBateaux[2], numBateaux[2], direction);
     public Bateau sousMarin = new Bateau(longueurBateaux[3], numBateaux[3], direction);
     public Bateau torpilleur = new Bateau(longueurBateaux[4], numBateaux[4], direction);
+    public Bateau porteAvionsEnnemie = new Bateau(longueurBateaux[0], numBateaux[0], direction);
+    public Bateau croiseurEnnemie = new Bateau(longueurBateaux[1], numBateaux[1], direction);
+    public Bateau contreTorpilleurEnnemie = new Bateau(longueurBateaux[2], numBateaux[2], direction);
+    public Bateau sousMarinEnnemie = new Bateau(longueurBateaux[3], numBateaux[3], direction);
+    public Bateau torpilleurEnnemie = new Bateau(longueurBateaux[4], numBateaux[4], direction);
 
     public void clickGrid(MouseEvent t) {
         Node source = (Node)t.getSource();
@@ -218,7 +235,7 @@ public class HelloController {
     }
 
     public void InitialiserTableau(){
-        InitGrilleOrdi();
+
 
         if(initialisation){
             boutonInitialisation.setVisible(false);
@@ -233,20 +250,34 @@ public class HelloController {
             sousMarin.InitImages(sousMarinH, sousMarinV);
             torpilleur.InitImages(torpilleurH, torpilleurV);
 
+            porteAvionsEnnemie.InitImages(porteAvionsHEnnemie, porteAvionsVEnnemie);
+            croiseurEnnemie.InitImages(croiseurHEnnemie, croiseurVEnnemie);
+            contreTorpilleurEnnemie.InitImages(contreTorpilleurHEnnemie, contreTorpilleurVEnnemie);
+            sousMarinEnnemie.InitImages(sousMarinHEnnemie, sousMarinVEnnemie);
+            torpilleurEnnemie.InitImages(torpilleurHEnnemie, torpilleurVEnnemie);
+
             listeBateau.add(porteAvions);
             listeBateau.add(croiseur);
             listeBateau.add(contreTorpilleur);
             listeBateau.add(sousMarin);
             listeBateau.add(torpilleur);
+
+            listeBateauEnnemie.add(porteAvionsEnnemie);
+            listeBateauEnnemie.add(croiseurEnnemie);
+            listeBateauEnnemie.add(contreTorpilleurEnnemie);
+            listeBateauEnnemie.add(sousMarinEnnemie);
+            listeBateauEnnemie.add(torpilleurEnnemie);
         }
 
         Bateau bateau = listeBateau.get(0);
         bateau.imageHorizontale.setVisible(true);
+        InitGrilleOrdi();
     }
 
 
     //Fait en partie avec : https://www.youtube.com/watch?v=hcM-R-YOKkQ
     public void AllerAuMenu(ActionEvent event) throws IOException{
+        grilleJoueurBackend = new int[10][10];
         Stage stage;
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SceneMenu.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -288,15 +319,31 @@ public class HelloController {
             }
 
             pB.ecrireDansGrille(grilleOrdiBackend, ligne, colonne, direction, grandeurBateau[numeroBateau - 1], numeroBateau);
+            for(Bateau bateau:listeBateauEnnemie){
+                if(bateau.numGrille == numeroBateau){
+                    pbf.PlacerUnBateau(grilleEnnemieTriche, bateau.imageHorizontale, bateau.imageVerticale, ligne + 1, colonne + 1);
+                    if(direction == 1){
+                        bateau.imageHorizontale.setVisible(true);
+                        bateau.imageVerticale.setVisible(false);
+                    }
+                    else {
+                        bateau.imageHorizontale.setVisible(false);
+                        bateau.imageVerticale.setVisible(true);
+                    }
+                }
+            }
         }
+        pB.afficherGrille(grilleOrdiBackend);
     }
 
-    /*public void ActiverTriche(){
+    public void ActiverTriche(){
         if(tricheActive){
-
+            tricheActive = false;
+            grilleEnnemieTriche.setVisible(false);
         }
         else {
-
+            tricheActive = true;
+            grilleEnnemieTriche.setVisible(true);
         }
-    }*/
+    }
 }
