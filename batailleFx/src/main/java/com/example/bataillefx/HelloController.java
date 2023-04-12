@@ -1,12 +1,12 @@
 package com.example.bataillefx;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -60,13 +60,12 @@ public class HelloController {
     public ImageView torpilleurHEnnemie;
     public ImageView torpilleurVEnnemie;
     ImageView[][] bateaux;
-    int[][] positionbateaux = new int[5][3];
 
     public Button boutonFinPlacement;
     public Button boutonInitialisation;
     public Button boutonNouvellePartie;
     public Button boutonTourner;
-    public Button confirmerPosition;
+    public MenuBar barreMenu;
     public Text messagePlacement;
     public Text messageTour;
 
@@ -115,9 +114,14 @@ public class HelloController {
                         nombreBateauPlace++;
                     }
                     else {
+                        pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, direction, bateau.longueur, 0);
+                        System.out.println("Je devrais avoir effacer le bateau");
                         pbf.ReplacerUnBateau(grilleJoueur, bateau.imageHorizontale, bateau.imageVerticale, row, column);
+
                     }
                     bateau.SetPosition(row - 1, column - 1, direction);
+                    pB.ecrireDansGrille(grilleJoueurBackend, row - 1, column - 1, direction, bateau.longueur, bateau.numGrille);
+                    pB.afficherGrille(grilleJoueurBackend);
                     //System.out.println("X : " + bateau.posGrilleX + " Y : " + bateau.posGrilleY + " D : " + bateau.direction);
                 }
                 //System.out.println("Num bateau : " + bateau.numGrille + " NumSuppose : " + numBateaux[bateauChoisi]);
@@ -127,7 +131,6 @@ public class HelloController {
             if(nombreBateauPlace >= 5){
                 messagePlacement.setVisible(true);
                 boutonFinPlacement.setVisible(true);
-                confirmerPosition.setVisible(true);
             }
         }
     }
@@ -139,9 +142,21 @@ public class HelloController {
 
             for(Bateau bateau:listeBateau){
                 if(bateauChoisi + 1 == bateau.numGrille){
-                    bateau.direction = 2;
-                    bateau.imageHorizontale.setVisible(false);
-                    bateau.imageVerticale.setVisible(true);
+                    if(bateau.posGrilleX != -1){
+                        pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, 1, bateau.longueur, 0);
+                    }
+                    if(bateau.posGrilleX == -1 || pB.posOk(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, direction, bateau.longueur)){
+                        bateau.direction = 2;
+                        bateau.imageHorizontale.setVisible(false);
+                        bateau.imageVerticale.setVisible(true);
+
+                    }
+                    else {
+                        direction = 1;
+                    }
+                    if(bateau.posGrilleX != -1){
+                        pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, direction, bateau.longueur, bateau.numGrille);
+                    }
                 }
             }
         }
@@ -150,12 +165,25 @@ public class HelloController {
 
             for(Bateau bateau:listeBateau){
                 if(bateauChoisi + 1 == bateau.numGrille){
-                    bateau.direction = 1;
-                    bateau.imageHorizontale.setVisible(true);
-                    bateau.imageVerticale.setVisible(false);
+                    if(bateau.posGrilleX != -1){
+                        pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, 2, bateau.longueur, 0);
+                    }
+                    if(bateau.posGrilleX == -1 || pB.posOk(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, direction, bateau.longueur)){
+                        bateau.direction = 1;
+                        bateau.imageHorizontale.setVisible(true);
+                        bateau.imageVerticale.setVisible(false);
+
+                    }
+                    else {
+                        direction = 2;
+                    }
+                    if(bateau.posGrilleX != -1){
+                        pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, direction, bateau.longueur, bateau.numGrille);
+                    }
                 }
             }
         }
+        pB.afficherGrille(grilleJoueurBackend);
     }
 
     public void ChoisirBateau(MouseEvent t){
@@ -185,7 +213,7 @@ public class HelloController {
         }
     }
 
-    public void ConfirmerPosition(){
+    /*public void ConfirmerPosition(){
         //pB.ecrireDansGrille(grilleJoueurBackend, row, column, direction, longueurBateaux[bateauChoisi], numBateaux[bateauChoisi]);
 
         for(Bateau bateau:listeBateau){
@@ -193,7 +221,7 @@ public class HelloController {
         }
 
         pB.afficherGrille(grilleJoueurBackend);
-    }
+    }*/
 
     public void tirCanon(MouseEvent evenement){
         Node source = (Node)evenement.getSource();
@@ -294,6 +322,41 @@ public class HelloController {
         grilleJoueur.setLayoutY(450);
         grilleEnnemie.setVisible(true);
         messageTour.setVisible(true);
+
+        Menu menu = new Menu("Options");
+        MenuItem optionRecommencer = new MenuItem("Recommencer");
+        MenuItem optionTricher = new MenuItem("Tricher");
+        MenuItem optionQuitter = new MenuItem("Quitter");
+        menu.getItems().add(optionRecommencer);
+        menu.getItems().add(optionTricher);
+        menu.getItems().add(optionQuitter);
+        barreMenu.getMenus().remove(0, 3);
+        barreMenu.getMenus().add(menu);
+        barreMenu.setVisible(true);
+
+        optionQuitter.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent){
+                try{
+                    AllerAuMenu(actionEvent);
+                }
+                catch (Exception e){
+                    throw new IllegalStateException("something went wrong", e);
+                }
+            }
+        });
+        optionRecommencer.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+
+            }
+        });
+        optionTricher.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                ActiverTriche();
+            }
+        });
     }
 
     public static int randRange (int a , int b){

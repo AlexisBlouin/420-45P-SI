@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -522,7 +526,6 @@
       </GridPane>
       <Text fx:id="messageTour" layoutX="644.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="C'est votre tour!" visible="false" wrappingWidth="116.0" />
       <Button fx:id="boutonNouvellePartie" layoutX="656.0" layoutY="344.0" mnemonicParsing="false" onAction="#AllerAuMenu" text="Recommencer" visible="false" />
-      <Button fx:id="confirmerPosition" layoutX="642.0" layoutY="275.0" mnemonicParsing="false" onAction="#ConfirmerPosition" text="Confirmer positions" visible="false" />
       <Button fx:id="boutonFinPlacement" layoutX="500.0" layoutY="175.0" mnemonicParsing="false" onAction="#ChangerPourSceneJeu" text="Cliquer pour continuer..." visible="false" />
       <Button fx:id="boutonInitialisation" layoutX="334.0" layoutY="187.0" mnemonicParsing="false" onAction="#InitialiserTableau" text="Demarrer" />
       <ImageView fx:id="porteAvionsHEnnemie" fitHeight="29.0" fitWidth="145.0" layoutX="30.0" layoutY="35.0" pickOnBounds="true" visible="false">
@@ -576,5 +579,25 @@
          </image>
       </ImageView>
       <Button layoutX="644.0" layoutY="400.0" mnemonicParsing="false" onAction="#ActiverTriche" text="Triche" />
+      <ComboBox fx:id="menuDeroulant" layoutX="18.0" layoutY="13.0" prefWidth="150.0" visible="false" />
+      <MenuBar fx:id="barreMenu" layoutX="18.0" layoutY="13.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
     </children>
 </AnchorPane>
