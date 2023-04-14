@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -19,6 +18,16 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bataillefx.HelloController">
 
     <children>
+      <ImageView fx:id="eauEnnemie" fitHeight="300.0" fitWidth="320.0" layoutX="240.0" layoutY="100.0" pickOnBounds="true" visible="false">
+         <image>
+            <Image url="@Images/Eau.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="eauAlliee" fitHeight="300.0" fitWidth="320.0" layoutX="240.0" layoutY="250.0" pickOnBounds="true">
+         <image>
+            <Image url="@Images/Eau.png" />
+         </image>
+      </ImageView>
         <GridPane fx:id="grilleJoueur" gridLinesVisible="true" layoutX="240.0" layoutY="250.0" prefHeight="300.0" prefWidth="320.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -47,26 +56,26 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <TextField editable="false" text="A" GridPane.columnIndex="1" />
-                <TextField editable="false" layoutX="39.0" layoutY="11.0" text="B" GridPane.columnIndex="2" />
-                <TextField editable="false" layoutX="39.0" layoutY="11.0" text="C" GridPane.columnIndex="3" />
-                <TextField editable="false" layoutX="68.0" layoutY="11.0" text="D" GridPane.columnIndex="4" />
-                <TextField editable="false" layoutX="39.0" layoutY="11.0" text="E" GridPane.columnIndex="5" />
-                <TextField editable="false" layoutX="68.0" layoutY="11.0" text="F" GridPane.columnIndex="6" />
-                <TextField editable="false" layoutX="10.0" layoutY="11.0" text="G" GridPane.columnIndex="7" />
-                <TextField editable="false" layoutX="10.0" layoutY="11.0" text="H" GridPane.columnIndex="8" />
-                <TextField editable="false" layoutX="242.0" layoutY="11.0" text="I" GridPane.columnIndex="9" />
-                <TextField editable="false" layoutX="242.0" layoutY="11.0" text="J" GridPane.columnIndex="10" />
-                <TextField editable="false" layoutX="39.0" layoutY="11.0" text="0" GridPane.rowIndex="1" />
-                <TextField editable="false" layoutX="68.0" layoutY="11.0" text="1" GridPane.rowIndex="2" />
-                <TextField editable="false" layoutX="97.0" layoutY="11.0" text="2" GridPane.rowIndex="3" />
-                <TextField editable="false" layoutX="126.0" layoutY="11.0" text="3" GridPane.rowIndex="4" />
-                <TextField editable="false" layoutX="155.0" layoutY="11.0" text="4" GridPane.rowIndex="5" />
-                <TextField editable="false" layoutX="184.0" layoutY="11.0" text="5" GridPane.rowIndex="6" />
-                <TextField editable="false" layoutX="213.0" layoutY="11.0" text="6" GridPane.rowIndex="7" />
-                <TextField editable="false" layoutX="242.0" layoutY="11.0" text="7" GridPane.rowIndex="8" />
-                <TextField editable="false" layoutX="271.0" layoutY="11.0" text="8" GridPane.rowIndex="9" />
-                <TextField editable="false" layoutX="300.0" layoutY="11.0" text="9" GridPane.rowIndex="10" />
+                <TextField blendMode="COLOR_BURN" editable="false" text="A" GridPane.columnIndex="1" />
+                <TextField blendMode="COLOR_BURN" editable="false" layoutX="39.0" layoutY="11.0" text="B" GridPane.columnIndex="2" />
+                <TextField blendMode="COLOR_BURN" editable="false" layoutX="39.0" layoutY="11.0" text="C" GridPane.columnIndex="3" />
+                <TextField blendMode="COLOR_BURN" editable="false" layoutX="68.0" layoutY="11.0" text="D" GridPane.columnIndex="4" />
+                <TextField blendMode="COLOR_BURN" editable="false" layoutX="39.0" layoutY="11.0" text="E" GridPane.columnIndex="5" />
+                <TextField blendMode="COLOR_BURN" editable="false" layoutX="68.0" layoutY="11.0" text="F" GridPane.columnIndex="6" />
+                <TextField blendMode="COLOR_BURN" editable="false" layoutX="10.0" layoutY="11.0" text="G" GridPane.columnIndex="7" />
+                <TextField blendMode="COLOR_BURN" editable="false" layoutX="10.0" layoutY="11.0" text="H" GridPane.columnIndex="8" />
+                <TextField blendMode="COLOR_BURN" editable="false" layoutX="242.0" layoutY="11.0" text="I" GridPane.columnIndex="9" />
+                <TextField blendMode="COLOR_BURN" editable="false" layoutX="242.0" layoutY="11.0" text="J" GridPane.columnIndex="10" />
+                <TextField blendMode="COLOR_BURN" editable="false" layoutX="39.0" layoutY="11.0" text="0" GridPane.rowIndex="1" />
+                <TextField blendMode="COLOR_BURN" editable="false" layoutX="68.0" layoutY="11.0" text="1" GridPane.rowIndex="2" />
+                <TextField blendMode="COLOR_BURN" editable="false" layoutX="97.0" layoutY="11.0" text="2" GridPane.rowIndex="3" />
+                <TextField blendMode="COLOR_BURN" editable="false" layoutX="126.0" layoutY="11.0" text="3" GridPane.rowIndex="4" />
+                <TextField blendMode="COLOR_BURN" editable="false" layoutX="155.0" layoutY="11.0" text="4" GridPane.rowIndex="5" />
+                <TextField blendMode="COLOR_BURN" editable="false" layoutX="184.0" layoutY="11.0" text="5" GridPane.rowIndex="6" />
+                <TextField blendMode="COLOR_BURN" editable="false" layoutX="213.0" layoutY="11.0" text="6" GridPane.rowIndex="7" />
+                <TextField blendMode="COLOR_BURN" editable="false" layoutX="242.0" layoutY="11.0" text="7" GridPane.rowIndex="8" />
+                <TextField blendMode="COLOR_BURN" editable="false" layoutX="271.0" layoutY="11.0" text="8" GridPane.rowIndex="9" />
+                <TextField blendMode="COLOR_BURN" editable="false" layoutX="300.0" layoutY="11.0" text="9" GridPane.rowIndex="10" />
             <Pane onMouseClicked="#clickGrid" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Pane onMouseClicked="#clickGrid" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Pane layoutX="39.0" layoutY="37.0" onMouseClicked="#clickGrid" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
@@ -244,7 +253,7 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <GridPane fx:id="grilleEnnemieTriche" gridLinesVisible="true" layoutX="240.0" layoutY="100.0" prefHeight="300.0" prefWidth="320.0" visible="false">
+      <GridPane fx:id="grilleEnnemieTriche" blendMode="COLOR_BURN" gridLinesVisible="true" layoutX="240.0" layoutY="100.0" prefHeight="300.0" prefWidth="320.0" visible="false">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -402,26 +411,26 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField editable="false" text="A" GridPane.columnIndex="1" />
-            <TextField editable="false" layoutX="39.0" layoutY="11.0" text="B" GridPane.columnIndex="2" />
-            <TextField editable="false" layoutX="39.0" layoutY="11.0" text="C" GridPane.columnIndex="3" />
-            <TextField editable="false" layoutX="68.0" layoutY="11.0" text="D" GridPane.columnIndex="4" />
-            <TextField editable="false" layoutX="39.0" layoutY="11.0" text="E" GridPane.columnIndex="5" />
-            <TextField editable="false" layoutX="68.0" layoutY="11.0" text="F" GridPane.columnIndex="6" />
-            <TextField editable="false" layoutX="10.0" layoutY="11.0" text="G" GridPane.columnIndex="7" />
-            <TextField editable="false" layoutX="10.0" layoutY="11.0" text="H" GridPane.columnIndex="8" />
-            <TextField editable="false" layoutX="242.0" layoutY="11.0" text="I" GridPane.columnIndex="9" />
-            <TextField editable="false" layoutX="242.0" layoutY="11.0" text="J" GridPane.columnIndex="10" />
-            <TextField editable="false" layoutX="39.0" layoutY="11.0" text="0" GridPane.rowIndex="1" />
-            <TextField editable="false" layoutX="68.0" layoutY="11.0" text="1" GridPane.rowIndex="2" />
-            <TextField editable="false" layoutX="97.0" layoutY="11.0" text="2" GridPane.rowIndex="3" />
-            <TextField editable="false" layoutX="126.0" layoutY="11.0" text="3" GridPane.rowIndex="4" />
-            <TextField editable="false" layoutX="155.0" layoutY="11.0" text="4" GridPane.rowIndex="5" />
-            <TextField editable="false" layoutX="184.0" layoutY="11.0" text="5" GridPane.rowIndex="6" />
-            <TextField editable="false" layoutX="213.0" layoutY="11.0" text="6" GridPane.rowIndex="7" />
-            <TextField editable="false" layoutX="242.0" layoutY="11.0" text="7" GridPane.rowIndex="8" />
-            <TextField editable="false" layoutX="271.0" layoutY="11.0" text="8" GridPane.rowIndex="9" />
-            <TextField editable="false" layoutX="300.0" layoutY="11.0" text="9" GridPane.rowIndex="10" />
+            <TextField blendMode="COLOR_BURN" editable="false" text="A" GridPane.columnIndex="1" />
+            <TextField blendMode="COLOR_BURN" editable="false" layoutX="39.0" layoutY="11.0" text="B" GridPane.columnIndex="2" />
+            <TextField blendMode="COLOR_BURN" editable="false" layoutX="39.0" layoutY="11.0" text="C" GridPane.columnIndex="3" />
+            <TextField blendMode="COLOR_BURN" editable="false" layoutX="68.0" layoutY="11.0" text="D" GridPane.columnIndex="4" />
+            <TextField blendMode="COLOR_BURN" editable="false" layoutX="39.0" layoutY="11.0" text="E" GridPane.columnIndex="5" />
+            <TextField blendMode="COLOR_BURN" editable="false" layoutX="68.0" layoutY="11.0" text="F" GridPane.columnIndex="6" />
+            <TextField blendMode="COLOR_BURN" editable="false" layoutX="10.0" layoutY="11.0" text="G" GridPane.columnIndex="7" />
+            <TextField blendMode="COLOR_BURN" editable="false" layoutX="10.0" layoutY="11.0" text="H" GridPane.columnIndex="8" />
+            <TextField blendMode="COLOR_BURN" editable="false" layoutX="242.0" layoutY="11.0" text="I" GridPane.columnIndex="9" />
+            <TextField blendMode="COLOR_BURN" editable="false" layoutX="242.0" layoutY="11.0" text="J" GridPane.columnIndex="10" />
+            <TextField blendMode="COLOR_BURN" editable="false" layoutX="39.0" layoutY="11.0" text="0" GridPane.rowIndex="1" />
+            <TextField blendMode="COLOR_BURN" editable="false" layoutX="68.0" layoutY="11.0" text="1" GridPane.rowIndex="2" />
+            <TextField blendMode="COLOR_BURN" editable="false" layoutX="97.0" layoutY="11.0" text="2" GridPane.rowIndex="3" />
+            <TextField blendMode="COLOR_BURN" editable="false" layoutX="126.0" layoutY="11.0" text="3" GridPane.rowIndex="4" />
+            <TextField blendMode="COLOR_BURN" editable="false" layoutX="155.0" layoutY="11.0" text="4" GridPane.rowIndex="5" />
+            <TextField blendMode="COLOR_BURN" editable="false" layoutX="184.0" layoutY="11.0" text="5" GridPane.rowIndex="6" />
+            <TextField blendMode="COLOR_BURN" editable="false" layoutX="213.0" layoutY="11.0" text="6" GridPane.rowIndex="7" />
+            <TextField blendMode="COLOR_BURN" editable="false" layoutX="242.0" layoutY="11.0" text="7" GridPane.rowIndex="8" />
+            <TextField blendMode="COLOR_BURN" editable="false" layoutX="271.0" layoutY="11.0" text="8" GridPane.rowIndex="9" />
+            <TextField blendMode="COLOR_BURN" editable="false" layoutX="300.0" layoutY="11.0" text="9" GridPane.rowIndex="10" />
             <Pane onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Pane onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Pane layoutX="39.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
@@ -578,9 +587,7 @@
             <Image url="@Images/Sous-MarinIncline.png" />
          </image>
       </ImageView>
-      <Button layoutX="644.0" layoutY="400.0" mnemonicParsing="false" onAction="#ActiverTriche" text="Triche" />
-      <ComboBox fx:id="menuDeroulant" layoutX="18.0" layoutY="13.0" prefWidth="150.0" visible="false" />
-      <MenuBar fx:id="barreMenu" layoutX="18.0" layoutY="13.0">
+      <MenuBar fx:id="barreMenu" layoutX="18.0" layoutY="13.0" visible="false">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>

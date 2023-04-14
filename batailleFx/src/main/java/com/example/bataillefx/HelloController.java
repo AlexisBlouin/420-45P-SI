@@ -59,6 +59,8 @@ public class HelloController {
     public ImageView sousMarinVEnnemie;
     public ImageView torpilleurHEnnemie;
     public ImageView torpilleurVEnnemie;
+    public ImageView eauAlliee;
+    public ImageView eauEnnemie;
     ImageView[][] bateaux;
 
     public Button boutonFinPlacement;
@@ -73,7 +75,7 @@ public class HelloController {
     Integer bateauChoisi = 0;
     int direction = 1;
     boolean initialisation = true;
-    boolean tricheActive = false;
+    public static boolean tricheActive = false;
     ArrayList<Bateau> listeBateau = new ArrayList<Bateau>();
     ArrayList<Bateau> listeBateauEnnemie = new ArrayList<Bateau>();
     PlacerBateauFx pbf = new PlacerBateauFx();
@@ -239,7 +241,7 @@ public class HelloController {
 
         int resultat = tirCanon.mouvement(grilleOrdiBackend, row, column, "GrilleOrdi");
         System.out.println(resultat);
-        pbf.marqueTouche(grilleEnnemie, column + 1, row + 1);
+        pbf.marqueTouche(grilleEnnemie, grilleOrdiBackend, column + 1, row + 1);
         switch (resultat){
             case 0 :
                 System.out.println("A l'eau");
@@ -306,9 +308,11 @@ public class HelloController {
     //Fait en partie avec : https://www.youtube.com/watch?v=hcM-R-YOKkQ
     public void AllerAuMenu(ActionEvent event) throws IOException{
         grilleJoueurBackend = new int[10][10];
+        grilleOrdiBackend = new int[10][10];
+        //ActiverTriche();
         Stage stage;
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SceneMenu.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage)boutonTourner.getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load(), 800, 800);
         stage.setScene(scene);
         stage.show();
@@ -318,10 +322,18 @@ public class HelloController {
         boutonFinPlacement.setVisible(false);
         boutonTourner.setVisible(false);
         grilleBoutons.setVisible(false);
-        grilleJoueur.setLayoutX(240);
+        //grilleJoueur.setLayoutX(240);
         grilleJoueur.setLayoutY(450);
+        //eauAlliee.setLayoutX(240);
+        eauAlliee.setLayoutY(450);
+        eauEnnemie.setVisible(true);
         grilleEnnemie.setVisible(true);
+        //eauEnnemie.setVisible(true);
         messageTour.setVisible(true);
+
+        if(tricheActive){
+            grilleEnnemieTriche.setVisible(true);
+        }
 
         Menu menu = new Menu("Options");
         MenuItem optionRecommencer = new MenuItem("Recommencer");
@@ -338,9 +350,10 @@ public class HelloController {
             @Override
             public void handle(ActionEvent actionEvent){
                 try{
+                    ActiverTriche();
                     AllerAuMenu(actionEvent);
                 }
-                catch (Exception e){
+                catch (IOException e){
                     throw new IllegalStateException("something went wrong", e);
                 }
             }
@@ -348,7 +361,22 @@ public class HelloController {
         optionRecommencer.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-
+                try{
+                    grilleJoueurBackend = new int[10][10];
+                    grilleOrdiBackend = new int[10][10];
+                    if(tricheActive){
+                        ActiverTriche();
+                    }
+                    Stage stage = new Stage();
+                    FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ScenePlacementBateaux.fxml"));
+                    stage = (Stage)boutonFinPlacement.getScene().getWindow();
+                    Scene scene = new Scene(fxmlLoader.load(), 800, 800);
+                    stage.setScene(scene);
+                    stage.show();
+                }
+                catch (IOException e){
+                    throw new IllegalStateException("something went wrong", e);
+                }
             }
         });
         optionTricher.setOnAction(new EventHandler<ActionEvent>() {
@@ -406,7 +434,9 @@ public class HelloController {
         }
         else {
             tricheActive = true;
-            grilleEnnemieTriche.setVisible(true);
+            if(!initialisation){
+                grilleEnnemieTriche.setVisible(true);
+            }
         }
     }
 }

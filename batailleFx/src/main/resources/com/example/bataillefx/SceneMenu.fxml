@@ -6,8 +6,8 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bataillefx.ControleurMenu">
 
     <children>
-        <Button layoutX="340.0" layoutY="363.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="121.0" text="Partie Avec Triche" />
-        <Button layoutX="340.0" layoutY="460.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="121.0" text="Quitter" />
-        <Button layoutX="340.0" layoutY="270.0" mnemonicParsing="false" onAction="#BoutonPartieNormalle" prefHeight="75.0" prefWidth="121.0" text="Partie Normale" />
+        <Button layoutX="340.0" layoutY="363.0" mnemonicParsing="false" onAction="#PartieTriche" prefHeight="75.0" prefWidth="121.0" text="Partie Avec Triche" />
+        <Button layoutX="340.0" layoutY="460.0" mnemonicParsing="false" onAction="#Quitter" prefHeight="75.0" prefWidth="121.0" text="Quitter" />
+        <Button fx:id="bouttonPartieNormale" layoutX="340.0" layoutY="270.0" mnemonicParsing="false" onAction="#PartieNormalle" prefHeight="75.0" prefWidth="121.0" text="Partie Normale" />
     </children>
 </AnchorPane>

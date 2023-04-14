@@ -28,10 +28,16 @@ public class PlacerBateauFx {
         grille.add(bateauV, colonne, ligne);
     }
 
-    public void marqueTouche(GridPane grille, int ligne, int colonne){
+    public void marqueTouche(GridPane grille, int[][] grilleBackend, int ligne, int colonne){
         Rectangle carre = new Rectangle(22, 22);
-        Color couleur = Color.CADETBLUE;
-        carre.setFill(couleur);
+        Color couleurDeTir;
+        if(grilleBackend[colonne - 1][ligne - 1] == 0){
+            couleurDeTir = Color.CADETBLUE;
+        }
+        else{
+            couleurDeTir = Color.RED;
+        }
+        carre.setFill(couleurDeTir);
         grille.add(carre, ligne, colonne);
     }
 }
