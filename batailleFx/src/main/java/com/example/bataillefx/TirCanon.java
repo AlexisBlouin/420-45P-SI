@@ -97,8 +97,11 @@ public class TirCanon {
         }
         else{
             //System.out.println("A l'eau");
+
+            grille[l][c] = 6;
             return 0;
         }
+
     }
 
     public static boolean couler(int[][] grille, int n){

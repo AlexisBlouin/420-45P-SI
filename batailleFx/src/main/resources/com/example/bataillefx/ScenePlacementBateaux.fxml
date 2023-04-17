@@ -18,11 +18,6 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bataillefx.HelloController">
 
     <children>
-      <ImageView fx:id="eauEnnemie" fitHeight="300.0" fitWidth="320.0" layoutX="240.0" layoutY="100.0" pickOnBounds="true" visible="false">
-         <image>
-            <Image url="@Images/Eau.png" />
-         </image>
-      </ImageView>
       <ImageView fx:id="eauAlliee" fitHeight="300.0" fitWidth="320.0" layoutX="240.0" layoutY="250.0" pickOnBounds="true">
          <image>
             <Image url="@Images/Eau.png" />
@@ -183,47 +178,47 @@
             <Image url="@Images/Porte-Avions.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="torpilleurH" fitHeight="29.0" fitWidth="58.0" layoutX="511.0" layoutY="25.0" pickOnBounds="true" visible="false">
+      <ImageView fx:id="torpilleurH" fitHeight="29.0" fitWidth="58.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" visible="false">
          <image>
             <Image url="@Images/Torpilleur.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="porteAvionsV" fitHeight="145.0" fitWidth="29.0" layoutX="20.0" layoutY="71.0" pickOnBounds="true" visible="false">
+      <ImageView fx:id="porteAvionsV" fitHeight="145.0" fitWidth="29.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" visible="false">
          <image>
             <Image url="@Images/Porte-AvionsIncline.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="torpilleurV" fitHeight="58.0" fitWidth="29.0" layoutX="511.0" layoutY="71.0" pickOnBounds="true" visible="false">
+      <ImageView fx:id="torpilleurV" fitHeight="58.0" fitWidth="29.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" visible="false">
          <image>
             <Image url="@Images/TorpilleurIncline.PNG" />
          </image>
       </ImageView>
-      <ImageView fx:id="croiseurH" fitHeight="29.0" fitWidth="116.0" layoutX="182.0" layoutY="25.0" pickOnBounds="true" visible="false">
+      <ImageView fx:id="croiseurH" fitHeight="29.0" fitWidth="116.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" visible="false">
          <image>
             <Image url="@Images/Croiseur.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="croiseurV" fitHeight="116.0" fitWidth="29.0" layoutX="182.0" layoutY="71.0" pickOnBounds="true" visible="false">
+      <ImageView fx:id="croiseurV" fitHeight="116.0" fitWidth="29.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" visible="false">
          <image>
             <Image url="@Images/CroiseurIncline.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="contreTorpilleurH" fitHeight="29.0" fitWidth="87.0" layoutX="316.0" layoutY="25.0" pickOnBounds="true" visible="false">
+      <ImageView fx:id="contreTorpilleurH" fitHeight="29.0" fitWidth="87.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" visible="false">
          <image>
             <Image url="@Images/Contre-Torpilleur.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="contreTorpilleurV" fitHeight="87.0" fitWidth="29.0" layoutX="316.0" layoutY="70.0" pickOnBounds="true" visible="false">
+      <ImageView fx:id="contreTorpilleurV" fitHeight="87.0" fitWidth="29.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" visible="false">
          <image>
             <Image url="@Images/Contre-TorpilleurIncline.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="sousMarinH" fitHeight="29.0" fitWidth="87.0" layoutX="416.0" layoutY="25.0" pickOnBounds="true" visible="false">
+      <ImageView fx:id="sousMarinH" fitHeight="29.0" fitWidth="87.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" visible="false">
          <image>
             <Image url="@Images/Sous-Marin.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="sousMarinV" fitHeight="87.0" fitWidth="29.0" layoutX="416.0" layoutY="70.0" pickOnBounds="true" visible="false">
+      <ImageView fx:id="sousMarinV" fitHeight="87.0" fitWidth="29.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" visible="false">
          <image>
             <Image url="@Images/Sous-MarinIncline.png" />
          </image>
@@ -253,6 +248,11 @@
             <Font size="20.0" />
          </font>
       </Text>
+      <ImageView fx:id="eauEnnemie" fitHeight="300.0" fitWidth="320.0" layoutX="240.0" layoutY="100.0" pickOnBounds="true" visible="false">
+         <image>
+            <Image url="@Images/Eau.png" />
+         </image>
+      </ImageView>
       <GridPane fx:id="grilleEnnemieTriche" blendMode="COLOR_BURN" gridLinesVisible="true" layoutX="240.0" layoutY="100.0" prefHeight="300.0" prefWidth="320.0" visible="false">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -281,106 +281,106 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Pane onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Pane onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Pane layoutX="39.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Pane layoutX="39.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <Pane layoutX="39.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <Pane layoutX="39.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-            <Pane layoutX="68.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
-            <Pane layoutX="97.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="1" />
-            <Pane layoutX="126.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="1" />
-            <Pane layoutX="155.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="1" />
-            <Pane layoutX="39.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Pane layoutX="68.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Pane layoutX="97.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <Pane layoutX="126.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <Pane layoutX="155.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-            <Pane layoutX="184.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
-            <Pane layoutX="213.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
-            <Pane layoutX="242.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="2" />
-            <Pane layoutX="271.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="2" />
-            <Pane layoutX="300.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="2" />
-            <Pane layoutX="39.0" layoutY="64.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Pane layoutX="68.0" layoutY="64.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Pane layoutX="97.0" layoutY="64.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <Pane layoutX="126.0" layoutY="64.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-            <Pane layoutX="155.0" layoutY="64.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-            <Pane layoutX="184.0" layoutY="64.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="3" />
-            <Pane layoutX="213.0" layoutY="64.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="3" />
-            <Pane layoutX="242.0" layoutY="64.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="3" />
-            <Pane layoutX="271.0" layoutY="64.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="3" />
-            <Pane layoutX="300.0" layoutY="64.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="3" />
-            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="4" />
-            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="4" />
-            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="4" />
-            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="4" />
-            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="4" />
-            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="5" />
-            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="5" />
-            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="5" />
-            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="5" />
-            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="5" />
-            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
-            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="6" />
-            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="6" />
-            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="6" />
-            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="6" />
-            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="6" />
-            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="6" />
-            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="7" />
-            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="7" />
-            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="7" />
-            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="7" />
-            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="7" />
-            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="7" />
-            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="7" />
-            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="8" />
-            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="8" />
-            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="8" />
-            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="8" />
-            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="8" />
-            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="8" />
-            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="8" />
-            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="8" />
-            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="9" />
-            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="9" />
-            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="9" />
-            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="9" />
-            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="9" />
-            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="9" />
-            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="9" />
-            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="9" />
-            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="9" />
-            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="10" />
-            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="10" />
-            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="10" />
-            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="10" />
-            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="10" />
-            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="10" />
-            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="10" />
-            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="10" />
-            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="10" />
+            <Pane onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Pane onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Pane layoutX="39.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Pane layoutX="39.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Pane layoutX="39.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <Pane layoutX="39.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+            <Pane layoutX="68.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+            <Pane layoutX="97.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+            <Pane layoutX="126.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="1" />
+            <Pane layoutX="155.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="1" />
+            <Pane layoutX="39.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Pane layoutX="68.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Pane layoutX="97.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Pane layoutX="126.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Pane layoutX="155.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <Pane layoutX="184.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+            <Pane layoutX="213.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+            <Pane layoutX="242.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="2" />
+            <Pane layoutX="271.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="2" />
+            <Pane layoutX="300.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="2" />
+            <Pane layoutX="39.0" layoutY="64.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Pane layoutX="68.0" layoutY="64.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Pane layoutX="97.0" layoutY="64.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Pane layoutX="126.0" layoutY="64.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <Pane layoutX="155.0" layoutY="64.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <Pane layoutX="184.0" layoutY="64.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+            <Pane layoutX="213.0" layoutY="64.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+            <Pane layoutX="242.0" layoutY="64.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="3" />
+            <Pane layoutX="271.0" layoutY="64.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="3" />
+            <Pane layoutX="300.0" layoutY="64.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="3" />
+            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="4" />
+            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="4" />
+            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="4" />
+            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="5" />
+            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="5" />
+            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="5" />
+            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="6" />
+            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="6" />
+            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="6" />
+            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="6" />
+            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="7" />
+            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="7" />
+            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="7" />
+            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="7" />
+            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="7" />
+            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="8" />
+            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="8" />
+            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="8" />
+            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="8" />
+            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="8" />
+            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="8" />
+            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="9" />
+            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="9" />
+            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="9" />
+            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="9" />
+            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="9" />
+            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="9" />
+            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="9" />
+            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="10" />
+            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="10" />
+            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="10" />
+            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="10" />
+            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="10" />
+            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="10" />
+            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="10" />
          </children>
       </GridPane>
       <GridPane fx:id="grilleEnnemie" gridLinesVisible="true" layoutX="240.0" layoutY="100.0" prefHeight="300.0" prefWidth="320.0" visible="false">
@@ -431,109 +431,108 @@
             <TextField blendMode="COLOR_BURN" editable="false" layoutX="242.0" layoutY="11.0" text="7" GridPane.rowIndex="8" />
             <TextField blendMode="COLOR_BURN" editable="false" layoutX="271.0" layoutY="11.0" text="8" GridPane.rowIndex="9" />
             <TextField blendMode="COLOR_BURN" editable="false" layoutX="300.0" layoutY="11.0" text="9" GridPane.rowIndex="10" />
-            <Pane onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Pane onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Pane layoutX="39.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Pane layoutX="39.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <Pane layoutX="39.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <Pane layoutX="39.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-            <Pane layoutX="68.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
-            <Pane layoutX="97.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="1" />
-            <Pane layoutX="126.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="1" />
-            <Pane layoutX="155.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="1" />
-            <Pane layoutX="39.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Pane layoutX="68.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Pane layoutX="97.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <Pane layoutX="126.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <Pane layoutX="155.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-            <Pane layoutX="184.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
-            <Pane layoutX="213.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
-            <Pane layoutX="242.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="2" />
-            <Pane layoutX="271.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="2" />
-            <Pane layoutX="300.0" layoutY="37.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="2" />
-            <Pane layoutX="39.0" layoutY="64.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Pane layoutX="68.0" layoutY="64.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Pane layoutX="97.0" layoutY="64.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <Pane layoutX="126.0" layoutY="64.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-            <Pane layoutX="155.0" layoutY="64.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-            <Pane layoutX="184.0" layoutY="64.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="3" />
-            <Pane layoutX="213.0" layoutY="64.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="3" />
-            <Pane layoutX="242.0" layoutY="64.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="3" />
-            <Pane layoutX="271.0" layoutY="64.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="3" />
-            <Pane layoutX="300.0" layoutY="64.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="3" />
-            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="4" />
-            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="4" />
-            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="4" />
-            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="4" />
-            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="4" />
-            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="5" />
-            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="5" />
-            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="5" />
-            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="5" />
-            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="5" />
-            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
-            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="6" />
-            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="6" />
-            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="6" />
-            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="6" />
-            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="6" />
-            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="6" />
-            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="7" />
-            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="7" />
-            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="7" />
-            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="7" />
-            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="7" />
-            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="7" />
-            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="7" />
-            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="8" />
-            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="8" />
-            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="8" />
-            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="8" />
-            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="8" />
-            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="8" />
-            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="8" />
-            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="8" />
-            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="9" />
-            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="9" />
-            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="9" />
-            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="9" />
-            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="9" />
-            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="9" />
-            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="9" />
-            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="9" />
-            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="9" />
-            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="10" />
-            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="10" />
-            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="10" />
-            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="10" />
-            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="10" />
-            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="10" />
-            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="10" />
-            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="10" />
-            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirCanon" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="10" />
+            <Pane onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Pane onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Pane layoutX="39.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Pane layoutX="39.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Pane layoutX="39.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <Pane layoutX="39.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+            <Pane layoutX="68.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+            <Pane layoutX="97.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+            <Pane layoutX="126.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="1" />
+            <Pane layoutX="155.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="1" />
+            <Pane layoutX="39.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Pane layoutX="68.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Pane layoutX="97.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Pane layoutX="126.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Pane layoutX="155.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <Pane layoutX="184.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+            <Pane layoutX="213.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+            <Pane layoutX="242.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="2" />
+            <Pane layoutX="271.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="2" />
+            <Pane layoutX="300.0" layoutY="37.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="2" />
+            <Pane layoutX="39.0" layoutY="64.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Pane layoutX="68.0" layoutY="64.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Pane layoutX="97.0" layoutY="64.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Pane layoutX="126.0" layoutY="64.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <Pane layoutX="155.0" layoutY="64.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <Pane layoutX="184.0" layoutY="64.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+            <Pane layoutX="213.0" layoutY="64.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+            <Pane layoutX="242.0" layoutY="64.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="3" />
+            <Pane layoutX="271.0" layoutY="64.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="3" />
+            <Pane layoutX="300.0" layoutY="64.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="3" />
+            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="4" />
+            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="4" />
+            <Pane layoutX="10.0" layoutY="91.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="4" />
+            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="5" />
+            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="5" />
+            <Pane layoutX="10.0" layoutY="118.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="5" />
+            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="6" />
+            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="6" />
+            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="6" />
+            <Pane layoutX="10.0" layoutY="145.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="6" />
+            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="7" />
+            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="7" />
+            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="7" />
+            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="7" />
+            <Pane layoutX="10.0" layoutY="172.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="7" />
+            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="8" />
+            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="8" />
+            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="8" />
+            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="8" />
+            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="8" />
+            <Pane layoutX="10.0" layoutY="199.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="8" />
+            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="9" />
+            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="9" />
+            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="9" />
+            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="9" />
+            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="9" />
+            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="9" />
+            <Pane layoutX="10.0" layoutY="226.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="9" />
+            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="10" />
+            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="10" />
+            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="10" />
+            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="10" />
+            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="10" />
+            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="10" />
+            <Pane layoutX="10.0" layoutY="254.0" onMouseClicked="#tirAlier" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="10" GridPane.rowIndex="10" />
          </children>
       </GridPane>
-      <Text fx:id="messageTour" layoutX="644.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="C'est votre tour!" visible="false" wrappingWidth="116.0" />
       <Button fx:id="boutonNouvellePartie" layoutX="656.0" layoutY="344.0" mnemonicParsing="false" onAction="#AllerAuMenu" text="Recommencer" visible="false" />
       <Button fx:id="boutonFinPlacement" layoutX="500.0" layoutY="175.0" mnemonicParsing="false" onAction="#ChangerPourSceneJeu" text="Cliquer pour continuer..." visible="false" />
       <Button fx:id="boutonInitialisation" layoutX="334.0" layoutY="187.0" mnemonicParsing="false" onAction="#InitialiserTableau" text="Demarrer" />

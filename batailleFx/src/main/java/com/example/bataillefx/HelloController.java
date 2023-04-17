@@ -225,7 +225,7 @@ public class HelloController {
         pB.afficherGrille(grilleJoueurBackend);
     }*/
 
-    public void tirCanon(MouseEvent evenement){
+    public void tirAlier(MouseEvent evenement){
         Node source = (Node)evenement.getSource();
         //System.out.println("X : " + evenement.getX() + ", Y : " + evenement.getY());
         Integer row = GridPane.getRowIndex(source) - 1;
@@ -233,35 +233,69 @@ public class HelloController {
         System.out.println("L : " + row + ", C : " + column);
         TirCanon tirCanon = new TirCanon();
 
-        String[] nomBateau = new String[] {"Porte-avions", "Croiseur", "Contre-torpilleur", "Sous-marin", "Torpilleur"};
-        String nomBateauVise = "";
-        if(grilleOrdiBackend[row][column] - 1 != -1 && grilleOrdiBackend[row][column] - 1 != 5){
-            nomBateauVise = nomBateau[grilleOrdiBackend[row][column] - 1];
-        }
+        if(grilleOrdiBackend[row][column] != 6){
+            System.out.println("bonjour");
+            String[] nomBateau = new String[] {"Porte-avions", "Croiseur", "Contre-torpilleur", "Sous-marin", "Torpilleur"};
+            String nomBateauVise = "";
+            if(grilleOrdiBackend[row][column] - 1 != -1 && grilleOrdiBackend[row][column] - 1 != 5){
+                nomBateauVise = nomBateau[grilleOrdiBackend[row][column] - 1];
+            }
 
-        int resultat = tirCanon.mouvement(grilleOrdiBackend, row, column, "GrilleOrdi");
-        System.out.println(resultat);
-        pbf.marqueTouche(grilleEnnemie, grilleOrdiBackend, column + 1, row + 1);
-        switch (resultat){
-            case 0 :
-                System.out.println("A l'eau");
-                break;
-            case 1 :
-                System.out.println("Touche : " + nomBateauVise);
+            tirCanon(grilleEnnemie, grilleOrdiBackend, column, row);
 
-                break;
-            case 2:
-                System.out.println("Tous les bateaux ne sont pas coules." + '\n');
-                break;
-            case 3 :
-                System.out.println('\n' + "Vous avez gagne!" + '\n');
-                System.out.println("Tous les bateaux ennemis sont coules : ");
-                //afficherGrille(grilleOrdi);
-                System.out.println("Voici ce qu'il reste de votre grille : ");
-                //afficherGrille(grilleJeu);
-                boutonNouvellePartie.setVisible(true);
-                break;
+            tirEnnemi();
+
+            int resultat = tirCanon.mouvement(grilleOrdiBackend, row, column, "GrilleOrdi");
+            System.out.println(resultat);
+
+            switch (resultat){
+                case 0 :
+                    System.out.println("A l'eau");
+                    break;
+                case 1 :
+                    System.out.println("Touche : " + nomBateauVise);
+
+                    break;
+                case 2:
+                    System.out.println("Tous les bateaux ne sont pas coules." + '\n');
+                    break;
+                case 3 :
+                    System.out.println('\n' + "Vous avez gagne!" + '\n');
+                    System.out.println("Tous les bateaux ennemis sont coules : ");
+                    //afficherGrille(grilleOrdi);
+                    System.out.println("Voici ce qu'il reste de votre grille : ");
+                    //afficherGrille(grilleJeu);
+                    boutonNouvellePartie.setVisible(true);
+                    break;
+            }
         }
+    }
+
+    public void tirEnnemi() {
+        /*int ligne;
+        int colonne;
+        ligne = randRange(0, 10);
+        colonne = randRange(0, 10);
+        while(grilleJoueurBackend[ligne][colonne] < 6 && grilleJoueurBackend[ligne][colonne] > 0);{
+            ligne = randRange(0, 10);
+            colonne = randRange(0, 10);
+        }
+        tirCanon(grilleJoueur, grilleJoueurBackend, colonne, ligne);*/
+
+        int ligne;
+        int colonne;
+        ligne = randRange(0, 10);
+        colonne = randRange(0, 10);
+        tirCanon(grilleJoueur, grilleJoueurBackend, colonne, ligne);
+        TirCanon tirCanon = new TirCanon();
+        tirCanon.mouvement(grilleJoueurBackend, ligne, colonne, "GrilleJoueur");
+        //game util
+    }
+
+    public void tirCanon(GridPane grille, int[][] grilleBackend, int column, int row){
+
+
+        pbf.marqueTouche(grille, grilleBackend, column + 1, row + 1);
     }
 
     public void InitialiserTableau(){
@@ -329,7 +363,7 @@ public class HelloController {
         eauEnnemie.setVisible(true);
         grilleEnnemie.setVisible(true);
         //eauEnnemie.setVisible(true);
-        messageTour.setVisible(true);
+        //messageTour.setVisible(true);
 
         if(tricheActive){
             grilleEnnemieTriche.setVisible(true);
