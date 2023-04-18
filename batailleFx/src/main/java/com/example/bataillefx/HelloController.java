@@ -230,11 +230,9 @@ public class HelloController {
         //System.out.println("X : " + evenement.getX() + ", Y : " + evenement.getY());
         Integer row = GridPane.getRowIndex(source) - 1;
         Integer column = GridPane.getColumnIndex(source) - 1;
-        System.out.println("L : " + row + ", C : " + column);
         TirCanon tirCanon = new TirCanon();
 
         if(grilleOrdiBackend[row][column] != 6){
-            System.out.println("bonjour");
             String[] nomBateau = new String[] {"Porte-avions", "Croiseur", "Contre-torpilleur", "Sous-marin", "Torpilleur"};
             String nomBateauVise = "";
             if(grilleOrdiBackend[row][column] - 1 != -1 && grilleOrdiBackend[row][column] - 1 != 5){
@@ -243,12 +241,11 @@ public class HelloController {
 
             tirCanon(grilleEnnemie, grilleOrdiBackend, column, row);
 
-            tirEnnemi();
 
-            int resultat = tirCanon.mouvement(grilleOrdiBackend, row, column, "GrilleOrdi");
-            System.out.println(resultat);
 
-            switch (resultat){
+            tirCanon.mouvement(grilleOrdiBackend, row, column, "GrilleOrdi");
+
+            /*switch (resultat){
                 case 0 :
                     System.out.println("A l'eau");
                     break;
@@ -263,11 +260,12 @@ public class HelloController {
                     System.out.println('\n' + "Vous avez gagne!" + '\n');
                     System.out.println("Tous les bateaux ennemis sont coules : ");
                     //afficherGrille(grilleOrdi);
-                    System.out.println("Voici ce qu'il reste de votre grille : ");
+                    //System.out.println("Voici ce qu'il reste de votre grille : ");
                     //afficherGrille(grilleJeu);
                     boutonNouvellePartie.setVisible(true);
                     break;
-            }
+            }*/
+            tirEnnemi();
         }
     }
 
@@ -286,16 +284,47 @@ public class HelloController {
         int colonne;
         ligne = randRange(0, 10);
         colonne = randRange(0, 10);
+        while(grilleJoueurBackend[ligne][colonne] > 5){
+            ligne = randRange(0, 10);
+            colonne = randRange(0, 10);
+        }
         tirCanon(grilleJoueur, grilleJoueurBackend, colonne, ligne);
         TirCanon tirCanon = new TirCanon();
-        tirCanon.mouvement(grilleJoueurBackend, ligne, colonne, "GrilleJoueur");
+        int resultat = tirCanon.mouvement(grilleJoueurBackend, ligne, colonne, "GrilleJoueur");
+        String[] nomBateau = new String[] {"Porte-avions", "Croiseur", "Contre-torpilleur", "Sous-marin", "Torpilleur"};
+        String nomBateauVise = "";
+        if(grilleOrdiBackend[ligne][colonne] - 1 != -1 && grilleOrdiBackend[ligne][colonne] - 1 != 5){
+            nomBateauVise = nomBateau[grilleOrdiBackend[ligne][colonne] - 1];
+        }
         //game util
+        switch (resultat){
+            case 0 :
+                System.out.println("A l'eau");
+                break;
+            case 1 :
+                System.out.println("Touche : " + nomBateauVise);
+
+                break;
+            case 2:
+                System.out.println("Tous les bateaux ne sont pas coules." + '\n');
+                break;
+            case 3 :
+                System.out.println('\n' + "Vous avez gagne!" + '\n');
+                System.out.println("Tous les bateaux ennemis sont coules : ");
+                //afficherGrille(grilleOrdi);
+                //System.out.println("Voici ce qu'il reste de votre grille : ");
+                //afficherGrille(grilleJeu);
+                boutonNouvellePartie.setVisible(true);
+                break;
+        }
     }
 
     public void tirCanon(GridPane grille, int[][] grilleBackend, int column, int row){
-
-
         pbf.marqueTouche(grille, grilleBackend, column + 1, row + 1);
+    }
+
+    public void FinDePartie(){
+        boutonNouvellePartie.setVisible(true);
     }
 
     public void InitialiserTableau(){
@@ -338,7 +367,6 @@ public class HelloController {
         InitGrilleOrdi();
     }
 
-
     //Fait en partie avec : https://www.youtube.com/watch?v=hcM-R-YOKkQ
     public void AllerAuMenu(ActionEvent event) throws IOException{
         grilleJoueurBackend = new int[10][10];
@@ -351,6 +379,7 @@ public class HelloController {
         stage.setScene(scene);
         stage.show();
     }
+
     public void ChangerPourSceneJeu(ActionEvent event) throws IOException{
         messagePlacement.setVisible(false);
         boutonFinPlacement.setVisible(false);

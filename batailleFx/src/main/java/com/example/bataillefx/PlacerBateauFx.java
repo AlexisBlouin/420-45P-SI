@@ -33,11 +33,12 @@ public class PlacerBateauFx {
         Color couleurDeTir;
         if(grilleBackend[colonne - 1][ligne - 1] == 0){
             couleurDeTir = Color.CADETBLUE;
+            carre.setFill(couleurDeTir);
         }
         else{
             couleurDeTir = Color.RED;
+            carre.setFill(couleurDeTir);
         }
-        carre.setFill(couleurDeTir);
         grille.add(carre, ligne, colonne);
     }
 }

@@ -6,6 +6,7 @@ public class TirCanon {
 
     int[][] grilleJeu;
     int[][] grilleOrdi;
+    HelloController hc = new HelloController();
 
     public int randRange (int a , int b){
         Random rand = new Random();
@@ -52,32 +53,36 @@ public class TirCanon {
 
     public int mouvement(int[][] grille, int l, int c, String typeGrille){
 
+
         if(grille[l][c] >= 1 && grille[l][c] <= 5){
             int numeroBateau = grille[l][c];
             boolean bateauCoule = false;
             String[] nomBateau = new String[] {"Porte-avions", "Croiseur", "Contre-torpilleur", "Sous-marin", "Torpilleur"};
             String nomBateauVise = nomBateau[grille[l][c] - 1];
+
             grille[l][c] = 6;
 
             if(couler(grille, numeroBateau)){
                 bateauCoule = true;
             }
 
-            if(!bateauCoule){
-                //System.out.println("Touche : " + nomBateauVise);
+            if(!bateauCoule && typeGrille.equals("GrilleOrdi")){
+                System.out.println("Touche : " + nomBateauVise);
                 return 1;
             }
             else{
                 System.out.println("Coule : " + nomBateauVise);
 
+
                 if(vainqueur(grille)){
                     //if(grille == grilleOrdi){
-                    /*if(typeGrille == "GrilleOrdi"){
+                    if(typeGrille.equals("GrilleOrdi")){
                         System.out.println('\n' + "Vous avez gagne!" + '\n');
                         System.out.println("Tous les bateaux ennemis sont coules : ");
                         //afficherGrille(grilleOrdi);
                         System.out.println("Voici ce qu'il reste de votre grille : ");
                         //afficherGrille(grilleJeu);
+                        return 4;
                     }
                     else{
                         System.out.println('\n' + "Vous avez perdu..." + '\n');
@@ -85,22 +90,15 @@ public class TirCanon {
                         //afficherGrille(grilleJeu);
                         System.out.println("Voici ce qu'il reste de la grille ennemie : ");
                         //afficherGrille(grilleOrdi);
-                    }*/
-                    return 3;
+                    }
                     //partieFinie = true;
-                }
-                else{
-                    //System.out.println("Tous les bateaux ne sont pas coules." + '\n');
-                    return 2;
-                }
-            }
-        }
-        else{
-            //System.out.println("A l'eau");
 
-            grille[l][c] = 6;
-            return 0;
+                }
+                hc.FinDePartie();
+            }
+
         }
+        return 1;
 
     }
 
