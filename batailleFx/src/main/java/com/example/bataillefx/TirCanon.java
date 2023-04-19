@@ -6,7 +6,6 @@ public class TirCanon {
 
     int[][] grilleJeu;
     int[][] grilleOrdi;
-    HelloController hc = new HelloController();
 
     public int randRange (int a , int b){
         Random rand = new Random();
@@ -26,7 +25,7 @@ public class TirCanon {
         System.out.println("Tir de l'ordinateur : ");
         System.out.println("Colonne : " + colonneChar + ", Ligne : " + l + '\n');
 
-        mouvement(grilleJeu, l, c, "GrilleJoueur");
+        mouvement(grilleJeu, l, c);
 
         /*if(!partieFinie){
             System.out.println('\n' + "Votre grille apres le tir : ");
@@ -51,7 +50,7 @@ public class TirCanon {
         mouvement(grilleOrdi, l, c);
     }*/
 
-    public int mouvement(int[][] grille, int l, int c, String typeGrille){
+    public void mouvement(int[][] grille, int l, int c){
 
 
         if(grille[l][c] >= 1 && grille[l][c] <= 5){
@@ -59,47 +58,8 @@ public class TirCanon {
             boolean bateauCoule = false;
             String[] nomBateau = new String[] {"Porte-avions", "Croiseur", "Contre-torpilleur", "Sous-marin", "Torpilleur"};
             String nomBateauVise = nomBateau[grille[l][c] - 1];
-
-            grille[l][c] = 6;
-
-            if(couler(grille, numeroBateau)){
-                bateauCoule = true;
-            }
-
-            if(!bateauCoule && typeGrille.equals("GrilleOrdi")){
-                System.out.println("Touche : " + nomBateauVise);
-                return 1;
-            }
-            else{
-                System.out.println("Coule : " + nomBateauVise);
-
-
-                if(vainqueur(grille)){
-                    //if(grille == grilleOrdi){
-                    if(typeGrille.equals("GrilleOrdi")){
-                        System.out.println('\n' + "Vous avez gagne!" + '\n');
-                        System.out.println("Tous les bateaux ennemis sont coules : ");
-                        //afficherGrille(grilleOrdi);
-                        System.out.println("Voici ce qu'il reste de votre grille : ");
-                        //afficherGrille(grilleJeu);
-                        return 4;
-                    }
-                    else{
-                        System.out.println('\n' + "Vous avez perdu..." + '\n');
-                        System.out.println("Tous vos bateaux sont coule : ");
-                        //afficherGrille(grilleJeu);
-                        System.out.println("Voici ce qu'il reste de la grille ennemie : ");
-                        //afficherGrille(grilleOrdi);
-                    }
-                    //partieFinie = true;
-
-                }
-                hc.FinDePartie();
-            }
-
         }
-        return 1;
-
+        grille[l][c] = 6;
     }
 
     public static boolean couler(int[][] grille, int n){
@@ -115,7 +75,7 @@ public class TirCanon {
         return true;
     }
 
-    public static boolean vainqueur(int[][] grille){
+    public boolean vainqueur(int[][] grille){
         for(int l = 0; l < 10; l++){
             for(int c = 0; c < 10; c++){
                 if(grille[l][c] != 0 && grille[l][c] != 6){

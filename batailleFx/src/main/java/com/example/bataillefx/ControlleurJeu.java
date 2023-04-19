@@ -33,12 +33,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class HelloController {
+public class ControlleurJeu {
     @FXML
     public GridPane grilleJoueur;
     public GridPane grilleEnnemie;
     public GridPane grilleEnnemieTriche;
     public GridPane grilleBoutons;
+
     public ImageView porteAvionsH;
     public ImageView porteAvionsV;
     public ImageView croiseurH;
@@ -59,17 +60,21 @@ public class HelloController {
     public ImageView sousMarinVEnnemie;
     public ImageView torpilleurHEnnemie;
     public ImageView torpilleurVEnnemie;
-    public ImageView eauAlliee;
+
+    public ImageView eauJoueur;
     public ImageView eauEnnemie;
-    ImageView[][] bateaux;
 
     public Button boutonFinPlacement;
     public Button boutonInitialisation;
     public Button boutonNouvellePartie;
     public Button boutonTourner;
+
     public MenuBar barreMenu;
+
     public Text messagePlacement;
-    public Text messageTour;
+    public Text messageGrilleEnnemie;
+    public Text messageGrilleJoueur;
+    public Text messageFinPartie;
 
     int nombreBateauPlace = 0;
     Integer bateauChoisi = 0;
@@ -98,17 +103,11 @@ public class HelloController {
 
     public void clickGrid(MouseEvent t) {
         Node source = (Node)t.getSource();
-        //System.out.println("X : " + t.getX() + ", Y : " + t.getY());
         Integer row = GridPane.getRowIndex(source);
         Integer column = GridPane.getColumnIndex(source);
-        //System.out.println("L : " + row + ", C : " + column);
 
 
         if(pB.posOk(grilleJoueurBackend, row - 1, column - 1, direction, longueurBateaux[bateauChoisi])){
-
-            /*positionbateaux[bateauChoisi][0] = row - 1;
-            positionbateaux[bateauChoisi][1] = column - 1;
-            positionbateaux[bateauChoisi][2] = direction;*/
             for(Bateau bateau:listeBateau){
                 if(bateau.numGrille == numBateaux[bateauChoisi]){
                     if(bateau.posGrilleX == -1){
@@ -215,19 +214,8 @@ public class HelloController {
         }
     }
 
-    /*public void ConfirmerPosition(){
-        //pB.ecrireDansGrille(grilleJoueurBackend, row, column, direction, longueurBateaux[bateauChoisi], numBateaux[bateauChoisi]);
-
-        for(Bateau bateau:listeBateau){
-            pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, bateau.direction, bateau.longueur, bateau.numGrille);
-        }
-
-        pB.afficherGrille(grilleJoueurBackend);
-    }*/
-
     public void tirAlier(MouseEvent evenement){
         Node source = (Node)evenement.getSource();
-        //System.out.println("X : " + evenement.getX() + ", Y : " + evenement.getY());
         Integer row = GridPane.getRowIndex(source) - 1;
         Integer column = GridPane.getColumnIndex(source) - 1;
         TirCanon tirCanon = new TirCanon();
@@ -241,81 +229,35 @@ public class HelloController {
 
             tirCanon(grilleEnnemie, grilleOrdiBackend, column, row);
 
+            tirCanon.mouvement(grilleOrdiBackend, row, column);
 
-
-            tirCanon.mouvement(grilleOrdiBackend, row, column, "GrilleOrdi");
-
-            /*switch (resultat){
-                case 0 :
-                    System.out.println("A l'eau");
-                    break;
-                case 1 :
-                    System.out.println("Touche : " + nomBateauVise);
-
-                    break;
-                case 2:
-                    System.out.println("Tous les bateaux ne sont pas coules." + '\n');
-                    break;
-                case 3 :
-                    System.out.println('\n' + "Vous avez gagne!" + '\n');
-                    System.out.println("Tous les bateaux ennemis sont coules : ");
-                    //afficherGrille(grilleOrdi);
-                    //System.out.println("Voici ce qu'il reste de votre grille : ");
-                    //afficherGrille(grilleJeu);
-                    boutonNouvellePartie.setVisible(true);
-                    break;
-            }*/
+            if(tirCanon.vainqueur(grilleOrdiBackend)){
+                FinDePartie();
+            }
             tirEnnemi();
         }
     }
 
     public void tirEnnemi() {
-        /*int ligne;
-        int colonne;
-        ligne = randRange(0, 10);
-        colonne = randRange(0, 10);
-        while(grilleJoueurBackend[ligne][colonne] < 6 && grilleJoueurBackend[ligne][colonne] > 0);{
-            ligne = randRange(0, 10);
-            colonne = randRange(0, 10);
-        }
-        tirCanon(grilleJoueur, grilleJoueurBackend, colonne, ligne);*/
 
         int ligne;
         int colonne;
-        ligne = randRange(0, 10);
-        colonne = randRange(0, 10);
-        while(grilleJoueurBackend[ligne][colonne] > 5){
+        do{
             ligne = randRange(0, 10);
             colonne = randRange(0, 10);
         }
+        while(grilleJoueurBackend[ligne][colonne] > 5);
         tirCanon(grilleJoueur, grilleJoueurBackend, colonne, ligne);
         TirCanon tirCanon = new TirCanon();
-        int resultat = tirCanon.mouvement(grilleJoueurBackend, ligne, colonne, "GrilleJoueur");
+        tirCanon.mouvement(grilleJoueurBackend, ligne, colonne);
         String[] nomBateau = new String[] {"Porte-avions", "Croiseur", "Contre-torpilleur", "Sous-marin", "Torpilleur"};
         String nomBateauVise = "";
         if(grilleOrdiBackend[ligne][colonne] - 1 != -1 && grilleOrdiBackend[ligne][colonne] - 1 != 5){
             nomBateauVise = nomBateau[grilleOrdiBackend[ligne][colonne] - 1];
         }
-        //game util
-        switch (resultat){
-            case 0 :
-                System.out.println("A l'eau");
-                break;
-            case 1 :
-                System.out.println("Touche : " + nomBateauVise);
 
-                break;
-            case 2:
-                System.out.println("Tous les bateaux ne sont pas coules." + '\n');
-                break;
-            case 3 :
-                System.out.println('\n' + "Vous avez gagne!" + '\n');
-                System.out.println("Tous les bateaux ennemis sont coules : ");
-                //afficherGrille(grilleOrdi);
-                //System.out.println("Voici ce qu'il reste de votre grille : ");
-                //afficherGrille(grilleJeu);
-                boutonNouvellePartie.setVisible(true);
-                break;
+        if(tirCanon.vainqueur(grilleJoueurBackend)){
+            FinDePartie();
         }
     }
 
@@ -325,42 +267,44 @@ public class HelloController {
 
     public void FinDePartie(){
         boutonNouvellePartie.setVisible(true);
+        TirCanon tirCanon = new TirCanon();
+        if(tirCanon.vainqueur(grilleOrdiBackend)){
+            messageFinPartie.setText("Vous avez gagne!");
+        }
+        else {
+            messageFinPartie.setText("Vous avez perdu...");
+        }
+        messageFinPartie.setVisible(true);
+        tricheActive = false;
     }
 
     public void InitialiserTableau(){
+        boutonInitialisation.setVisible(false);
+        initialisation = false;
 
+        porteAvions.InitImages(porteAvionsH, porteAvionsV);
+        croiseur.InitImages(croiseurH, croiseurV);
+        contreTorpilleur.InitImages(contreTorpilleurH, contreTorpilleurV);
+        sousMarin.InitImages(sousMarinH, sousMarinV);
+        torpilleur.InitImages(torpilleurH, torpilleurV);
 
-        if(initialisation){
-            boutonInitialisation.setVisible(false);
-            ImageView[][] tempo = {{porteAvionsH, porteAvionsV}, {croiseurH, croiseurV},
-                    {contreTorpilleurH, contreTorpilleurV}, {sousMarinH, sousMarinV}, {torpilleurH, torpilleurV}};
-            bateaux = tempo;
-            initialisation = false;
+        listeBateau.add(porteAvions);
+        listeBateau.add(croiseur);
+        listeBateau.add(contreTorpilleur);
+        listeBateau.add(sousMarin);
+        listeBateau.add(torpilleur);
 
-            porteAvions.InitImages(porteAvionsH, porteAvionsV);
-            croiseur.InitImages(croiseurH, croiseurV);
-            contreTorpilleur.InitImages(contreTorpilleurH, contreTorpilleurV);
-            sousMarin.InitImages(sousMarinH, sousMarinV);
-            torpilleur.InitImages(torpilleurH, torpilleurV);
+        porteAvionsEnnemie.InitImages(porteAvionsHEnnemie, porteAvionsVEnnemie);
+        croiseurEnnemie.InitImages(croiseurHEnnemie, croiseurVEnnemie);
+        contreTorpilleurEnnemie.InitImages(contreTorpilleurHEnnemie, contreTorpilleurVEnnemie);
+        sousMarinEnnemie.InitImages(sousMarinHEnnemie, sousMarinVEnnemie);
+        torpilleurEnnemie.InitImages(torpilleurHEnnemie, torpilleurVEnnemie);
 
-            porteAvionsEnnemie.InitImages(porteAvionsHEnnemie, porteAvionsVEnnemie);
-            croiseurEnnemie.InitImages(croiseurHEnnemie, croiseurVEnnemie);
-            contreTorpilleurEnnemie.InitImages(contreTorpilleurHEnnemie, contreTorpilleurVEnnemie);
-            sousMarinEnnemie.InitImages(sousMarinHEnnemie, sousMarinVEnnemie);
-            torpilleurEnnemie.InitImages(torpilleurHEnnemie, torpilleurVEnnemie);
-
-            listeBateau.add(porteAvions);
-            listeBateau.add(croiseur);
-            listeBateau.add(contreTorpilleur);
-            listeBateau.add(sousMarin);
-            listeBateau.add(torpilleur);
-
-            listeBateauEnnemie.add(porteAvionsEnnemie);
-            listeBateauEnnemie.add(croiseurEnnemie);
-            listeBateauEnnemie.add(contreTorpilleurEnnemie);
-            listeBateauEnnemie.add(sousMarinEnnemie);
-            listeBateauEnnemie.add(torpilleurEnnemie);
-        }
+        listeBateauEnnemie.add(porteAvionsEnnemie);
+        listeBateauEnnemie.add(croiseurEnnemie);
+        listeBateauEnnemie.add(contreTorpilleurEnnemie);
+        listeBateauEnnemie.add(sousMarinEnnemie);
+        listeBateauEnnemie.add(torpilleurEnnemie);
 
         Bateau bateau = listeBateau.get(0);
         bateau.imageHorizontale.setVisible(true);
@@ -371,7 +315,6 @@ public class HelloController {
     public void AllerAuMenu(ActionEvent event) throws IOException{
         grilleJoueurBackend = new int[10][10];
         grilleOrdiBackend = new int[10][10];
-        //ActiverTriche();
         Stage stage;
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SceneMenu.fxml"));
         stage = (Stage)boutonTourner.getScene().getWindow();
@@ -385,19 +328,21 @@ public class HelloController {
         boutonFinPlacement.setVisible(false);
         boutonTourner.setVisible(false);
         grilleBoutons.setVisible(false);
-        //grilleJoueur.setLayoutX(240);
         grilleJoueur.setLayoutY(450);
-        //eauAlliee.setLayoutX(240);
-        eauAlliee.setLayoutY(450);
+        eauJoueur.setLayoutY(450);
         eauEnnemie.setVisible(true);
         grilleEnnemie.setVisible(true);
-        //eauEnnemie.setVisible(true);
-        //messageTour.setVisible(true);
+        messageGrilleJoueur.setVisible(true);
+        messageGrilleEnnemie.setVisible(true);
 
         if(tricheActive){
             grilleEnnemieTriche.setVisible(true);
         }
 
+        InitBarreMenu();
+    }
+
+    void InitBarreMenu(){
         Menu menu = new Menu("Options");
         MenuItem optionRecommencer = new MenuItem("Recommencer");
         MenuItem optionTricher = new MenuItem("Tricher");
@@ -409,11 +354,16 @@ public class HelloController {
         barreMenu.getMenus().add(menu);
         barreMenu.setVisible(true);
 
-        optionQuitter.setOnAction(new EventHandler<ActionEvent>() {
+        InitOptionQuitter(optionQuitter);
+        InitOptionRecommencer(optionRecommencer);
+        InitOptionTricher(optionTricher);
+    }
+
+    void InitOptionQuitter(MenuItem option){
+        option.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent){
                 try{
-                    ActiverTriche();
                     AllerAuMenu(actionEvent);
                 }
                 catch (IOException e){
@@ -421,17 +371,17 @@ public class HelloController {
                 }
             }
         });
-        optionRecommencer.setOnAction(new EventHandler<ActionEvent>() {
+    }
+
+    void InitOptionRecommencer(MenuItem option){
+        option.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 try{
                     grilleJoueurBackend = new int[10][10];
                     grilleOrdiBackend = new int[10][10];
-                    if(tricheActive){
-                        ActiverTriche();
-                    }
                     Stage stage = new Stage();
-                    FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ScenePlacementBateaux.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SceneJeu.fxml"));
                     stage = (Stage)boutonFinPlacement.getScene().getWindow();
                     Scene scene = new Scene(fxmlLoader.load(), 800, 800);
                     stage.setScene(scene);
@@ -442,7 +392,10 @@ public class HelloController {
                 }
             }
         });
-        optionTricher.setOnAction(new EventHandler<ActionEvent>() {
+    }
+
+    void InitOptionTricher(MenuItem option){
+        option.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 ActiverTriche();

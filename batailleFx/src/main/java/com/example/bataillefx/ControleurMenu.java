@@ -16,26 +16,27 @@ public class ControleurMenu {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    HelloController hC = new HelloController();
+    ControlleurJeu controlleurJeu = new ControlleurJeu();
     @FXML
     Button bouttonPartieNormale;
 
     public void PartieNormalle(ActionEvent event) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ScenePlacementBateaux.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SceneJeu.fxml"));
         stage = (Stage)bouttonPartieNormale.getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load(), 800, 800);
         stage.setScene(scene);
         stage.show();
-        if(hC.tricheActive){
-            hC.ActiverTriche();
-        }
+        controlleurJeu.tricheActive = false;
     }
 
     public void PartieTriche(ActionEvent event) throws IOException{
-        //HelloController hC = new HelloController();
-        hC.ActiverTriche();
-        PartieNormalle(event);
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SceneJeu.fxml"));
+        stage = (Stage)bouttonPartieNormale.getScene().getWindow();
+        Scene scene = new Scene(fxmlLoader.load(), 800, 800);
+        stage.setScene(scene);
+        stage.show();
+        controlleurJeu.tricheActive = true;
     }
 
     public void Quitter(ActionEvent event) throws IOException{

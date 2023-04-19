@@ -29,24 +29,6 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-    public void boutonPartieNormale(){
-        System.out.println("Debuter une partie normale.");
-    }
-    public void boutonPartieAvecTriche(){
-        System.out.println("Debuter une partie avec triche.");
-    }
-    public void boutonQuitter(){
-        System.out.println("Quitter le programme.");
-    }
-
-    /*public void oui(MouseEvent t){
-        Node source = (Node)t.getSource();
-        System.out.println("X : " + t.getX() + ", Y : " + t.getY());
-        Integer row = GridPane.getRowIndex(source);
-        Integer column = GridPane.getColumnIndex(source);
-        System.out.println("L : " + row + ", C : " + column);
-    }*/
-
     public static void main(String[] args) {
         launch();
     }
