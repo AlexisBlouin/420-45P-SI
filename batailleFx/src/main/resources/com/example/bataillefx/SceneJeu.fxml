@@ -175,22 +175,21 @@
         </GridPane>
       <ImageView fx:id="porteAvionsH" fitHeight="29.0" fitWidth="145.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" visible="false">
          <image>
-            <Image url="@Images/Porte-Avions.PNG" />
-         </image>
-      </ImageView>
+            <Image url="@Images/Porte-Avions.png" />
+         </image></ImageView>
       <ImageView fx:id="torpilleurH" fitHeight="29.0" fitWidth="58.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" visible="false">
          <image>
-            <Image url="@Images/Torpilleur.PNG" />
+            <Image url="@Images/Torpilleur.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="porteAvionsV" fitHeight="145.0" fitWidth="29.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" visible="false">
+      <ImageView fx:id="porteAvionsV" fitHeight="135.0" fitWidth="29.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" visible="false">
          <image>
-            <Image url="@Images/Porte-AvionsIncline.PNG" />
+            <Image url="@Images/Porte-AvionsIncline.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="torpilleurV" fitHeight="58.0" fitWidth="29.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" visible="false">
+      <ImageView fx:id="torpilleurV" fitHeight="54.0" fitWidth="29.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" visible="false">
          <image>
-            <Image url="@Images/TorpilleurIncline.PNG" />
+            <Image url="@Images/TorpilleurIncline.png" />
          </image>
       </ImageView>
       <ImageView fx:id="croiseurH" fitHeight="29.0" fitWidth="116.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" visible="false">
@@ -198,7 +197,7 @@
             <Image url="@Images/Croiseur.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="croiseurV" fitHeight="116.0" fitWidth="29.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" visible="false">
+      <ImageView fx:id="croiseurV" fitHeight="108.0" fitWidth="29.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" visible="false">
          <image>
             <Image url="@Images/CroiseurIncline.png" />
          </image>
@@ -208,7 +207,7 @@
             <Image url="@Images/Contre-Torpilleur.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="contreTorpilleurV" fitHeight="87.0" fitWidth="29.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" visible="false">
+      <ImageView fx:id="contreTorpilleurV" fitHeight="81.0" fitWidth="29.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" visible="false">
          <image>
             <Image url="@Images/Contre-TorpilleurIncline.png" />
          </image>
@@ -218,7 +217,7 @@
             <Image url="@Images/Sous-Marin.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="sousMarinV" fitHeight="87.0" fitWidth="29.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" visible="false">
+      <ImageView fx:id="sousMarinV" fitHeight="81.0" fitWidth="29.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" visible="false">
          <image>
             <Image url="@Images/Sous-MarinIncline.png" />
          </image>
@@ -538,22 +537,22 @@
       <Button fx:id="boutonInitialisation" layoutX="367.0" layoutY="188.0" mnemonicParsing="false" onAction="#InitialiserTableau" text="Demarrer" />
       <ImageView fx:id="porteAvionsHEnnemie" fitHeight="29.0" fitWidth="145.0" layoutX="30.0" layoutY="35.0" pickOnBounds="true" visible="false">
          <image>
-            <Image url="@Images/Porte-Avions.PNG" />
+            <Image url="@Images/Porte-Avions.png" />
          </image>
       </ImageView>
       <ImageView fx:id="torpilleurHEnnemie" fitHeight="29.0" fitWidth="58.0" layoutX="521.0" layoutY="35.0" pickOnBounds="true" visible="false">
          <image>
-            <Image url="@Images/Torpilleur.PNG" />
+            <Image url="@Images/Torpilleur.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="porteAvionsVEnnemie" fitHeight="145.0" fitWidth="29.0" layoutX="30.0" layoutY="81.0" pickOnBounds="true" visible="false">
+      <ImageView fx:id="porteAvionsVEnnemie" fitHeight="135.0" fitWidth="29.0" layoutX="30.0" layoutY="81.0" pickOnBounds="true" visible="false">
          <image>
-            <Image url="@Images/Porte-AvionsIncline.PNG" />
+            <Image url="@Images/Porte-AvionsIncline.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="torpilleurVEnnemie" fitHeight="58.0" fitWidth="29.0" layoutX="521.0" layoutY="81.0" pickOnBounds="true" visible="false">
+      <ImageView fx:id="torpilleurVEnnemie" fitHeight="54.0" fitWidth="29.0" layoutX="521.0" layoutY="81.0" pickOnBounds="true" visible="false">
          <image>
-            <Image url="@Images/TorpilleurIncline.PNG" />
+            <Image url="@Images/TorpilleurIncline.png" />
          </image>
       </ImageView>
       <ImageView fx:id="croiseurHEnnemie" fitHeight="29.0" fitWidth="116.0" layoutX="192.0" layoutY="35.0" pickOnBounds="true" visible="false">
@@ -561,7 +560,7 @@
             <Image url="@Images/Croiseur.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="croiseurVEnnemie" fitHeight="116.0" fitWidth="29.0" layoutX="192.0" layoutY="81.0" pickOnBounds="true" visible="false">
+      <ImageView fx:id="croiseurVEnnemie" fitHeight="108.0" fitWidth="29.0" layoutX="192.0" layoutY="81.0" pickOnBounds="true" visible="false">
          <image>
             <Image url="@Images/CroiseurIncline.png" />
          </image>
@@ -571,7 +570,7 @@
             <Image url="@Images/Contre-Torpilleur.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="contreTorpilleurVEnnemie" fitHeight="87.0" fitWidth="29.0" layoutX="326.0" layoutY="80.0" pickOnBounds="true" visible="false">
+      <ImageView fx:id="contreTorpilleurVEnnemie" fitHeight="81.0" fitWidth="29.0" layoutX="326.0" layoutY="80.0" pickOnBounds="true" visible="false">
          <image>
             <Image url="@Images/Contre-TorpilleurIncline.png" />
          </image>
@@ -581,7 +580,7 @@
             <Image url="@Images/Sous-Marin.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="sousMarinVEnnemie" fitHeight="87.0" fitWidth="29.0" layoutX="426.0" layoutY="80.0" pickOnBounds="true" visible="false">
+      <ImageView fx:id="sousMarinVEnnemie" fitHeight="81.0" fitWidth="29.0" layoutX="426.0" layoutY="80.0" pickOnBounds="true" visible="false">
          <image>
             <Image url="@Images/Sous-MarinIncline.png" />
          </image>

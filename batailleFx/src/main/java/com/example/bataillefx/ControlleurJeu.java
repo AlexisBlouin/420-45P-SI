@@ -80,6 +80,7 @@ public class ControlleurJeu {
     Integer bateauChoisi = 0;
     int direction = 1;
     boolean initialisation = true;
+    boolean partieFinie = false;
     public static boolean tricheActive = false;
     ArrayList<Bateau> listeBateau = new ArrayList<Bateau>();
     ArrayList<Bateau> listeBateauEnnemie = new ArrayList<Bateau>();
@@ -101,140 +102,150 @@ public class ControlleurJeu {
     public Bateau sousMarinEnnemie = new Bateau(longueurBateaux[3], numBateaux[3], direction);
     public Bateau torpilleurEnnemie = new Bateau(longueurBateaux[4], numBateaux[4], direction);
 
+    /**
+     * Fonction permettant de recevoir le click d'un joueur dans la grille de placement des bateaux et d'ensuite faire les teste pour s'assurer que la position est bonne.
+     * @param t
+     */
     public void clickGrid(MouseEvent t) {
         Node source = (Node)t.getSource();
         Integer row = GridPane.getRowIndex(source);
         Integer column = GridPane.getColumnIndex(source);
 
-
-        if(pB.posOk(grilleJoueurBackend, row - 1, column - 1, direction, longueurBateaux[bateauChoisi])){
-            for(Bateau bateau:listeBateau){
-                if(bateau.numGrille == numBateaux[bateauChoisi]){
-                    if(bateau.posGrilleX == -1){
+        for(Bateau bateau:listeBateau){
+            if(bateau.numGrille == numBateaux[bateauChoisi]){
+                if(bateau.posGrilleX == -1){
+                    if(pB.posOk(grilleJoueurBackend, row - 1, column - 1, direction, longueurBateaux[bateauChoisi])) {
                         pbf.PlacerUnBateau(grilleJoueur, bateau.imageHorizontale, bateau.imageVerticale, row, column);
                         nombreBateauPlace++;
+                        bateau.SetPosition(row - 1, column - 1, direction);
                     }
-                    else {
-                        pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, direction, bateau.longueur, 0);
-                        System.out.println("Je devrais avoir effacer le bateau");
-                        pbf.ReplacerUnBateau(grilleJoueur, bateau.imageHorizontale, bateau.imageVerticale, row, column);
-
-                    }
-                    bateau.SetPosition(row - 1, column - 1, direction);
-                    pB.ecrireDansGrille(grilleJoueurBackend, row - 1, column - 1, direction, bateau.longueur, bateau.numGrille);
-                    pB.afficherGrille(grilleJoueurBackend);
-                    //System.out.println("X : " + bateau.posGrilleX + " Y : " + bateau.posGrilleY + " D : " + bateau.direction);
                 }
-                //System.out.println("Num bateau : " + bateau.numGrille + " NumSuppose : " + numBateaux[bateauChoisi]);
-            }
+                else {
+                    pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, direction, bateau.longueur, 0);
+                    if(pB.posOk(grilleJoueurBackend, row - 1, column - 1, direction, longueurBateaux[bateauChoisi])) {
 
+                        pbf.ReplacerUnBateau(grilleJoueur, bateau.imageHorizontale, bateau.imageVerticale, row, column);
+                        bateau.SetPosition(row - 1, column - 1, direction);
+                    }
+                }
+                pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, bateau.direction, bateau.longueur, bateau.numGrille);
+                pB.afficherGrille(grilleJoueurBackend);
+            }
+        }
 
             if(nombreBateauPlace >= 5){
                 messagePlacement.setVisible(true);
                 boutonFinPlacement.setVisible(true);
             }
-        }
+
     }
 
+    /**
+     * Fonction permettant de tourner le bateau selectionne.
+     */
     public void tournerBateau(){
-        //Fonction hide
-        if(direction == 1){
-            direction = 2;
 
-            for(Bateau bateau:listeBateau){
-                if(bateauChoisi + 1 == bateau.numGrille){
-                    if(bateau.posGrilleX != -1){
-                        pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, 1, bateau.longueur, 0);
-                    }
-                    if(bateau.posGrilleX == -1 || pB.posOk(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, direction, bateau.longueur)){
-                        bateau.direction = 2;
-                        bateau.imageHorizontale.setVisible(false);
-                        bateau.imageVerticale.setVisible(true);
+        if(!initialisation) {
+            if (direction == 1) {
+                direction = 2;
 
+                for (Bateau bateau : listeBateau) {
+                    if (bateauChoisi + 1 == bateau.numGrille) {
+                        if (bateau.posGrilleX != -1) {
+                            pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, 1, bateau.longueur, 0);
+                        }
+                        if (bateau.posGrilleX == -1 || pB.posOk(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, direction, bateau.longueur)) {
+                            bateau.direction = 2;
+                            bateau.imageHorizontale.setVisible(false);
+                            bateau.imageVerticale.setVisible(true);
+
+                        } else {
+                            direction = 1;
+                        }
+                        if (bateau.posGrilleX != -1) {
+                            pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, direction, bateau.longueur, bateau.numGrille);
+                        }
                     }
-                    else {
-                        direction = 1;
-                    }
-                    if(bateau.posGrilleX != -1){
-                        pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, direction, bateau.longueur, bateau.numGrille);
+                }
+            } else {
+                direction = 1;
+
+                for (Bateau bateau : listeBateau) {
+                    if (bateauChoisi + 1 == bateau.numGrille) {
+                        if (bateau.posGrilleX != -1) {
+                            pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, 2, bateau.longueur, 0);
+                        }
+                        if (bateau.posGrilleX == -1 || pB.posOk(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, direction, bateau.longueur)) {
+                            bateau.direction = 1;
+                            bateau.imageHorizontale.setVisible(true);
+                            bateau.imageVerticale.setVisible(false);
+
+                        } else {
+                            direction = 2;
+                        }
+                        if (bateau.posGrilleX != -1) {
+                            pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, direction, bateau.longueur, bateau.numGrille);
+                        }
                     }
                 }
             }
         }
-        else {
-            direction = 1;
-
-            for(Bateau bateau:listeBateau){
-                if(bateauChoisi + 1 == bateau.numGrille){
-                    if(bateau.posGrilleX != -1){
-                        pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, 2, bateau.longueur, 0);
-                    }
-                    if(bateau.posGrilleX == -1 || pB.posOk(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, direction, bateau.longueur)){
-                        bateau.direction = 1;
-                        bateau.imageHorizontale.setVisible(true);
-                        bateau.imageVerticale.setVisible(false);
-
-                    }
-                    else {
-                        direction = 2;
-                    }
-                    if(bateau.posGrilleX != -1){
-                        pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, direction, bateau.longueur, bateau.numGrille);
-                    }
-                }
-            }
-        }
-        pB.afficherGrille(grilleJoueurBackend);
     }
 
+    /**
+     * Fonction appelee par des boutons permettant de determiner quel bateau est selectionner par l'utilisateur.
+     * @param t
+     */
     public void ChoisirBateau(MouseEvent t){
-        Node source = (Node)t.getSource();
-        bateauChoisi = GridPane.getColumnIndex(source);
-        if(bateauChoisi == null){
-            bateauChoisi = 0;
-        }
-        //System.out.println(bateauChoisi);
-        for(Bateau bateau:listeBateau){
-            if(bateauChoisi + 1 == bateau.numGrille){
-                if(bateau.direction == 1){
-                    direction = 1;
-                    bateau.imageHorizontale.setVisible(true);
-                }
-                else {
-                    direction = 2;
-                    bateau.imageVerticale.setVisible(true);
-                }
+        if(!initialisation) {
+            Node source = (Node) t.getSource();
+            bateauChoisi = GridPane.getColumnIndex(source);
+            if (bateauChoisi == null) {
+                bateauChoisi = 0;
             }
-            else {
-                if(bateau.posGrilleX == -1){
-                    bateau.imageHorizontale.setVisible(false);
-                    bateau.imageVerticale.setVisible(false);
+            //System.out.println(bateauChoisi);
+            for (Bateau bateau : listeBateau) {
+                if (bateauChoisi + 1 == bateau.numGrille) {
+                    if (bateau.direction == 1) {
+                        direction = 1;
+                        bateau.imageHorizontale.setVisible(true);
+                    } else {
+                        direction = 2;
+                        bateau.imageVerticale.setVisible(true);
+                    }
+                } else {
+                    if (bateau.posGrilleX == -1) {
+                        bateau.imageHorizontale.setVisible(false);
+                        bateau.imageVerticale.setVisible(false);
+                    }
                 }
             }
         }
     }
 
     public void tirAlier(MouseEvent evenement){
-        Node source = (Node)evenement.getSource();
-        Integer row = GridPane.getRowIndex(source) - 1;
-        Integer column = GridPane.getColumnIndex(source) - 1;
-        TirCanon tirCanon = new TirCanon();
+        if(!partieFinie) {
+            Node source = (Node) evenement.getSource();
+            Integer row = GridPane.getRowIndex(source) - 1;
+            Integer column = GridPane.getColumnIndex(source) - 1;
+            TirCanon tirCanon = new TirCanon();
 
-        if(grilleOrdiBackend[row][column] != 6){
-            String[] nomBateau = new String[] {"Porte-avions", "Croiseur", "Contre-torpilleur", "Sous-marin", "Torpilleur"};
-            String nomBateauVise = "";
-            if(grilleOrdiBackend[row][column] - 1 != -1 && grilleOrdiBackend[row][column] - 1 != 5){
-                nomBateauVise = nomBateau[grilleOrdiBackend[row][column] - 1];
+            if (grilleOrdiBackend[row][column] != 6) {
+                String[] nomBateau = new String[]{"Porte-avions", "Croiseur", "Contre-torpilleur", "Sous-marin", "Torpilleur"};
+                String nomBateauVise = "";
+                if (grilleOrdiBackend[row][column] - 1 != -1 && grilleOrdiBackend[row][column] - 1 != 5) {
+                    nomBateauVise = nomBateau[grilleOrdiBackend[row][column] - 1];
+                }
+
+                tirCanon(grilleEnnemie, grilleOrdiBackend, column, row);
+
+                tirCanon.mouvement(grilleOrdiBackend, row, column);
+
+                if (tirCanon.vainqueur(grilleOrdiBackend)) {
+                    FinDePartie();
+                }
+                tirEnnemi();
             }
-
-            tirCanon(grilleEnnemie, grilleOrdiBackend, column, row);
-
-            tirCanon.mouvement(grilleOrdiBackend, row, column);
-
-            if(tirCanon.vainqueur(grilleOrdiBackend)){
-                FinDePartie();
-            }
-            tirEnnemi();
         }
     }
 
@@ -276,6 +287,7 @@ public class ControlleurJeu {
         }
         messageFinPartie.setVisible(true);
         tricheActive = false;
+        partieFinie = true;
     }
 
     public void InitialiserTableau(){
