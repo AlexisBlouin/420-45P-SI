@@ -12,33 +12,42 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Controleur permettant de controller les actions des boutons de la scene du menu.
+ */
 public class ControleurMenu {
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
-    ControlleurJeu controlleurJeu = new ControlleurJeu();
-    @FXML
-    Button bouttonPartieNormale;
 
+    /**
+     * Variable du ControleurJeu pour acceder a certaines variables.
+     */
+    ControlleurJeu controlleurJeu = new ControlleurJeu();
+
+    /**
+     * Fonction demarrant une partie normale.
+     * @param event Evenement de la souris contenant les informations sur le clic de l'utilisateur.
+     * @throws IOException
+     */
     public void PartieNormalle(ActionEvent event) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SceneJeu.fxml"));
-        stage = (Stage)bouttonPartieNormale.getScene().getWindow();
-        Scene scene = new Scene(fxmlLoader.load(), 800, 800);
-        stage.setScene(scene);
-        stage.show();
         controlleurJeu.tricheActive = false;
+        HelloApplication.RechargerScene("SceneJeu");
     }
 
+    /**
+     * Fonction demarrant une partie avec triche.
+     * @param event Evenement de la souris contenant les informations sur le clic de l'utilisateur.
+     * @throws IOException
+     */
     public void PartieTriche(ActionEvent event) throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SceneJeu.fxml"));
-        stage = (Stage)bouttonPartieNormale.getScene().getWindow();
-        Scene scene = new Scene(fxmlLoader.load(), 800, 800);
-        stage.setScene(scene);
-        stage.show();
         controlleurJeu.tricheActive = true;
+        HelloApplication.RechargerScene("SceneJeu");
     }
 
+    /**
+     * Fonction permettant de quitter le programme.
+     * @param event Evenement de la souris contenant les informations sur le clic de l'utilisateur.
+     * @throws IOException
+     */
     public void Quitter(ActionEvent event) throws IOException{
         Platform.exit();
     }

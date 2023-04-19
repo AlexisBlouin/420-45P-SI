@@ -3,36 +3,25 @@ package com.example.bataillefx;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
+
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * Controleur permettant de controller les actions de la scene du menu.
+ */
 public class ControlleurJeu {
     @FXML
     public GridPane grilleJoueur;
@@ -103,33 +92,33 @@ public class ControlleurJeu {
     public Bateau torpilleurEnnemie = new Bateau(longueurBateaux[4], numBateaux[4], direction);
 
     /**
-     * Fonction permettant de recevoir le click d'un joueur dans la grille de placement des bateaux et d'ensuite faire les teste pour s'assurer que la position est bonne.
-     * @param t
+     * Fonction permettant de recevoir le clic d'un joueur dans la grille de placement des bateaux et d'ensuite faire les teste pour s'assurer que la position est bonne.
+     * @param event Evenement de la souris contenant les informations sur le clic de l'utilisateur dont la ligne et la colonne du clic.
      */
-    public void clickGrid(MouseEvent t) {
-        Node source = (Node)t.getSource();
-        Integer row = GridPane.getRowIndex(source);
-        Integer column = GridPane.getColumnIndex(source);
+    public void clicGrillePlacement(MouseEvent event) {
+        Node source = (Node)event.getSource();
+        Integer ligne = GridPane.getRowIndex(source);
+        Integer colonne = GridPane.getColumnIndex(source);
 
         for(Bateau bateau:listeBateau){
             if(bateau.numGrille == numBateaux[bateauChoisi]){
                 if(bateau.posGrilleX == -1){
-                    if(pB.posOk(grilleJoueurBackend, row - 1, column - 1, direction, longueurBateaux[bateauChoisi])) {
-                        pbf.PlacerUnBateau(grilleJoueur, bateau.imageHorizontale, bateau.imageVerticale, row, column);
+                    if(pB.posOk(grilleJoueurBackend, ligne - 1, colonne - 1, direction, longueurBateaux[bateauChoisi])) {
+                        pbf.PlacerUnBateau(grilleJoueur, bateau.imageHorizontale, bateau.imageVerticale, ligne, colonne);
                         nombreBateauPlace++;
-                        bateau.SetPosition(row - 1, column - 1, direction);
+                        bateau.SetPosition(ligne - 1, colonne - 1, direction);
+                        pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, bateau.direction, bateau.longueur, bateau.numGrille);
                     }
                 }
                 else {
                     pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, direction, bateau.longueur, 0);
-                    if(pB.posOk(grilleJoueurBackend, row - 1, column - 1, direction, longueurBateaux[bateauChoisi])) {
+                    if(pB.posOk(grilleJoueurBackend, ligne - 1, colonne - 1, direction, longueurBateaux[bateauChoisi])) {
 
-                        pbf.ReplacerUnBateau(grilleJoueur, bateau.imageHorizontale, bateau.imageVerticale, row, column);
-                        bateau.SetPosition(row - 1, column - 1, direction);
+                        pbf.ReplacerUnBateau(grilleJoueur, bateau.imageHorizontale, bateau.imageVerticale, ligne, colonne);
+                        bateau.SetPosition(ligne - 1, colonne - 1, direction);
+                        pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, bateau.direction, bateau.longueur, bateau.numGrille);
                     }
                 }
-                pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, bateau.direction, bateau.longueur, bateau.numGrille);
-                pB.afficherGrille(grilleJoueurBackend);
             }
         }
 
@@ -193,17 +182,16 @@ public class ControlleurJeu {
     }
 
     /**
-     * Fonction appelee par des boutons permettant de determiner quel bateau est selectionner par l'utilisateur.
-     * @param t
+     * Fonction appelee par des boutons permettant de determiner quel bateau est selectionne par l'utilisateur.
+     * @param event Evenement de la souris contenant les informations sur le clic de l'utilisateur dont le numero du bateau selectionne.
      */
-    public void ChoisirBateau(MouseEvent t){
+    public void ChoisirBateau(MouseEvent event){
         if(!initialisation) {
-            Node source = (Node) t.getSource();
+            Node source = (Node) event.getSource();
             bateauChoisi = GridPane.getColumnIndex(source);
             if (bateauChoisi == null) {
                 bateauChoisi = 0;
             }
-            //System.out.println(bateauChoisi);
             for (Bateau bateau : listeBateau) {
                 if (bateauChoisi + 1 == bateau.numGrille) {
                     if (bateau.direction == 1) {
@@ -223,9 +211,13 @@ public class ControlleurJeu {
         }
     }
 
-    public void tirAlier(MouseEvent evenement){
+    /**
+     * Fonction permettant au joueur de tirer un missile sur la grille ennemie.
+     * @param event Evenement de la souris contenant les informations sur le clic de l'utilisateur dont la ligne et la colonne du clic.
+     */
+    public void tirAlier(MouseEvent event){
         if(!partieFinie) {
-            Node source = (Node) evenement.getSource();
+            Node source = (Node) event.getSource();
             Integer row = GridPane.getRowIndex(source) - 1;
             Integer column = GridPane.getColumnIndex(source) - 1;
             TirCanon tirCanon = new TirCanon();
@@ -239,7 +231,7 @@ public class ControlleurJeu {
 
                 tirCanon(grilleEnnemie, grilleOrdiBackend, column, row);
 
-                tirCanon.mouvement(grilleOrdiBackend, row, column);
+                tirCanon.Tir(grilleOrdiBackend, row, column);
 
                 if (tirCanon.vainqueur(grilleOrdiBackend)) {
                     FinDePartie();
@@ -249,6 +241,9 @@ public class ControlleurJeu {
         }
     }
 
+    /**
+     * Fonction appelee apres le tir du joueur pour permettre a l'ennemi de tirer un missile sur la grille du joueur.
+     */
     public void tirEnnemi() {
 
         int ligne;
@@ -260,7 +255,7 @@ public class ControlleurJeu {
         while(grilleJoueurBackend[ligne][colonne] > 5);
         tirCanon(grilleJoueur, grilleJoueurBackend, colonne, ligne);
         TirCanon tirCanon = new TirCanon();
-        tirCanon.mouvement(grilleJoueurBackend, ligne, colonne);
+        tirCanon.Tir(grilleJoueurBackend, ligne, colonne);
         String[] nomBateau = new String[] {"Porte-avions", "Croiseur", "Contre-torpilleur", "Sous-marin", "Torpilleur"};
         String nomBateauVise = "";
         if(grilleOrdiBackend[ligne][colonne] - 1 != -1 && grilleOrdiBackend[ligne][colonne] - 1 != 5){
@@ -272,10 +267,20 @@ public class ControlleurJeu {
         }
     }
 
+    /**
+     * Fonction permettant de rendre les tirs visible sur les grilles du joueur et de l'ennemi.
+     * @param grille Grille sur laquelle on ajoutera le carre de couleur selon le resultat du tir.
+     * @param grilleBackend Grille contenant les informations pour tester sur le tir est bon ou non.
+     * @param column Colonne du tir.
+     * @param row Ligne du tir.
+     */
     public void tirCanon(GridPane grille, int[][] grilleBackend, int column, int row){
         pbf.marqueTouche(grille, grilleBackend, column + 1, row + 1);
     }
 
+    /**
+     * Fonction appelee si la partie est terminee et fait l'affichage de fin de partie.
+     */
     public void FinDePartie(){
         boutonNouvellePartie.setVisible(true);
         TirCanon tirCanon = new TirCanon();
@@ -290,7 +295,10 @@ public class ControlleurJeu {
         partieFinie = true;
     }
 
-    public void InitialiserTableau(){
+    /**
+     * Fonction permettant d'initialiser les listes pour le placement des bateaux.
+     */
+    public void InitialisationPlacement(){
         boutonInitialisation.setVisible(false);
         initialisation = false;
 
@@ -323,18 +331,23 @@ public class ControlleurJeu {
         InitGrilleOrdi();
     }
 
+    /**
+     * Fonction permettant de retourner à l'ecran du menu.
+     * @param event Evenement de la souris contenant les informations sur le clic de l'utilisateur.
+     * @throws IOException
+     */
     //Fait en partie avec : https://www.youtube.com/watch?v=hcM-R-YOKkQ
     public void AllerAuMenu(ActionEvent event) throws IOException{
         grilleJoueurBackend = new int[10][10];
         grilleOrdiBackend = new int[10][10];
-        Stage stage;
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SceneMenu.fxml"));
-        stage = (Stage)boutonTourner.getScene().getWindow();
-        Scene scene = new Scene(fxmlLoader.load(), 800, 800);
-        stage.setScene(scene);
-        stage.show();
+        HelloApplication.RechargerScene("SceneMenu");
     }
 
+    /**
+     * Fonction permettant de changer la scene actuelle pour que le joueur puisse ensuite jouer au jeu.
+     * @param event Evenement de la souris contenant les informations sur le clic de l'utilisateur.
+     * @throws IOException
+     */
     public void ChangerPourSceneJeu(ActionEvent event) throws IOException{
         messagePlacement.setVisible(false);
         boutonFinPlacement.setVisible(false);
@@ -354,6 +367,9 @@ public class ControlleurJeu {
         InitBarreMenu();
     }
 
+    /**
+     * Fonction permettant d'initialiser la barre de menus.
+     */
     void InitBarreMenu(){
         Menu menu = new Menu("Options");
         MenuItem optionRecommencer = new MenuItem("Recommencer");
@@ -371,6 +387,10 @@ public class ControlleurJeu {
         InitOptionTricher(optionTricher);
     }
 
+    /**
+     * Initialisation de l'option quitter de la barre de menus.
+     * @param option Option du menu a initialiser.
+     */
     void InitOptionQuitter(MenuItem option){
         option.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -385,6 +405,10 @@ public class ControlleurJeu {
         });
     }
 
+    /**
+     * Initialisation de l'option recommencer de la barre de menus.
+     * @param option Option du menu a initialiser.
+     */
     void InitOptionRecommencer(MenuItem option){
         option.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -392,12 +416,7 @@ public class ControlleurJeu {
                 try{
                     grilleJoueurBackend = new int[10][10];
                     grilleOrdiBackend = new int[10][10];
-                    Stage stage = new Stage();
-                    FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SceneJeu.fxml"));
-                    stage = (Stage)boutonFinPlacement.getScene().getWindow();
-                    Scene scene = new Scene(fxmlLoader.load(), 800, 800);
-                    stage.setScene(scene);
-                    stage.show();
+                    HelloApplication.RechargerScene("SceneJeu");
                 }
                 catch (IOException e){
                     throw new IllegalStateException("something went wrong", e);
@@ -406,6 +425,10 @@ public class ControlleurJeu {
         });
     }
 
+    /**
+     * Initialisation de l'option tricher de la barre de menus.
+     * @param option Option du menu a initialiser.
+     */
     void InitOptionTricher(MenuItem option){
         option.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -415,10 +438,20 @@ public class ControlleurJeu {
         });
     }
 
+    /**
+     * Fonction retournant un nombre aleatoire.
+     * @param a Borne inferieure (incluse).
+     * @param b Borne exterieure (excluse).
+     * @return Nombre aleatoire.
+     */
     public static int randRange (int a , int b){
         Random rand = new Random();
         return rand.nextInt(b - a)+ a;
     }
+
+    /**
+     * Fonction permettant d'initialiser la grille de l'ordinateur.
+     */
     public void InitGrilleOrdi(){
         int[] grandeurBateau = new int[] {5, 4, 3, 3, 2};
         int ligne;
@@ -452,9 +485,11 @@ public class ControlleurJeu {
                 }
             }
         }
-        pB.afficherGrille(grilleOrdiBackend);
     }
 
+    /**
+     * Fonction permettant d'activer la triche.
+     */
     public void ActiverTriche(){
         if(tricheActive){
             tricheActive = false;

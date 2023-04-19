@@ -1,6 +1,18 @@
 package com.example.bataillefx;
 
+/**
+ * Classe contenant les fonctions pour placer les bateaux dans les grilles backends.
+ */
 public class PlacerBateau {
+    /**
+     * Vérifie si la position fonctionne pour l'ajout d'un bateau.
+     * @param grille La grille utilisée (grilleOrdi ou grilleJeu).
+     * @param l Le numéro de la ligne du bateau.
+     * @param c Le numéro de la colonne du bateau.
+     * @param d La direction du bateau.
+     * @param t Le nombre de cases du bateau.
+     * @return Le résultat disant si cette position fonctionne.
+     */
     public boolean posOk(int [][]grille, int l, int c, int d, int t){
         boolean fonctionne;
 
@@ -14,6 +26,14 @@ public class PlacerBateau {
         return fonctionne;
     }
 
+    /**
+     * Teste si le bateau peut se poser sur une ligne.
+     * @param grille La grille utilisée (grilleOrdi ou grilleJeu).
+     * @param l Le numéro de la ligne du bateau.
+     * @param c  Le numéro de la colonne du bateau.
+     * @param t Le nombre de cases du bateau.
+     * @return Le résultat disant si cette position fonctionne.
+     */
     public boolean ligneOk(int [][]grille, int l, int c, int t){
         boolean fonctionne = true;
         int indice = c;
@@ -29,6 +49,14 @@ public class PlacerBateau {
         return fonctionne;
     }
 
+    /**
+     * Teste si le bateau peut se poser sur une colonne.
+     * @param grille La grille utilisée (grilleOrdi ou grilleJeu).
+     * @param l Le numéro de la ligne du bateau.
+     * @param c Le numéro de la colonne du bateau.
+     * @param t Le nombre de cases du bateau.
+     * @return Le résultat disant si cette position fonctionne.
+     */
     public boolean colonneOk(int [][]grille, int l, int c, int t){
         boolean fonctionne = true;
         int indice = l;
@@ -44,6 +72,15 @@ public class PlacerBateau {
         return fonctionne;
     }
 
+    /**
+     * Écrit dans la grille la position du bateau reçue
+     * @param grille La grille utilisée (grilleOrdi ou grilleJeu).
+     * @param l Le numéro de la ligne du bateau.
+     * @param c Le numéro de la colonne du bateau.
+     * @param d La direction du bateau.
+     * @param t Le nombre de cases du bateau.
+     * @param n Le numéro du bateau à écrire.
+     */
     public void ecrireDansGrille(int[][] grille, int l, int c, int d, int t, int n){
         if(d == 1){
             for(int i = c; i < c + t; i++){
@@ -55,20 +92,5 @@ public class PlacerBateau {
                 grille[i][c] = n;
             }
         }
-    }
-
-    public void afficherGrille(int[][] grille){
-        System.out.println("  A B C D E F G H I J");
-
-        for(int l = 0; l < 10; l++){
-            System.out.print(l);
-            for(int c = 0; c < 10; c++){
-                System.out.print(" " + grille[l][c]);
-            }
-
-            System.out.println();
-        }
-
-        System.out.println();
     }
 }
