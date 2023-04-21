@@ -2,18 +2,37 @@ package com.example.bataillefx;
 
 import javafx.scene.image.ImageView;
 
-import java.time.Year;
-
 /**
  * Classe des bateaux contenant les informations sur les différents bateaux.
  */
 public class Bateau {
+    /**
+     * Longueur du bateau
+     */
     public int longueur;
+    /**
+     * Numero du bateau dans la grille.
+     */
     public int numGrille;
+    /**
+     * Direction du bateau
+     */
     public int direction;
+    /**
+     * Image verticale du bateau.
+     */
     public ImageView imageVerticale;
+    /**
+     * Image horizontale du bateau.
+     */
     public ImageView imageHorizontale;
+    /**
+     * Position en X dans la grille.
+     */
     public int posGrilleX;
+    /**
+     * Position en Y dans la grille.
+     */
     public int posGrilleY;
 
     /**

@@ -13,14 +13,14 @@ public class PlacerBateau {
      * @param t Le nombre de cases du bateau.
      * @return Le résultat disant si cette position fonctionne.
      */
-    public boolean posOk(int [][]grille, int l, int c, int d, int t){
+    public boolean PosOk(int [][]grille, int l, int c, int d, int t){
         boolean fonctionne;
 
         if(d == 1){
-            fonctionne = ligneOk(grille, l, c, t);
+            fonctionne = LigneOk(grille, l, c, t);
         }
         else{
-            fonctionne = colonneOk(grille, l, c, t);
+            fonctionne = ColonneOk(grille, l, c, t);
         }
 
         return fonctionne;
@@ -34,7 +34,7 @@ public class PlacerBateau {
      * @param t Le nombre de cases du bateau.
      * @return Le résultat disant si cette position fonctionne.
      */
-    public boolean ligneOk(int [][]grille, int l, int c, int t){
+    public boolean LigneOk(int [][]grille, int l, int c, int t){
         boolean fonctionne = true;
         int indice = c;
 
@@ -57,7 +57,7 @@ public class PlacerBateau {
      * @param t Le nombre de cases du bateau.
      * @return Le résultat disant si cette position fonctionne.
      */
-    public boolean colonneOk(int [][]grille, int l, int c, int t){
+    public boolean ColonneOk(int [][]grille, int l, int c, int t){
         boolean fonctionne = true;
         int indice = l;
 
@@ -81,7 +81,7 @@ public class PlacerBateau {
      * @param t Le nombre de cases du bateau.
      * @param n Le numéro du bateau à écrire.
      */
-    public void ecrireDansGrille(int[][] grille, int l, int c, int d, int t, int n){
+    public void EcrireDansGrille(int[][] grille, int l, int c, int d, int t, int n){
         if(d == 1){
             for(int i = c; i < c + t; i++){
                 grille[l][i] = n;

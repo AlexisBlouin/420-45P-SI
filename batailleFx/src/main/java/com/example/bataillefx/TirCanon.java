@@ -1,7 +1,7 @@
 package com.example.bataillefx;
 
 /**
- * Fonction permettant de faire des tests pour les tirs de missiles.
+ * Classe permettant de faire des tests pour les tirs de missiles.
  */
 public class TirCanon {
 

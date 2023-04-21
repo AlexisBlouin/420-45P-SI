@@ -2,8 +2,6 @@ package com.example.bataillefx;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import javafx.event.ActionEvent;
@@ -17,85 +15,258 @@ import java.util.Random;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 /**
  * Controleur permettant de controller les actions de la scene du menu.
  */
 public class ControlleurJeu {
     @FXML
+    /**
+     * Grille du joueur.
+     */
     public GridPane grilleJoueur;
+    /**
+     * Grille de l'ennemi.
+     */
     public GridPane grilleEnnemie;
+    /**
+     * Grille de l'ennemi contenant les bateaux pour l'affichage de la triche.
+     */
     public GridPane grilleEnnemieTriche;
+    /**
+     * Grille contenant les boutons pour le choix des bateaux.
+     */
     public GridPane grilleBoutons;
-
+    /**
+     * Image bateau.
+     */
     public ImageView porteAvionsH;
+    /**
+     * Image bateau.
+     */
     public ImageView porteAvionsV;
+    /**
+     * Image bateau.
+     */
     public ImageView croiseurH;
+    /**
+     * Image bateau.
+     */
     public ImageView croiseurV;
+    /**
+     * Image bateau.
+     */
     public ImageView contreTorpilleurH;
+    /**
+     * Image bateau.
+     */
     public ImageView contreTorpilleurV;
+    /**
+     * Image bateau.
+     */
     public ImageView sousMarinH;
+    /**
+     * Image bateau.
+     */
     public ImageView sousMarinV;
+    /**
+     * Image bateau.
+     */
     public ImageView torpilleurH;
+    /**
+     * Image bateau.
+     */
     public ImageView torpilleurV;
+    /**
+     * Image bateau.
+     */
     public ImageView porteAvionsHEnnemie;
+    /**
+     * Image bateau.
+     */
     public ImageView porteAvionsVEnnemie;
+    /**
+     * Image bateau.
+     */
     public ImageView croiseurHEnnemie;
+    /**
+     * Image bateau.
+     */
     public ImageView croiseurVEnnemie;
+    /**
+     * Image bateau.
+     */
     public ImageView contreTorpilleurHEnnemie;
+    /**
+     * Image bateau.
+     */
     public ImageView contreTorpilleurVEnnemie;
+    /**
+     * Image bateau.
+     */
     public ImageView sousMarinHEnnemie;
+    /**
+     * Image bateau.
+     */
     public ImageView sousMarinVEnnemie;
+    /**
+     * Image bateau.
+     */
     public ImageView torpilleurHEnnemie;
+    /**
+     * Image bateau.
+     */
     public ImageView torpilleurVEnnemie;
-
+    /**
+     * Image de l'eau de la grille joueur.
+     */
     public ImageView eauJoueur;
+    /**
+     * Image de l'eau de la grille ennemie.
+     */
     public ImageView eauEnnemie;
-
+    /**
+     * Bouton qui apparait une fois le placement des bateaux complete.
+     */
     public Button boutonFinPlacement;
+    /**
+     * Bouton pour commencer le placement des bateaux.
+     */
     public Button boutonInitialisation;
+    /**
+     * Bouton pour retourner au menu une fois la partie terminee.
+     */
     public Button boutonNouvellePartie;
+    /**
+     * Bouton pour tourner un bateau.
+     */
     public Button boutonTourner;
-
+    /**
+     * Barre des menus.
+     */
     public MenuBar barreMenu;
-
+    /**
+     * Message apparaissant apres le placement des bateaux.
+     */
     public Text messagePlacement;
+    /**
+     * Texte identifiant la grille ennemie.
+     */
     public Text messageGrilleEnnemie;
+    /**
+     * Texte identifiant la grille joueur.
+     */
     public Text messageGrilleJoueur;
+    /**
+     * Message de fin de partie.
+     */
     public Text messageFinPartie;
-
+    /**
+     * Nombre de bateaux places.
+     */
     int nombreBateauPlace = 0;
+    /**
+     * Numero du bateau choisi.
+     */
     Integer bateauChoisi = 0;
+    /**
+     * Direction du bateau actuel.
+     */
     int direction = 1;
+    /**
+     * Variable disant si l'initialisation a ete faite.
+     */
     boolean initialisation = true;
+    /**
+     * Variable disant si la partie est terminee.
+     */
     boolean partieFinie = false;
+    /**
+     * Variable disant si le joueur triche actuellement.
+     */
     public static boolean tricheActive = false;
+    /**
+     * Variable disant si le joueur a triche.
+     */
+    boolean aTriche = false;
+    /**
+     * Liste contenant les bateaux du joueur.
+     */
     ArrayList<Bateau> listeBateau = new ArrayList<Bateau>();
+    /**
+     * Liste contenant les bateaux de l'ennemi.
+     */
     ArrayList<Bateau> listeBateauEnnemie = new ArrayList<Bateau>();
-    PlacerBateauFx pbf = new PlacerBateauFx();
-    PlacerBateau pB = new PlacerBateau();
-
+    /**
+     * Reference a la classe PlacerBateauFx pour un acces aux fonctions internes.
+     */
+    PlacerBateauFx placerBateauFx = new PlacerBateauFx();
+    /**
+     * Reference a la classe PlacerBateau pour un acces aux fonctions internes.
+     */
+    PlacerBateau placerBateau = new PlacerBateau();
+    /**
+     * Grille de l'ordinateur contenant les informations backend.
+     */
     public static int [][]grilleOrdiBackend = new int[10][10];
+    /**
+     * Grille du joueur contenant les informations backend.
+     */
     public static int [][]grilleJoueurBackend = new int [10][10];
+    /**
+     * Tableau contenant la longueur des bateaux.
+     */
     int[] longueurBateaux = {5, 4, 3, 3, 2};
+    /**
+     * Tableau contenant le numero de grille des bateaux.
+     */
     int[] numBateaux = {1, 2, 3, 4, 5};
+    /**
+     * Bateau joueur.
+     */
     public Bateau porteAvions = new Bateau(longueurBateaux[0], numBateaux[0], direction);
+    /**
+     * Bateau joueur.
+     */
     public Bateau croiseur = new Bateau(longueurBateaux[1], numBateaux[1], direction);
+    /**
+     * Bateau joueur.
+     */
     public Bateau contreTorpilleur = new Bateau(longueurBateaux[2], numBateaux[2], direction);
+    /**
+     * Bateau joueur.
+     */
     public Bateau sousMarin = new Bateau(longueurBateaux[3], numBateaux[3], direction);
+    /**
+     * Bateau joueur.
+     */
     public Bateau torpilleur = new Bateau(longueurBateaux[4], numBateaux[4], direction);
+    /**
+     * Bateau ennemi.
+     */
     public Bateau porteAvionsEnnemie = new Bateau(longueurBateaux[0], numBateaux[0], direction);
+    /**
+     * Bateau ennemi.
+     */
     public Bateau croiseurEnnemie = new Bateau(longueurBateaux[1], numBateaux[1], direction);
+    /**
+     * Bateau ennemi.
+     */
     public Bateau contreTorpilleurEnnemie = new Bateau(longueurBateaux[2], numBateaux[2], direction);
+    /**
+     * Bateau ennemi.
+     */
     public Bateau sousMarinEnnemie = new Bateau(longueurBateaux[3], numBateaux[3], direction);
+    /**
+     * Bateau ennemi.
+     */
     public Bateau torpilleurEnnemie = new Bateau(longueurBateaux[4], numBateaux[4], direction);
 
     /**
      * Fonction permettant de recevoir le clic d'un joueur dans la grille de placement des bateaux et d'ensuite faire les teste pour s'assurer que la position est bonne.
      * @param event Evenement de la souris contenant les informations sur le clic de l'utilisateur dont la ligne et la colonne du clic.
      */
-    public void clicGrillePlacement(MouseEvent event) {
+    public void ClicGrillePlacement(MouseEvent event) {
         Node source = (Node)event.getSource();
         Integer ligne = GridPane.getRowIndex(source);
         Integer colonne = GridPane.getColumnIndex(source);
@@ -103,20 +274,20 @@ public class ControlleurJeu {
         for(Bateau bateau:listeBateau){
             if(bateau.numGrille == numBateaux[bateauChoisi]){
                 if(bateau.posGrilleX == -1){
-                    if(pB.posOk(grilleJoueurBackend, ligne - 1, colonne - 1, direction, longueurBateaux[bateauChoisi])) {
-                        pbf.PlacerUnBateau(grilleJoueur, bateau.imageHorizontale, bateau.imageVerticale, ligne, colonne);
+                    if(placerBateau.PosOk(grilleJoueurBackend, ligne - 1, colonne - 1, direction, longueurBateaux[bateauChoisi])) {
+                        placerBateauFx.PlacerUnBateau(grilleJoueur, bateau.imageHorizontale, bateau.imageVerticale, ligne, colonne);
                         nombreBateauPlace++;
                         bateau.SetPosition(ligne - 1, colonne - 1, direction);
-                        pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, bateau.direction, bateau.longueur, bateau.numGrille);
+                        placerBateau.EcrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, bateau.direction, bateau.longueur, bateau.numGrille);
                     }
                 }
                 else {
-                    pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, direction, bateau.longueur, 0);
-                    if(pB.posOk(grilleJoueurBackend, ligne - 1, colonne - 1, direction, longueurBateaux[bateauChoisi])) {
+                    placerBateau.EcrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, direction, bateau.longueur, 0);
+                    if(placerBateau.PosOk(grilleJoueurBackend, ligne - 1, colonne - 1, direction, longueurBateaux[bateauChoisi])) {
 
-                        pbf.ReplacerUnBateau(grilleJoueur, bateau.imageHorizontale, bateau.imageVerticale, ligne, colonne);
+                        placerBateauFx.ReplacerUnBateau(grilleJoueur, bateau.imageHorizontale, bateau.imageVerticale, ligne, colonne);
                         bateau.SetPosition(ligne - 1, colonne - 1, direction);
-                        pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, bateau.direction, bateau.longueur, bateau.numGrille);
+                        placerBateau.EcrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, bateau.direction, bateau.longueur, bateau.numGrille);
                     }
                 }
             }
@@ -132,7 +303,7 @@ public class ControlleurJeu {
     /**
      * Fonction permettant de tourner le bateau selectionne.
      */
-    public void tournerBateau(){
+    public void TournerBateau(){
 
         if(!initialisation) {
             if (direction == 1) {
@@ -141,9 +312,9 @@ public class ControlleurJeu {
                 for (Bateau bateau : listeBateau) {
                     if (bateauChoisi + 1 == bateau.numGrille) {
                         if (bateau.posGrilleX != -1) {
-                            pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, 1, bateau.longueur, 0);
+                            placerBateau.EcrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, 1, bateau.longueur, 0);
                         }
-                        if (bateau.posGrilleX == -1 || pB.posOk(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, direction, bateau.longueur)) {
+                        if (bateau.posGrilleX == -1 || placerBateau.PosOk(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, direction, bateau.longueur)) {
                             bateau.direction = 2;
                             bateau.imageHorizontale.setVisible(false);
                             bateau.imageVerticale.setVisible(true);
@@ -152,7 +323,7 @@ public class ControlleurJeu {
                             direction = 1;
                         }
                         if (bateau.posGrilleX != -1) {
-                            pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, direction, bateau.longueur, bateau.numGrille);
+                            placerBateau.EcrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, direction, bateau.longueur, bateau.numGrille);
                         }
                     }
                 }
@@ -162,9 +333,9 @@ public class ControlleurJeu {
                 for (Bateau bateau : listeBateau) {
                     if (bateauChoisi + 1 == bateau.numGrille) {
                         if (bateau.posGrilleX != -1) {
-                            pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, 2, bateau.longueur, 0);
+                            placerBateau.EcrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, 2, bateau.longueur, 0);
                         }
-                        if (bateau.posGrilleX == -1 || pB.posOk(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, direction, bateau.longueur)) {
+                        if (bateau.posGrilleX == -1 || placerBateau.PosOk(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, direction, bateau.longueur)) {
                             bateau.direction = 1;
                             bateau.imageHorizontale.setVisible(true);
                             bateau.imageVerticale.setVisible(false);
@@ -173,7 +344,7 @@ public class ControlleurJeu {
                             direction = 2;
                         }
                         if (bateau.posGrilleX != -1) {
-                            pB.ecrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, direction, bateau.longueur, bateau.numGrille);
+                            placerBateau.EcrireDansGrille(grilleJoueurBackend, bateau.posGrilleX, bateau.posGrilleY, direction, bateau.longueur, bateau.numGrille);
                         }
                     }
                 }
@@ -215,7 +386,7 @@ public class ControlleurJeu {
      * Fonction permettant au joueur de tirer un missile sur la grille ennemie.
      * @param event Evenement de la souris contenant les informations sur le clic de l'utilisateur dont la ligne et la colonne du clic.
      */
-    public void tirAlier(MouseEvent event){
+    public void TirAlier(MouseEvent event){
         if(!partieFinie) {
             Node source = (Node) event.getSource();
             Integer row = GridPane.getRowIndex(source) - 1;
@@ -244,7 +415,7 @@ public class ControlleurJeu {
     /**
      * Fonction appelee apres le tir du joueur pour permettre a l'ennemi de tirer un missile sur la grille du joueur.
      */
-    public void tirEnnemi() {
+    void tirEnnemi() {
 
         int ligne;
         int colonne;
@@ -274,21 +445,31 @@ public class ControlleurJeu {
      * @param column Colonne du tir.
      * @param row Ligne du tir.
      */
-    public void tirCanon(GridPane grille, int[][] grilleBackend, int column, int row){
-        pbf.marqueTouche(grille, grilleBackend, column + 1, row + 1);
+    void tirCanon(GridPane grille, int[][] grilleBackend, int column, int row){
+        placerBateauFx.MarquerTir(grille, grilleBackend, column + 1, row + 1);
     }
 
     /**
      * Fonction appelee si la partie est terminee et fait l'affichage de fin de partie.
      */
-    public void FinDePartie(){
+    void FinDePartie(){
         boutonNouvellePartie.setVisible(true);
         TirCanon tirCanon = new TirCanon();
         if(tirCanon.vainqueur(grilleOrdiBackend)){
-            messageFinPartie.setText("Vous avez gagne!");
+            if(aTriche){
+                messageFinPartie.setText("Vous avez gagne! En trichant...");
+            }
+            else{
+                messageFinPartie.setText("Vous avez gagne!");
+            }
         }
         else {
-            messageFinPartie.setText("Vous avez perdu...");
+            if(aTriche){
+                messageFinPartie.setText("Vous avez perdu... En trichant!");
+            }
+            else{
+                messageFinPartie.setText("Vous avez perdu...");
+            }
         }
         messageFinPartie.setVisible(true);
         tricheActive = false;
@@ -336,7 +517,6 @@ public class ControlleurJeu {
      * @param event Evenement de la souris contenant les informations sur le clic de l'utilisateur.
      * @throws IOException
      */
-    //Fait en partie avec : https://www.youtube.com/watch?v=hcM-R-YOKkQ
     public void AllerAuMenu(ActionEvent event) throws IOException{
         grilleJoueurBackend = new int[10][10];
         grilleOrdiBackend = new int[10][10];
@@ -362,6 +542,7 @@ public class ControlleurJeu {
 
         if(tricheActive){
             grilleEnnemieTriche.setVisible(true);
+            aTriche = true;
         }
 
         InitBarreMenu();
@@ -452,7 +633,7 @@ public class ControlleurJeu {
     /**
      * Fonction permettant d'initialiser la grille de l'ordinateur.
      */
-    public void InitGrilleOrdi(){
+    void InitGrilleOrdi(){
         int[] grandeurBateau = new int[] {5, 4, 3, 3, 2};
         int ligne;
         int colonne;
@@ -463,17 +644,17 @@ public class ControlleurJeu {
             colonne = randRange(0, 10);
             direction = randRange(1, 3);
 
-            while (!pB.posOk(grilleOrdiBackend, ligne, colonne, direction, grandeurBateau[numeroBateau - 1]))
+            while (!placerBateau.PosOk(grilleOrdiBackend, ligne, colonne, direction, grandeurBateau[numeroBateau - 1]))
             {
                 ligne = randRange(0, 10);
                 colonne = randRange(0, 10);
                 direction = randRange(1, 3);
             }
 
-            pB.ecrireDansGrille(grilleOrdiBackend, ligne, colonne, direction, grandeurBateau[numeroBateau - 1], numeroBateau);
+            placerBateau.EcrireDansGrille(grilleOrdiBackend, ligne, colonne, direction, grandeurBateau[numeroBateau - 1], numeroBateau);
             for(Bateau bateau:listeBateauEnnemie){
                 if(bateau.numGrille == numeroBateau){
-                    pbf.PlacerUnBateau(grilleEnnemieTriche, bateau.imageHorizontale, bateau.imageVerticale, ligne + 1, colonne + 1);
+                    placerBateauFx.PlacerUnBateau(grilleEnnemieTriche, bateau.imageHorizontale, bateau.imageVerticale, ligne + 1, colonne + 1);
                     if(direction == 1){
                         bateau.imageHorizontale.setVisible(true);
                         bateau.imageVerticale.setVisible(false);
@@ -497,6 +678,7 @@ public class ControlleurJeu {
         }
         else {
             tricheActive = true;
+            aTriche = true;
             if(!initialisation){
                 grilleEnnemieTriche.setVisible(true);
             }

@@ -2,7 +2,6 @@ package com.example.bataillefx;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -46,7 +45,7 @@ public class PlacerBateauFx {
      * @param ligne Ligne du tir.
      * @param colonne Colonne du tir.
      */
-    public void marqueTouche(GridPane grille, int[][] grilleBackend, int ligne, int colonne){
+    public void MarquerTir(GridPane grille, int[][] grilleBackend, int ligne, int colonne){
         Rectangle carre = new Rectangle(22, 22);
         Color couleurDeTir;
         if(grilleBackend[colonne - 1][ligne - 1] == 0){
