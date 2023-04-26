@@ -13,7 +13,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         HelloApplication.stage = stage;
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Menu.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Jeu.fxml"));
         scene = new Scene(fxmlLoader.load(), 800, 800);
         HelloApplication.stage.setResizable(false);
         stage.setTitle("Hello!");
@@ -23,7 +23,7 @@ public class HelloApplication extends Application {
 
     public static void ChangerScene(String sceneACharger) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(sceneACharger + ".fxml"));
-        scene = new Scene(fxmlLoader.load(), 800, 800);
+        scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setResizable(false);
         stage.setTitle("Hello!");
         stage.setScene(scene);

@@ -6,14 +6,12 @@ import javafx.scene.layout.GridPane;
 public class GrilleJeu {
     int[][] grille = new int[3][3];
     GridPane grilleVisuelle;
-    ImageView gifO;
-    ImageView gifX;
 
     /*GrilleJeu(GridPane grille, ImageView imageO, ImageView imageX){
         grilleVisuelle = grille;
         gifO = imageO;
         gifX = imageX;
-    }*/
+    }
 
     public void SetImages(GridPane grille, ImageView imageO, ImageView imageX){
         gifO = imageO;
@@ -23,7 +21,7 @@ public class GrilleJeu {
     public void SetImages(ImageView imageO, ImageView imageX){
         gifO = imageO;
         gifX = imageX;
-    }
+    }*/
 
     public void AfficherGrille(){
         for(int i = 0; i < 3; i++){
