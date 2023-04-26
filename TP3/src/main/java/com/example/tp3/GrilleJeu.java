@@ -15,6 +15,16 @@ public class GrilleJeu {
         gifX = imageX;
     }*/
 
+    public void SetImages(GridPane grille, ImageView imageO, ImageView imageX){
+        gifO = imageO;
+        gifX = imageX;
+    }
+
+    public void SetImages(ImageView imageO, ImageView imageX){
+        gifO = imageO;
+        gifX = imageX;
+    }
+
     public void AfficherGrille(){
         for(int i = 0; i < 3; i++){
             for(int ii = 0; ii < 3; ii++){

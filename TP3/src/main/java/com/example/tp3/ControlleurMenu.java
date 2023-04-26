@@ -11,5 +11,6 @@ public class ControlleurMenu {
     @FXML
     void DemarrerPartie(ActionEvent evenement) throws IOException {
         HelloApplication.ChangerScene("Jeu");
+        HelloController.InitialiserImages();
     }
 }
