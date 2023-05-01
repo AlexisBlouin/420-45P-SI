@@ -14,6 +14,8 @@ public class HelloApplication extends Application {
     static Stage stage;
     static Scene scene;
 
+    static Media son = new Media(new File("C:\\Users\\bloa\\Desktop\\Git\\420-45P-SI\\TP3\\src\\main\\java\\com\\example\\tp3\\Sons\\Windows Shutdown.wav").toURI().toString());
+    static MediaPlayer sonBouton = new MediaPlayer(son);
 
     @Override
     public void start(Stage stage) throws IOException {
