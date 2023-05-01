@@ -66,7 +66,6 @@ public class HelloController {
             if(ajouterMarqueur.TesterFinDePartie(grilleJeu.grille, 1, ligne, colonne)){
                 System.out.println("Bien joueur");
                 partieFinie = true;
-                HelloApplication.ChangerScene("Menu");
             }
             //grilleJeu.AfficherGrille();
             if(!partieFinie){
