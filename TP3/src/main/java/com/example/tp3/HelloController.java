@@ -6,12 +6,19 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.File;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Random;
 
 import java.io.FileInputStream;
@@ -23,17 +30,26 @@ public class HelloController {
     AjouterMarqueurFX ajouterMarqueurFX = new AjouterMarqueurFX();
     static GrilleJeu grilleJeu = new GrilleJeu();
     static InputStream stream;
+    static File chemin;
+    static URL url;
     boolean partieFinie = false;
     static ImageView[][] tableauImages = new ImageView[2][5];
     //static MediaPlayer sonBouton;
     static MediaPlayer sonVictoire;
     static MediaPlayer sonDefaite;
     int nombreCoup;
+
+    static Line ligneX1 = new Line(0, 0, 100, 100);
+    static Line lignex2;
+    static Circle cercleO;
     @FXML
     GridPane grilleDuJeu;
+    @FXML
+    static
+    AnchorPane anchorPane;
 
     @FXML
-    void ClicGrille(MouseEvent evenement) throws IOException{
+    void ClicGrille(MouseEvent evenement) throws IOException, URISyntaxException {
         if(!partieFinie){
             Node source = (Node)evenement.getSource();
             Integer ligne = GridPane.getRowIndex(source);
@@ -56,6 +72,7 @@ public class HelloController {
 
         //System.out.println("x : " + ligne + ", y : " + colonne);
     }
+
 
     private void Tirjoueur(int ligne, int colonne) throws IOException{
         if(ajouterMarqueur.TesterEmplacement(grilleJeu.grille, ligne, colonne)){
@@ -101,23 +118,30 @@ public class HelloController {
         nombreCoup++;
     }
 
-    public static void InitialiserJeu() throws IOException {
+    public static void InitialiserJeu() throws IOException, URISyntaxException {
         for(int i = 0; i < 2; i++){
             for(int ii = 0; ii < 5; ii++){
                 tableauImages[i][ii] = new ImageView();
             }
         }
 
-        stream = new FileInputStream("C:\\Users\\bloa\\Desktop\\Git\\420-45P-SI\\TP3\\src\\main\\java\\com\\example\\tp3\\Images\\LettreO.gif");
-        Image tempo = new Image(stream);
+        //stream = new FileInputStream(HelloApplication.class.getResource("Images/LettreO.gif").toURI().toString());
+        //Image tempo = new Image(stream);
+
+        chemin = new File(HelloApplication.class.getResource("Images/LettreO.gif").toURI());
+        Image tempo = new Image(chemin.toURI().toString());
+
 
         for(int i = 0; i < 5; i++){
             tableauImages[0][i].setImage(tempo);
             tableauImages[0][i].setFitWidth(40);
             tableauImages[0][i].setFitHeight(40);
         }
-        stream = new FileInputStream("C:\\Users\\bloa\\Desktop\\Git\\420-45P-SI\\TP3\\src\\main\\java\\com\\example\\tp3\\Images\\LettreX.gif");
-        tempo = new Image(stream);
+        //stream = new FileInputStream(HelloApplication.class.getResource("Images/LettreX.gif").toURI().toString());
+        //tempo = new Image(stream);
+
+        chemin = new File(HelloApplication.class.getResource("Images/LettreX.gif").toURI());
+        tempo = new Image(chemin.toURI().toString());
 
         for(int i = 0; i < 5; i++){
             tableauImages[1][i].setImage(tempo);
@@ -128,11 +152,15 @@ public class HelloController {
         //Media son = new Media(new File("C:\\Users\\Alexis\\Desktop\\Git\\420-45P-SI\\TP3\\src\\main\\java\\com\\example\\tp3\\Sons\\Windows Shutdown.wav").toURI().toString());
         //sonBouton = new MediaPlayer(son);
 
-        Media son = new Media(new File("C:\\Users\\bloa\\Desktop\\Git\\420-45P-SI\\TP3\\src\\main\\java\\com\\example\\tp3\\Sons\\tadaa-47995.mp3").toURI().toString());
+        Media son = new Media(HelloApplication.class.getResource("Sons/tadaa-47995.mp3").toURI().toString());
         sonVictoire = new MediaPlayer(son);
 
-        son = new Media(new File("C:\\Users\\bloa\\Desktop\\Git\\420-45P-SI\\TP3\\src\\main\\java\\com\\example\\tp3\\Sons\\mixkit-arcade-retro-game-over-213.wav").toURI().toString());
+        son = new Media(HelloApplication.class.getResource("Sons/mixkit-arcade-retro-game-over-213.wav").toURI().toString());
         sonDefaite = new MediaPlayer(son);
+
+        anchorPane = new AnchorPane();
+        ligneX1.setStrokeWidth(10);
+        anchorPane.getChildren().add(ligneX1);
     }
 
     @FXML

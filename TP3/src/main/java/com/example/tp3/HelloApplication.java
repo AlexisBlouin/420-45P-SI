@@ -5,16 +5,28 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class HelloApplication extends Application {
     static Stage stage;
     static Scene scene;
 
-    static Media son = new Media(new File("C:\\Users\\bloa\\Desktop\\Git\\420-45P-SI\\TP3\\src\\main\\java\\com\\example\\tp3\\Sons\\Windows Shutdown.wav").toURI().toString());
+    static Media son;
+
+    static {
+        try {
+            son = new Media(HelloApplication.class.getResource("Sons/Windows Shutdown.wav").toURI().toString());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     static MediaPlayer sonBouton = new MediaPlayer(son);
 
     @Override

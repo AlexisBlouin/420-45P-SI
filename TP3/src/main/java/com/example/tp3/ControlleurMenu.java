@@ -9,14 +9,16 @@ import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class ControlleurMenu {
 
     @FXML
-    void DemarrerPartie(ActionEvent evenement) throws IOException {
+    void DemarrerPartie(ActionEvent evenement) throws IOException, URISyntaxException {
         HelloApplication.ChangerScene("Jeu");
         //HelloController.InitialiserImages();
         HelloApplication.sonBouton.seek(Duration.ZERO);
         HelloApplication.sonBouton.play();
+        //HelloController.InitialiserJeu();
     }
 }

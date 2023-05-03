@@ -33,5 +33,6 @@
          </children>
       </GridPane>
       <Button layoutX="440.0" layoutY="188.0" mnemonicParsing="false" onAction="#RetourAuMenu" text="Retour au menu" />
+      <AnchorPane fx:id="anchorPane" layoutX="153.0" layoutY="300.0" prefHeight="200.0" prefWidth="400.0" />
    </children>
 </AnchorPane>
