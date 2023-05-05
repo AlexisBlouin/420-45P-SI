@@ -6,8 +6,11 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tp3.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tp3.HelloController">
    <children>
       <GridPane fx:id="grilleDuJeu" gridLinesVisible="true" layoutX="233.0" layoutY="155.0" prefHeight="120.0" prefWidth="120.0">
         <columnConstraints>
@@ -21,18 +24,21 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Pane onMouseClicked="#ClicGrille" prefHeight="200.0" prefWidth="200.0" />
-            <Pane onMouseClicked="#ClicGrille" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-            <Pane onMouseClicked="#ClicGrille" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
-            <Pane onMouseClicked="#ClicGrille" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
-            <Pane onMouseClicked="#ClicGrille" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Pane onMouseClicked="#ClicGrille" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Pane onMouseClicked="#ClicGrille" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
-            <Pane onMouseClicked="#ClicGrille" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Pane onMouseClicked="#ClicGrille" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Pane onMouseClicked="#clicGrille" prefHeight="200.0" prefWidth="200.0" />
+            <Pane onMouseClicked="#clicGrille" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+            <Pane onMouseClicked="#clicGrille" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
+            <Pane onMouseClicked="#clicGrille" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+            <Pane onMouseClicked="#clicGrille" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Pane onMouseClicked="#clicGrille" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Pane onMouseClicked="#clicGrille" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
+            <Pane onMouseClicked="#clicGrille" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Pane onMouseClicked="#clicGrille" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Button layoutX="440.0" layoutY="188.0" mnemonicParsing="false" onAction="#RetourAuMenu" text="Retour au menu" />
-      <AnchorPane fx:id="anchorPane" layoutX="153.0" layoutY="300.0" prefHeight="200.0" prefWidth="400.0" />
+      <Button fx:id="boutonMenu" layoutX="440.0" layoutY="188.0" mnemonicParsing="false" onAction="#retourAuMenu" text="Retour au menu" visible="false" />
+      <Text fx:id="messageFin" layoutX="439.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="102.0" />
+      <Circle fx:id="cercle" fill="#1f93ff00" layoutX="293.0" layoutY="400.0" radius="66.0" stroke="BLACK" strokeType="INSIDE" />
+      <Line fx:id="ligne1" endX="50.7071533203125" endY="37.0" layoutX="493.0" layoutY="407.0" startX="-55.0" startY="-52.0" />
+      <Line fx:id="ligne2" endX="40.0" endY="-62.70709228515625" layoutX="503.0" layoutY="417.0" startX="-65.70709228515625" startY="27.70709228515625" />
    </children>
 </AnchorPane>
