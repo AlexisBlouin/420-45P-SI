@@ -5,16 +5,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
 /**
- * Classe appelée au démarrage du programme pour charger la scene menu.
+ * <pre>
+ * Programme  permettant de jouer au jeu TicTacToe contre un ordinateur.
+ * Date de remise : 5 mai 2023
+ * Auteur : Alexis Blouin
+ * </pre>
+ * @since 5 mai 2023
  */
 public class HelloApplication extends Application {
     /**
@@ -65,7 +67,7 @@ public class HelloApplication extends Application {
      * @param sceneACharger String contenant le nom de la scene a charger.
      * @throws IOException
      */
-    public static void ChangerScene(String sceneACharger) throws IOException {
+    public static void changerScene(String sceneACharger) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(sceneACharger + ".fxml"));
         scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setResizable(false);
